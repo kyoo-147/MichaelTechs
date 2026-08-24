@@ -11,9 +11,9 @@ const { locale } = Astro.props;
 const copy = {
   en: {
     eyebrow: "CONTACT",
-    title: "Build useful AI systems with me.",
+    title: "Let’s build the next generation of AI together.",
     intro:
-      "For product collaboration, AI engineering, technical consulting, research work, or startup conversations, reach me through the channels below.",
+      "For product collaboration, AI engineering, technical consulting, research, startup conversations, or to explore our research and foundation models, reach us through the channels below.",
     direct: "Direct",
     profiles: "Profiles",
     company: "NaVinAIF TECH",
@@ -30,18 +30,18 @@ const copy = {
       "Email is the best path for serious work. LinkedIn is fine for professional introductions, while GitHub is best for source and project references.",
     email: "Email",
     phone: "Phone",
-    phoneMeta: "Call / message",
+    website: "Our Website",
     github: "GitHub",
     linkedin: "LinkedIn",
     x: "X",
+    youtube: "YouTube",
     location: "Vietnam",
-    copyEmail: "Open email",
   },
   vi: {
     eyebrow: "LIÊN HỆ",
-    title: "Cùng xây dựng những hệ thống AI có ích.",
+    title: "Hãy cùng nhau xây dựng thế hệ AI tiếp theo.",
     intro:
-      "Nếu bạn muốn trao đổi về sản phẩm, kỹ thuật AI, tư vấn hệ thống, nghiên cứu hoặc hợp tác startup, có thể liên hệ qua các kênh bên dưới.",
+      "Để hợp tác sản phẩm, kỹ thuật AI, tư vấn kỹ thuật, nghiên cứu, trao đổi về startup, hoặc khám phá các nghiên cứu và mô hình nền tảng của chúng tôi, hãy liên hệ qua các kênh bên dưới.",
     direct: "Liên hệ trực tiếp",
     profiles: "Hồ sơ",
     company: "NaVinAIF TECH",
@@ -58,18 +58,18 @@ const copy = {
       "Email là kênh phù hợp nhất cho công việc nghiêm túc. LinkedIn phù hợp để kết nối chuyên nghiệp, còn GitHub dùng để xem mã nguồn và dự án tham khảo.",
     email: "Email",
     phone: "Điện thoại",
-    phoneMeta: "Gọi / nhắn tin",
+    website: "Website của chúng tôi",
     github: "GitHub",
     linkedin: "LinkedIn",
     x: "X",
+    youtube: "YouTube",
     location: "Việt Nam",
-    copyEmail: "Mở email",
   },
   "zh-cn": {
     eyebrow: "联系",
-    title: "一起构建真正有用的 AI 系统。",
+    title: "让我们共同构建下一代 AI。",
     intro:
-      "如果你想交流产品合作、AI 工程、系统咨询、研究项目或 startup 方向，可以通过下面的渠道联系我。",
+      "如需开展产品合作、AI 工程、技术咨询、研究与创业交流，或进一步了解我们的研究成果和基础模型，欢迎通过以下渠道联系我们。",
     direct: "直接联系",
     profiles: "个人资料",
     company: "NaVinAIF TECH",
@@ -86,45 +86,48 @@ const copy = {
       "严肃合作建议使用 Email。LinkedIn 适合职业连接，GitHub 适合查看源码和项目参考。",
     email: "Email",
     phone: "电话",
-    phoneMeta: "电话 / 短信",
+    website: "我们的官方网站",
     github: "GitHub",
     linkedin: "LinkedIn",
     x: "X",
+    youtube: "YouTube",
     location: "越南",
-    copyEmail: "打开邮箱",
   },
 }[locale];
 
-const links = [
+const directLinks = [
   {
     label: copy.email,
     value: CONTACT.email,
     href: `mailto:${CONTACT.email}`,
-    meta: copy.copyEmail,
   },
   {
     label: copy.phone,
     value: "+84 365 646 109",
     href: "tel:+84365646109",
-    meta: copy.phoneMeta,
   },
+];
+
+const profileLinks = [
   {
     label: copy.github,
     value: "github.com/kyoo-147",
     href: CONTACT.github,
-    meta: "Source / projects",
   },
   {
     label: copy.linkedin,
-    value: "minh-cuong-bui",
+    value: "michaelbui-engineer",
     href: CONTACT.linkedin,
-    meta: "Professional profile",
   },
   {
     label: copy.x,
     value: "x.com/mih_cuog",
-    href: "https://x.com/mih_cuog",
-    meta: "Updates",
+    href: CONTACT.x,
+  },
+  {
+    label: copy.youtube,
+    value: "youtube.com/@Eagle1_v8nker",
+    href: CONTACT.youtube,
   },
 ];
 ---
@@ -142,13 +145,13 @@ const links = [
     </div>
     <button
       type="button"
-      class="group block border border-border bg-[#050505] p-3 text-left transition hover:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      class="group block min-w-0 w-full border border-border bg-[#050505] p-3 text-left transition hover:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       data-contact-image-trigger
-      aria-label="Open NaVinAIF TECH image"
+      aria-label="Open Navin Research image"
     >
       <img
-        src="/contact/navinaif-tech.jpg"
-        alt="NaVinAIF TECH company message"
+        src="/contact/follow-your-dream.png"
+        alt="Navin Research — Follow Your Dream"
         class="aspect-[16/9] h-full w-full object-contain transition duration-300 group-hover:scale-[1.01]"
         loading="eager"
       />
@@ -159,6 +162,22 @@ const links = [
 <section class="mt-12 grid border border-border md:grid-cols-2">
   <div class="border-b border-border p-6 md:border-r md:border-b-0 lg:p-8">
     <h2 class="text-[1.22rem] font-semibold tracking-[-0.02em] text-foreground">{copy.direct}</h2>
+    <a
+      href={CONTACT.website}
+      target="_blank"
+      rel="noreferrer"
+      class="group mt-5 block border-b border-border pb-5"
+    >
+      <div class="flex items-center justify-between gap-6">
+        <div>
+          <div class="text-sm text-subtle-foreground">{copy.website}</div>
+          <div class="mt-2 text-[1.25rem] font-semibold tracking-[-0.02em] text-foreground">
+            Navin Research
+          </div>
+        </div>
+        <div class="text-lg text-subtle-foreground transition group-hover:text-accent">→</div>
+      </div>
+    </a>
     <div class="mt-5 border-b border-border pb-5">
       <div class="text-sm text-subtle-foreground">{copy.location}</div>
       <div class="mt-2 text-[1.25rem] font-semibold tracking-[-0.02em] text-foreground">
@@ -167,7 +186,7 @@ const links = [
     </div>
     <div class="mt-6 divide-y divide-border">
       {
-        links.slice(0, 2).map(link => (
+        directLinks.map(link => (
           <a href={link.href} class="group block py-5 first:pt-0 last:pb-0">
             <div class="flex items-center justify-between gap-6">
               <div>
@@ -176,7 +195,6 @@ const links = [
               </div>
               <div class="text-lg text-subtle-foreground transition group-hover:text-accent">→</div>
             </div>
-            <div class="mt-2 text-sm text-muted-foreground">{link.meta}</div>
           </a>
         ))
       }
@@ -187,7 +205,7 @@ const links = [
     <h2 class="text-[1.22rem] font-semibold tracking-[-0.02em] text-foreground">{copy.profiles}</h2>
     <div class="mt-6 divide-y divide-border">
       {
-        links.slice(2).map(link => (
+        profileLinks.map(link => (
           <a href={link.href} target="_blank" rel="noreferrer" class="group block py-5 first:pt-0 last:pb-0">
             <div class="flex items-center justify-between gap-6">
               <div>
@@ -196,7 +214,6 @@ const links = [
               </div>
               <div class="text-lg text-subtle-foreground transition group-hover:text-accent">→</div>
             </div>
-            <div class="mt-2 text-sm text-muted-foreground">{link.meta}</div>
           </a>
         ))
       }
@@ -225,8 +242,8 @@ const links = [
       ×
     </button>
     <img
-      src="/contact/navinaif-tech.jpg"
-      alt="NaVinAIF TECH company message"
+      src="/contact/follow-your-dream.png"
+      alt="Navin Research — Follow Your Dream"
       class="max-h-[86vh] w-full object-contain"
       loading="lazy"
     />
