@@ -134,7 +134,7 @@ const profileLinks = [
 
 <section class="pt-8">
   <div class="eyebrow-line site-kicker">{copy.eyebrow}</div>
-  <div class="mt-6 grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(300px,0.7fr)] lg:items-end">
+  <div class="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(400px,0.85fr)] lg:items-start lg:gap-10">
     <div>
       <h1 class="max-w-[780px] text-[3.15rem] font-semibold leading-[0.98] tracking-[-0.045em] text-foreground sm:text-[4.6rem]">
         {copy.title}
@@ -145,14 +145,14 @@ const profileLinks = [
     </div>
     <button
       type="button"
-      class="group block min-w-0 w-full border border-border bg-[#050505] p-3 text-left transition hover:border-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      class="group block min-w-0 w-full overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background"
       data-contact-image-trigger
       aria-label="Open Navin Research image"
     >
       <img
         src="/contact/follow-your-dream.png"
         alt="Navin Research — Follow Your Dream"
-        class="aspect-[16/9] h-full w-full object-contain transition duration-300 group-hover:scale-[1.01]"
+        class="aspect-[16/9] h-auto w-full object-cover transition duration-300 group-hover:scale-[1.01]"
         loading="eager"
       />
     </button>
@@ -232,7 +232,7 @@ const profileLinks = [
     data-contact-image-close
     aria-label="Close image"
   ></button>
-  <div class="relative z-10 w-full max-w-6xl border border-white/20 bg-black p-3 shadow-2xl">
+  <div class="relative z-10 w-full max-w-6xl shadow-2xl">
     <button
       type="button"
       class="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center border border-white/25 bg-black/70 text-xl leading-none text-white transition hover:border-white"
