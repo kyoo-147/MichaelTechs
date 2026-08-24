@@ -70,9 +70,12 @@ export const NAV_LINKS = [
 ];
 
 export const CONTACT = {
-  email: "navinservicesnv000@gmail.com",
+  email: "michaelbui.contact@gmail.com",
   github: "https://github.com/kyoo-147",
-  linkedin: "https://www.linkedin.com/in/minh-cuong-bui/",
+  linkedin: "https://www.linkedin.com/in/michaelbui-engineer",
+  x: "https://x.com/mih_cuog",
+  youtube: "https://www.youtube.com/@Eagle1_v8nker",
+  website: "https://navinresearch.com",
   location: "Vietnam",
 };
 
