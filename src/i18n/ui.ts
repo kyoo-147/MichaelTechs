@@ -19,20 +19,15 @@ export const ui = {
       home: "Home",
     },
     hero: {
-      eyebrow: "FOUNDER · ENGINEER · BOOK LOVER",
+      eyebrow: "FOUNDER · RESEARCHER · BOOK LOVER",
       titleHtml: "Hi, I'm Michael! 👋",
       intro: [
-        "I am still alive. I'm just an ordinary person living in a boring world. But I am passionate about things like computers, space, science, engines, robots, artificial intelligence, books, etc. I want to create a world, an era, an environment where humans and artificial intelligence can live under the same sky. And I also want to build a house for my parents. My dream is to help the blind, the disabled, autistic children, or those struggling with technology by applying artificial intelligence to their lives to make their lives better. <span class=\"whitespace-nowrap\">(❁´ ◡` ❁)</span>",
-        "Currently, I focus on building practical AI systems, automation, and software products — especially solutions that can help businesses operate more efficiently and better support people, from workflow automation to computer vision and child-safe AI experiences.",
+        'I am still alive. I\'m just an ordinary person living in a boring world. But I am passionate about things like computers, space, science, engines, robots, artificial intelligence, books, etc. I want to create a world, an era, an environment where humans and artificial intelligence can live under the same sky. And I also want to build a house for my parents. My dream is to help the blind, the disabled, autistic children, or those struggling with technology by applying artificial intelligence to their lives to make their lives better. <span class="whitespace-nowrap">(❁´ ◡` ❁)</span>',
+        "Currently, we are developing and experimenting with pioneering foundation and frontier AI models across language, speech, and vision, with the ambition of making our mark on the global AI map.",
       ],
       primaryCta: "View Work",
       secondaryCta: "Read Writing",
-      proof: [
-        "5+ YEARS",
-        "FOUNDER-LED",
-        "AI + PRODUCT + ENGINEERING",
-        "TOP 15 BFMC",
-      ],
+      proof: ["5+ YEARS", "FOUNDER-LED", "AI + PRODUCT + ENGINEERING", "TOP 15 BFMC"],
     },
     sections: {
       selectedWork: "Selected Work",
@@ -74,8 +69,7 @@ export const ui = {
       title: "About",
       intro:
         "I build practical AI products and software systems with a focus on usefulness, clarity, and real-world outcomes.",
-      body:
-        "My work spans workflow automation, CRM products, computer vision systems, and safer AI experiences. I care about product thinking as much as implementation, and I like writing down what I learn along the way.",
+      body: "My work spans workflow automation, CRM products, computer vision systems, and safer AI experiences. I care about product thinking as much as implementation, and I like writing down what I learn along the way.",
       resumeLabel: "Resume",
     },
     archive: {
@@ -91,8 +85,7 @@ export const ui = {
       title: "Search",
       desc: "Search posts and case studies.",
       placeholder: "Search posts, essays, or project names",
-      devWarning:
-        "Build the project once to preview real search results during development.",
+      devWarning: "Build the project once to preview real search results during development.",
     },
     post: {
       updated: "Updated",
@@ -120,20 +113,15 @@ export const ui = {
       home: "Trang chủ",
     },
     hero: {
-      eyebrow: "FOUNDER · ENGINEER · BOOK LOVER",
+      eyebrow: "FOUNDER · RESEARCHER · BOOK LOVER",
       titleHtml: "Hi, I'm Michael! 👋",
       intro: [
-        "Tôi vẫn còn sống. Tôi chỉ là một người bình thường sống trong một thế giới nhàm chán. Nhưng tôi đam mê những thứ như máy tính, không gian, khoa học, động cơ, robot, trí tuệ nhân tạo, sách vở, v.v. Tôi muốn tạo ra một thế giới, một kỷ nguyên, một môi trường nơi con người và trí tuệ nhân tạo có thể sống dưới cùng một bầu trời. Và tôi cũng muốn xây một ngôi nhà cho bố mẹ mình. Ước mơ của tôi là giúp đỡ những người mù, người khuyết tật, trẻ tự kỷ, hoặc những người gặp khó khăn với công nghệ bằng cách ứng dụng trí tuệ nhân tạo vào cuộc sống của họ để cuộc sống của họ trở nên tốt đẹp hơn. <span class=\"whitespace-nowrap\">(❁´ ◡` ❁)</span>",
-        "Hiện tại, tôi tập trung vào việc xây dựng các hệ thống AI, tự động hóa và sản phẩm phần mềm có giá trị thực tiễn — đặc biệt là những giải pháp có thể giúp doanh nghiệp vận hành hiệu quả hơn, hỗ trợ con người tốt hơn, từ tự động hóa quy trình làm việc đến thị giác máy tính và trải nghiệm AI an toàn cho trẻ em.",
+        'Tôi vẫn còn sống. Tôi chỉ là một người bình thường sống trong một thế giới nhàm chán. Nhưng tôi đam mê những thứ như máy tính, không gian, khoa học, động cơ, robot, trí tuệ nhân tạo, sách vở, v.v. Tôi muốn tạo ra một thế giới, một kỷ nguyên, một môi trường nơi con người và trí tuệ nhân tạo có thể sống dưới cùng một bầu trời. Và tôi cũng muốn xây một ngôi nhà cho bố mẹ mình. Ước mơ của tôi là giúp đỡ những người mù, người khuyết tật, trẻ tự kỷ, hoặc những người gặp khó khăn với công nghệ bằng cách ứng dụng trí tuệ nhân tạo vào cuộc sống của họ để cuộc sống của họ trở nên tốt đẹp hơn. <span class="whitespace-nowrap">(❁´ ◡` ❁)</span>',
+        "Hiện tại, chúng tôi đang phát triển và thử nghiệm các mô hình AI nền tảng và tiên phong trong các lĩnh vực ngôn ngữ, giọng nói và thị giác, với khát vọng ghi dấu ấn trên bản đồ AI toàn cầu.",
       ],
       primaryCta: "Xem dự án",
       secondaryCta: "Đọc bài viết",
-      proof: [
-        "5+ NĂM",
-        "ĐIỀU HÀNH BỞI NHÀ SÁNG LẬP",
-        "AI + SẢN PHẨM + KỸ THUẬT",
-        "TOP 15 BFMC",
-      ],
+      proof: ["5+ NĂM", "ĐIỀU HÀNH BỞI NHÀ SÁNG LẬP", "AI + SẢN PHẨM + KỸ THUẬT", "TOP 15 BFMC"],
     },
     sections: {
       selectedWork: "Dự án chọn lọc",
@@ -175,8 +163,7 @@ export const ui = {
       title: "Giới thiệu",
       intro:
         "Tôi xây dựng sản phẩm AI và hệ thống phần mềm thực dụng, tập trung vào tính hữu ích, rõ ràng và hiệu quả ngoài đời thực.",
-      body:
-        "Công việc của tôi trải dài từ tự động hóa quy trình, CRM, thị giác máy tính đến các trải nghiệm AI an toàn hơn. Tôi quan tâm đến tư duy sản phẩm nhiều như chính phần triển khai, và tôi thích viết lại những gì mình học được.",
+      body: "Công việc của tôi trải dài từ tự động hóa quy trình, CRM, thị giác máy tính đến các trải nghiệm AI an toàn hơn. Tôi quan tâm đến tư duy sản phẩm nhiều như chính phần triển khai, và tôi thích viết lại những gì mình học được.",
       resumeLabel: "Hồ sơ",
     },
     archive: {
@@ -204,8 +191,7 @@ export const ui = {
     },
   },
   "zh-cn": {
-    siteDescription:
-      "一位专注于实用型 AI 系统、产品与软件的 builder、engineer 和 writer。",
+    siteDescription: "一位专注于实用型 AI 系统、产品与软件的 builder、engineer 和 writer。",
     topMetaLeft: "第 01 期 / 2025",
     topMetaCenter: "FOUNDER · ENGINEER",
     topMetaRight: "MADE IN VIETNAM",
@@ -221,20 +207,15 @@ export const ui = {
       home: "首页",
     },
     hero: {
-      eyebrow: "FOUNDER · ENGINEER · BOOK LOVER",
+      eyebrow: "FOUNDER · RESEARCHER · BOOK LOVER",
       titleHtml: "Hi, I'm Michael! 👋",
       intro: [
-        "我还活着。我只是一个生活在无聊世界里的普通人。但我对计算机、太空、科学、发动机、机器人、人工智能、书籍等充满热情。我想创造一个世界、一个时代、一个人类与人工智能可以在同一片天空下共同生活的环境。我也想为我的父母建一栋房子。我的梦想是帮助盲人、残障人士、自闭症儿童，或者那些在技术上遇到困难的人，将人工智能应用到他们的生活中，让他们的生活变得更美好。<span class=\"whitespace-nowrap\">(❁´ ◡` ❁)</span>",
-        "目前，我专注于构建具有实际价值的人工智能系统、自动化和软件产品——特别是那些可以帮助企业更高效运营、更好地支持人的解决方案，从工作流自动化到计算机视觉和儿童安全的 AI 体验。",
+        '我还活着。我只是一个生活在无聊世界里的普通人。但我对计算机、太空、科学、发动机、机器人、人工智能、书籍等充满热情。我想创造一个世界、一个时代、一个人类与人工智能可以在同一片天空下共同生活的环境。我也想为我的父母建一栋房子。我的梦想是帮助盲人、残障人士、自闭症儿童，或者那些在技术上遇到困难的人，将人工智能应用到他们的生活中，让他们的生活变得更美好。<span class="whitespace-nowrap">(❁´ ◡` ❁)</span>',
+        "目前，我们正在语言、语音和视觉领域开发并实验具有开创性的基础模型与前沿 AI 模型，立志在全球 AI 版图上留下属于我们的印记。",
       ],
       primaryCta: "查看项目",
       secondaryCta: "阅读写作",
-      proof: [
-        "5+ 年经验",
-        "FOUNDER-LED",
-        "AI + PRODUCT + ENGINEERING",
-        "TOP 15 BFMC",
-      ],
+      proof: ["5+ 年经验", "FOUNDER-LED", "AI + PRODUCT + ENGINEERING", "TOP 15 BFMC"],
     },
     sections: {
       selectedWork: "精选项目",
@@ -274,10 +255,8 @@ export const ui = {
     },
     about: {
       title: "关于",
-      intro:
-        "我专注于构建实用型 AI 产品与软件系统，强调可用性、清晰度与真实世界结果。",
-      body:
-        "我的工作涵盖 workflow automation、CRM 产品、computer vision 系统以及更安全的 AI 体验。我重视产品思考，也重视实现细节，并且喜欢把自己的经验写下来。",
+      intro: "我专注于构建实用型 AI 产品与软件系统，强调可用性、清晰度与真实世界结果。",
+      body: "我的工作涵盖 workflow automation、CRM 产品、computer vision 系统以及更安全的 AI 体验。我重视产品思考，也重视实现细节，并且喜欢把自己的经验写下来。",
       resumeLabel: "履历",
     },
     archive: {
