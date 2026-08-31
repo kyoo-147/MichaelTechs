@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "batchId": "not-yet-initialized",
+  "generatedAt": "1970-01-01T00:00:00Z",
+  "demo": false,
+  "metric": "unique visitors per log day",
+  "geolocationProvider": "none",
+  "privacy": {
+    "contains": ["daily country, region, and city aggregates when the production job has run"],
+    "excludes": ["raw IP", "IP hash", "URL", "user agent", "individual trajectory"]
+  },
+  "rows": []
+}
