@@ -17,7 +17,7 @@ categories:
 
 > **Note:** This is a personal reading list. The reflections in future updates will represent my own impressions, not an academic review or the views of the authors or publishers.
 
-I read for different reasons: to understand a technical idea, to see how another person faced a difficult life, or simply to enter a world larger than my own. This list is intentionally unfinished. I will add short notes about my impression and the most important lesson from each book as I revisit them.
+I read for different reasons: to understand a technical idea, to see how another person faced a difficult life, or simply to enter a world larger than my own. This list is intentionally unfinished. I have not yet had time to bring everything together, and many more books are still in storage. I will try to make time to organize the full list and add a short personal reflection and the most important lesson I took from each book to share with everyone.
 
 ## AI, science, and technology
 

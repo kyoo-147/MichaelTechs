@@ -17,7 +17,7 @@ categories:
 
 > **Lưu ý:** Đây là danh sách đọc mang tính cá nhân. Những cảm nhận được bổ sung sau này chỉ là suy nghĩ của riêng tôi, không phải đánh giá học thuật và không đại diện cho quan điểm của tác giả hay nhà xuất bản.
 
-Tôi đọc vì nhiều lý do: để hiểu một ý tưởng kỹ thuật, nhìn cách một người đối diện với cuộc đời khó khăn, hoặc đơn giản là bước vào một thế giới lớn hơn thế giới của mình. Danh sách này cố ý để mở. Tôi sẽ bổ sung cảm nhận ngắn và bài học lớn nhất từ mỗi cuốn khi đọc lại.
+Tôi đọc vì nhiều lý do: để hiểu một ý tưởng kỹ thuật, nhìn cách một người đối diện với cuộc đời khó khăn, hoặc đơn giản là bước vào một thế giới lớn hơn thế giới của mình. Danh sách này cố ý để mở. Thực ra, tôi vẫn chưa có thời gian tổng hợp hết vì còn rất nhiều sách đang nằm trong kho. Tôi sẽ cố gắng dành thời gian sắp xếp lại danh sách, đồng thời bổ sung cảm nhận ngắn và bài học lớn nhất từ mỗi cuốn để chia sẻ cùng mọi người.
 
 ## AI, khoa học và công nghệ
 
