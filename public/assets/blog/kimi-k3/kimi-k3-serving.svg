@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Kimi K3 serving considerations</title><desc id="desc">Diagram of the practical serving pipeline from request and context management through prefill, sparse expert execution, decoding, tools, and verification.</desc>
+  <rect width="1200" height="560" fill="#23201c"/>
+  <text x="64" y="70" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#fff9f2">Serving a frontier-scale sparse model</text>
+  <text x="64" y="107" font-family="Arial,sans-serif" font-size="18" fill="#d9cfbb">Weights are only one part of the production system.</text>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <g fill="#2f2b25" stroke="#c06040" stroke-width="2">
+      <rect x="55" y="190" width="170" height="110" rx="10"/><rect x="270" y="190" width="170" height="110" rx="10"/><rect x="485" y="190" width="170" height="110" rx="10"/><rect x="700" y="190" width="170" height="110" rx="10"/><rect x="915" y="190" width="230" height="110" rx="10"/>
+    </g>
+    <g fill="#fff9f2" font-size="20" font-weight="700">
+      <text x="140" y="238">Request</text><text x="355" y="238">Context</text><text x="570" y="238">Prefill</text><text x="785" y="238">Sparse decode</text><text x="1030" y="238">Validate &amp; act</text>
+    </g>
+    <g fill="#d9cfbb" font-size="15">
+      <text x="140" y="270">text · vision</text><text x="355" y="270">cache · compact</text><text x="570" y="270">KDA · MLA</text><text x="785" y="270">expert routing</text><text x="1030" y="270">tools · tests · review</text>
+    </g>
+    <g stroke="#d58b68" stroke-width="3"><path d="M225 245H270"/><path d="M440 245H485"/><path d="M655 245H700"/><path d="M870 245H915"/></g>
+  </g>
+  <rect x="135" y="385" width="930" height="90" rx="10" fill="#9f422c"/>
+  <text x="600" y="424" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#fff9f2">Operational constraints</text>
+  <text x="600" y="455" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#fff9f2">hardware · memory · latency · security · observability · license compliance</text>
+</svg>
