@@ -1,7 +1,8 @@
 ---
-title: "Đây là một video ngắn từ nhà sáng lập của chúng tôi, Zhilin Yang."
-description: "Trang giới thiệu và video founder được dựng trước; câu chuyện đầy đủ sẽ được bổ sung trong một lần cập nhật sau."
+title: "Đây là một video ngắn từ nhà sáng lập của chúng tôi, Michael Bui."
+description: "Gặp gỡ Michael Bui, kỹ sư nghiên cứu và sản phẩm AI đang xây dựng các hệ thống thông minh thực dụng và công nghệ lấy con người làm trung tâm."
 pubDatetime: "2026-09-01T09:00:00.000Z"
+modDatetime: 2026-09-01T14:30:00.000Z
 locale: vi
 author: Michael
 featured: false
@@ -14,8 +15,14 @@ categories:
   - Experience
 ---
 
-![Chân dung founder](/assets/blog/founder/michael-founder.webp)
+![Michael Bui, nhà sáng lập và kỹ sư nghiên cứu và sản phẩm AI](/assets/blog/founder/michael-founder.webp)
 
-Đây là một video ngắn từ nhà sáng lập của chúng tôi, Zhilin Yang.
+## Giới thiệu ngắn
 
-Trang này được dựng trước cho bài giới thiệu chi tiết và video về founder. Câu chuyện đầy đủ sẽ được bổ sung trong một lần cập nhật sau.
+Michael Bui là nhà sáng lập và Kỹ sư Nghiên cứu & Sản phẩm AI tại Việt Nam. Công việc của Michael tập trung vào các hệ thống AI thực dụng, nghiên cứu model, automation, computer vision và những sản phẩm lấy con người làm trung tâm, có khả năng tạo ra giá trị vượt ra ngoài một bản trình diễn kỹ thuật.
+
+Michael đặc biệt quan tâm tới hành trình biến một ý tưởng tham vọng thành hệ thống có thể kiểm thử, vận hành và tiếp tục cải tiến trong thế giới thực.
+
+## Một video ngắn từ Michael
+
+> **Video sẽ được cập nhật sau.** Michael sẽ quay lại trang này với một video giới thiệu cá nhân ngắn cùng những chia sẻ chi tiết hơn về công việc, động lực và hành trình làm founder.
