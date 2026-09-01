@@ -1,7 +1,8 @@
 ---
-title: "Here's a short video from our founder, Zhilin Yang."
-description: "A reserved founder profile and video page. The complete story and video will be added in a future update."
+title: "Here's a short video from our founder, Michael Bui."
+description: "Meet Michael Bui, an AI research and product engineer building practical intelligent systems and human-centered technology."
 pubDatetime: "2026-09-01T09:00:00.000Z"
+modDatetime: 2026-09-01T14:30:00.000Z
 locale: en
 author: Michael
 featured: false
@@ -14,8 +15,14 @@ categories:
   - Experience
 ---
 
-![Founder portrait](/assets/blog/founder/michael-founder.webp)
+![Michael Bui, founder and AI research and product engineer](/assets/blog/founder/michael-founder.webp)
 
-Here's a short video from our founder, Zhilin Yang.
+## A short introduction
 
-This page is reserved for a future founder profile and video. The complete story will be added in a later update.
+Michael Bui is an AI Research & Product Engineer and founder based in Vietnam. His work focuses on practical AI systems, model research, automation, computer vision, and human-centered products that can create useful value beyond a technical demonstration.
+
+He is especially interested in the path from an ambitious idea to a system that can be tested, operated, and improved in the real world.
+
+## A short video from Michael
+
+> **Video coming soon.** Michael will return to this page with a short personal introduction and more details about his work, motivations, and journey as a founder.
