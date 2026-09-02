@@ -9,14 +9,20 @@ const { active, pageTitle, description } = Astro.props;
 const canonicalPath = active === "about" ? "/all-about-me" : `/all-about-me/${active}`;
 const navigation = [
   { id: "about", label: "About", href: "/all-about-me" },
-  { id: "current-focus", label: "Current focus", href: "/all-about-me/current-focus" },
-  { id: "projects", label: "Projects", href: "/all-about-me/projects" },
-  { id: "papers", label: "Papers", href: "/all-about-me/papers" },
-  { id: "awards", label: "Awards", href: "/all-about-me/awards" },
-  { id: "writing", label: "Writing", href: "/all-about-me/writing" },
-  { id: "gallery", label: "Gallery", href: "/all-about-me/gallery" },
+  { id: "advice", label: "Advice", href: "/all-about-me/advice" },
+  { id: "bookshelf", label: "Bookshelf", href: "/all-about-me/bookshelf" },
+  { id: "culture", label: "Culture", href: "/all-about-me/culture" },
+  { id: "dispatches", label: "Dispatches", href: "/all-about-me/dispatches" },
+  { id: "fast", label: "Fast", href: "/all-about-me/fast" },
+  { id: "growth", label: "Growth", href: "/all-about-me/growth" },
+  { id: "labs", label: "Labs", href: "/all-about-me/labs" },
   { id: "links", label: "Links", href: "/all-about-me/links" },
-  { id: "misc", label: "Misc unsorted", href: "/all-about-me/misc" },
+  { id: "pollution", label: "Pollution", href: "/all-about-me/pollution" },
+  { id: "progress", label: "Progress", href: "/all-about-me/progress" },
+  { id: "questions", label: "Questions", href: "/all-about-me/questions" },
+  { id: "solar", label: "Solar", href: "/all-about-me/solar" },
+  { id: "sv-history", label: "SV history", href: "/all-about-me/sv-history" },
+  { id: "travel", label: "Travel", href: "/all-about-me/travel" },
 ];
 ---
 
