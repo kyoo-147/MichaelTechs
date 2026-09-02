@@ -18,6 +18,7 @@ const navLinks = [
   { href: "/about", label: t.nav.about },
   { href: "/work", label: t.nav.work },
   { href: "/posts", label: t.nav.writing },
+  { href: "/gallery", label: t.nav.gallery },
   { href: "/Founder_BuiMinhCuong.pdf", label: t.nav.resume, external: true },
   { href: "/contact", label: t.nav.contact },
 ];
@@ -42,7 +43,7 @@ const isActive = (href: string) => {
     </div>
 
     <!-- Center: Navigation Tabs -->
-    <div class="hidden sm:flex flex-1 justify-center items-center">
+    <div class="hidden lg:flex flex-1 justify-center items-center">
       <nav aria-label="Primary" class="flex flex-nowrap items-center justify-center gap-x-5 lg:gap-x-6 gap-y-3 text-[0.95rem] text-foreground font-semibold whitespace-nowrap">
         {
           navLinks.map(link => (
@@ -77,7 +78,7 @@ const isActive = (href: string) => {
   <div class="site-hairline mt-6"></div>
 
   <!-- Mobile Navigation (visible only on small screens) -->
-  <div class="sm:hidden mt-6">
+  <div class="lg:hidden mt-6">
     <nav aria-label="Primary Mobile" class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[0.9rem] text-foreground font-semibold">
       {
         navLinks.map(link => (

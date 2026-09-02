@@ -1,0 +1,360 @@
+---
+import { SITE } from "@/config";
+import type { Locale } from "@/i18n/config";
+import { getLocalizedPath } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+
+const copy = {
+  en: {
+    title: "Gallery — Michael's personal archive",
+    description: "A visual archive of Michael's life, fieldwork, experiments, places, and works in progress.",
+    back: "Back to portfolio",
+    archive: "Personal archive",
+    all: "All rooms",
+    life: "Life",
+    field: "Field notes",
+    places: "Places",
+    work: "Making",
+    enter: "Open work",
+    close: "Close",
+    previous: "Previous image",
+    next: "Next image",
+    uploaded: "Uploaded",
+    byYear: "By year",
+    allYears: "All years",
+    postLink: "Post link",
+  },
+  vi: {
+    title: "Gallery — Kho lưu trữ cá nhân của Michael",
+    description: "Kho lưu trữ bằng hình ảnh về cuộc sống, thực địa, thử nghiệm, những nơi chốn và các tác phẩm đang hoàn thiện của Michael.",
+    back: "Quay lại portfolio",
+    archive: "Kho lưu trữ cá nhân",
+    all: "Tất cả phòng",
+    life: "Cuộc sống",
+    field: "Ghi chép thực địa",
+    places: "Nơi chốn",
+    work: "Quá trình làm",
+    enter: "Mở tác phẩm",
+    close: "Đóng",
+    previous: "Ảnh trước",
+    next: "Ảnh tiếp theo",
+    uploaded: "Đăng lúc",
+    byYear: "Theo năm đăng",
+    allYears: "Tất cả năm",
+    postLink: "Link bài đăng",
+  },
+  "zh-cn": {
+    title: "Gallery — Michael 的个人影像档案",
+    description: "关于 Michael 的生活、现场工作、实验、地点和未完成作品的视觉档案。",
+    back: "返回作品集",
+    archive: "个人影像档案",
+    all: "全部展厅",
+    life: "生活",
+    field: "现场记录",
+    places: "地点",
+    work: "创作过程",
+    enter: "打开作品",
+    close: "关闭",
+    previous: "上一张",
+    next: "下一张",
+    uploaded: "上传于",
+    byYear: "按发布年份",
+    allYears: "全部年份",
+    postLink: "帖子链接",
+  },
+}[locale];
+
+const itemCopy = {
+  en: [
+    ["An underwater daydream", "An illustrated portrait surrounded by whales, dolphins, fish, and coral."],
+    ["A quiet portrait", "A personal frame held in the visual archive."],
+    ["Building in public", "People, wires, machines, and the untidy concentration behind a working prototype."],
+    ["Competition field", "A wider view of teams meeting through engineering and autonomous systems."],
+    ["Poolside portrait", "A playful illustrated self-portrait by the water."],
+    ["Portrait in blue", "A formal portrait study in deep blue tones."],
+    ["A picture I will love forever", "This was an evening in 2022 while I was at drawing class. The power went out, and this was only a candid moment caught by chance, but I have always loved this picture."],
+    ["A cinematic fiction", "An AI-generated visual experiment with dramatic perspective and warm light."],
+  ],
+  vi: [
+    ["Giấc mơ dưới đại dương", "Một bức chân dung minh họa giữa cá voi, cá heo, đàn cá và san hô."],
+    ["Một khung hình tĩnh", "Một khoảnh khắc cá nhân được lưu lại trong kho hình ảnh."],
+    ["Xây dựng giữa đời thực", "Con người, dây điện, máy móc và sự tập trung lộn xộn phía sau một prototype đang hoạt động."],
+    ["Không gian cuộc thi", "Góc nhìn rộng hơn về những đội gặp nhau qua engineering và hệ thống tự hành."],
+    ["Chân dung bên hồ bơi", "Một bức chân dung minh họa vui tươi bên làn nước."],
+    ["Chân dung sắc xanh", "Một thử nghiệm chân dung trang trọng với tông xanh đậm."],
+    ["Một tấm ảnh mà tôi sẽ yêu thích mãi mãi", "Đây là một buổi tối năm 2022 khi tôi đang ở lớp học vẽ. Lớp học bị cúp điện, và đây chỉ là một khoảnh khắc vô tình được chụp lại, nhưng tôi lại rất yêu thích tấm ảnh này."],
+    ["Một khung cảnh điện ảnh", "Thử nghiệm hình ảnh tạo bởi AI với góc nhìn kịch tính và ánh sáng ấm."],
+  ],
+  "zh-cn": [
+    ["海底白日梦", "一幅被鲸鱼、海豚、鱼群和珊瑚环绕的插画肖像。"],
+    ["安静的一帧", "收录在视觉档案中的个人时刻。"],
+    ["在真实世界中建造", "人、线缆、机器，以及可运行原型背后并不整齐的专注。"],
+    ["竞赛现场", "团队通过工程与自主系统相遇的更广阔视角。"],
+    ["泳池边的肖像", "一幅在水边创作的轻松插画肖像。"],
+    ["蓝色肖像", "以深蓝色调完成的正式肖像习作。"],
+    ["一张我会永远喜欢的照片", "那是 2022 年的一个夜晚，我正在绘画课上。教室突然停电，这只是一个偶然被拍下的瞬间，但我一直非常喜欢这张照片。"],
+    ["电影感虚构", "一项采用戏剧性视角与暖色光线的 AI 生成视觉实验。"],
+  ],
+}[locale];
+
+const previews = {
+  "underwater-daydream": { preview: "/assets/gallery/thumbs/underwater-portrait-960.webp", srcset: "/assets/gallery/thumbs/underwater-portrait-480.webp 480w, /assets/gallery/thumbs/underwater-portrait-960.webp 960w" },
+  "quiet-portrait": { preview: "/assets/gallery/thumbs/quiet-portrait-760.webp", srcset: "/assets/gallery/thumbs/quiet-portrait-480.webp 480w, /assets/gallery/thumbs/quiet-portrait-760.webp 760w" },
+  "building-in-public": { preview: "/assets/gallery/thumbs/bfmc-teach-960.webp", srcset: "/assets/gallery/thumbs/bfmc-teach-480.webp 480w, /assets/gallery/thumbs/bfmc-teach-960.webp 960w" },
+  "competition-field": { preview: "/assets/gallery/thumbs/bfmc-competition-960.webp", srcset: "/assets/gallery/thumbs/bfmc-competition-480.webp 480w, /assets/gallery/thumbs/bfmc-competition-960.webp 960w" },
+  "poolside-portrait": { preview: "/assets/gallery/thumbs/pool-portrait-960.webp", srcset: "/assets/gallery/thumbs/pool-portrait-480.webp 480w, /assets/gallery/thumbs/pool-portrait-960.webp 960w" },
+  "portrait-in-blue": { preview: "/assets/gallery/thumbs/portrait-blue-960.webp", srcset: "/assets/gallery/thumbs/portrait-blue-480.webp 480w, /assets/gallery/thumbs/portrait-blue-960.webp 960w" },
+  "picture-i-will-love-forever": { preview: "/assets/gallery/thumbs/michael-video-poster-720.webp", srcset: "/assets/gallery/thumbs/michael-video-poster-480.webp 480w, /assets/gallery/thumbs/michael-video-poster-720.webp 720w" },
+  "cinematic-fiction": { preview: "/assets/gallery/thumbs/cinematic-portrait-960.webp", srcset: "/assets/gallery/thumbs/cinematic-portrait-480.webp 480w, /assets/gallery/thumbs/cinematic-portrait-960.webp 960w" },
+} as const;
+
+const assets = [
+  { slug: "underwater-daydream", type: "image", src: "/assets/gallery/underwater-portrait.webp", category: "life", year: "2026", uploaded: "02.09.2026 · 10:20 ICT", datetime: "2026-09-02T10:20:00+07:00", width: 1122, height: 1402, position: "center" },
+  { slug: "quiet-portrait", type: "image", src: "/assets/me-home.webp", category: "life", year: "2026", uploaded: "01.09.2026 · 21:30 ICT", datetime: "2026-09-01T21:30:00+07:00", width: 760, height: 1117, position: "center" },
+  { slug: "building-in-public", type: "image", src: "/assets/gallery/bfmc-teach.webp", category: "field", year: "2026", uploaded: "01.09.2026 · 21:30 ICT", datetime: "2026-09-01T21:30:00+07:00", width: 1800, height: 810, position: "center" },
+  { slug: "competition-field", type: "image", src: "/assets/gallery/bfmc-competition.webp", category: "field", year: "2026", uploaded: "01.09.2026 · 21:30 ICT", datetime: "2026-09-01T21:30:00+07:00", width: 1800, height: 1013, position: "center" },
+  { slug: "poolside-portrait", type: "image", src: "/assets/gallery/pool-portrait.webp", category: "life", year: "2026", uploaded: "31.08.2026 · 19:52 ICT", datetime: "2026-08-31T19:52:00+07:00", width: 1254, height: 1254, position: "center" },
+  { slug: "portrait-in-blue", type: "image", src: "/assets/gallery/portrait-blue.webp", category: "life", year: "2026", uploaded: "31.08.2026 · 16:42 ICT", datetime: "2026-08-31T16:42:00+07:00", width: 1254, height: 1254, position: "center" },
+  { slug: "picture-i-will-love-forever", type: "video", src: "/assets/gallery/michael-video.mp4", poster: "/assets/gallery/michael-video-poster.jpg", category: "life", year: "2026", uploaded: "30.08.2026 · 15:01 ICT", datetime: "2026-08-30T15:01:00+07:00", width: 720, height: 1280, position: "center" },
+  { slug: "cinematic-fiction", type: "image", src: "/assets/gallery/cinematic-portrait.webp", category: "life", year: "2026", uploaded: "30.08.2026 · 09:11 ICT", datetime: "2026-08-30T09:11:00+07:00", width: 1206, height: 1305, position: "center" },
+].map((asset, index) => ({ ...asset, ...previews[asset.slug as keyof typeof previews], title: itemCopy[index][0], description: itemCopy[index][1], number: String(index + 1).padStart(2, "0"), priority: index === 0 }));
+
+const categories = [["all", copy.all], ["life", copy.life], ["field", copy.field]];
+const years = [...new Set(assets.map(item => item.year))].sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout title={`${copy.title} | ${SITE.title}`} description={copy.description} locale={locale}>
+  <main class="gallery-page" id="main-content">
+    <div class="museum-shell">
+      <header class="museum-nav">
+        <a class="back-link" href={getLocalizedPath(locale, "/")} aria-label={copy.back}>
+          <span aria-hidden="true">←</span><span>{copy.back}</span>
+        </a>
+        <div class="museum-mark" aria-label={copy.archive}>
+          <span class="mark-star" aria-hidden="true">✳</span>
+          <span>{copy.archive}</span>
+        </div>
+        <nav class="locale-rail" aria-label="Language">
+          <a class:list={{ active: locale === "en" }} href="/gallery">EN</a>
+          <a class:list={{ active: locale === "vi" }} href="/vi/gallery">VN</a>
+          <a class:list={{ active: locale === "zh-cn" }} href="/zh-cn/gallery">CN</a>
+        </nav>
+      </header>
+
+      <section class="exhibition" aria-label={copy.archive}>
+        <div class="filter-bars">
+          <nav class="room-filter" aria-label="Gallery rooms">
+            {categories.map(([value, label], index) => (
+              <button type="button" class:list={["filter-button", { active: index === 0 }]} data-category-filter={value} aria-pressed={index === 0 ? "true" : "false"}>
+                <span>{String(index + 1).padStart(2, "0")}</span>{label}
+              </button>
+            ))}
+          </nav>
+          <div class="year-filter">
+            <label for="gallery-year">{copy.byYear}</label>
+            <select id="gallery-year" data-year-filter aria-label={copy.byYear}>
+              <option value="all">{copy.allYears}</option>
+              {years.map(year => <option value={year}>{year}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div class="gallery-grid" data-gallery-grid>
+          {assets.map(item => (
+            <figure id={item.slug} class:list={["gallery-work", { "work-wide": item.width / item.height >= 1.5 }]} data-category={item.category} data-year={item.year}>
+              <button type="button" class="work-open" data-gallery-open data-slug={item.slug} data-type={item.type} data-src={item.src} data-poster={item.type === "video" ? item.poster : ""} data-title={item.title} data-description={item.description} data-uploaded={item.uploaded} aria-label={`${copy.enter}: ${item.title}`}>
+                <span class="image-wrap" style={`aspect-ratio:${item.width}/${item.height}`}>
+                  <img
+                    src={item.preview}
+                    srcset={item.srcset}
+                    sizes={item.width / item.height >= 1.5 ? "(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" : "(max-width: 600px) 50vw, (max-width: 900px) 50vw, 33vw"}
+                    alt={item.title}
+                    width={item.width}
+                    height={item.height}
+                    loading={item.priority ? "eager" : "lazy"}
+                    decoding={item.priority ? "sync" : "async"}
+                    fetchpriority={item.priority ? "high" : "auto"}
+                  />
+                  <span class="work-number">{item.number}</span>
+                  <span class:list={["open-cue", { "video-cue": item.type === "video" }]} aria-hidden="true">{item.type === "video" ? "▶" : "↗"}</span>
+                </span>
+              </button>
+              <figcaption>
+                <span><strong>{item.title}</strong><small>{item.description}</small><time datetime={item.datetime}>{copy.uploaded}: {item.uploaded}</time></span>
+                <span class="work-meta">{item.year}<br />{categories.find(category => category[0] === item.category)?.[1]}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <footer class="museum-footer">
+        <span>MICHAEL BUI / VISUAL ARCHIVE</span><span>VIETNAM — 2026</span>
+      </footer>
+    </div>
+  </main>
+
+  <dialog class="gallery-dialog" data-gallery-dialog>
+    <div class="dialog-inner">
+      <button type="button" class="dialog-close" data-gallery-close aria-label={copy.close}>× <span>{copy.close}</span></button>
+      <div class="dialog-stage" data-dialog-stage>
+        <button type="button" class="dialog-arrow dialog-previous" data-gallery-previous aria-label={copy.previous}>←</button>
+        <img data-dialog-image src="" alt="" draggable="false" />
+        <video data-dialog-video src="" poster="" controls playsinline preload="none" hidden></video>
+        <button type="button" class="dialog-arrow dialog-next" data-gallery-next aria-label={copy.next}>→</button>
+      </div>
+      <div class="dialog-caption"><h2 data-dialog-title></h2><p data-dialog-description></p><time data-dialog-uploaded data-label={copy.uploaded}></time><a class="post-link" data-dialog-permalink href="#">{copy.postLink} ↗</a></div>
+    </div>
+  </dialog>
+</Layout>
+
+<script>
+  const categoryFilters = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-category-filter]"));
+  const yearFilter = document.querySelector<HTMLSelectElement>("[data-year-filter]");
+  const works = Array.from(document.querySelectorAll<HTMLElement>(".gallery-work"));
+  let selectedCategory = "all";
+  let selectedYear = "all";
+
+  const applyFilters = () => works.forEach(work => {
+    const categoryMatches = selectedCategory === "all" || work.dataset.category === selectedCategory;
+    const yearMatches = selectedYear === "all" || work.dataset.year === selectedYear;
+    work.hidden = !categoryMatches || !yearMatches;
+  });
+  const activateFilter = (buttons: HTMLButtonElement[], selected: HTMLButtonElement) => buttons.forEach(button => {
+    const active = button === selected;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  categoryFilters.forEach(button => button.addEventListener("click", () => {
+    selectedCategory = button.dataset.categoryFilter || "all";
+    activateFilter(categoryFilters, button);
+    applyFilters();
+  }));
+  yearFilter?.addEventListener("change", () => {
+    selectedYear = yearFilter.value;
+    applyFilters();
+  });
+
+  const dialog = document.querySelector<HTMLDialogElement>("[data-gallery-dialog]");
+  const dialogImage = document.querySelector<HTMLImageElement>("[data-dialog-image]");
+  const dialogVideo = document.querySelector<HTMLVideoElement>("[data-dialog-video]");
+  const dialogTitle = document.querySelector<HTMLElement>("[data-dialog-title]");
+  const dialogDescription = document.querySelector<HTMLElement>("[data-dialog-description]");
+  const dialogUploaded = document.querySelector<HTMLElement>("[data-dialog-uploaded]");
+  const dialogPermalink = document.querySelector<HTMLAnchorElement>("[data-dialog-permalink]");
+  const openButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-gallery-open]"));
+  let currentIndex = 0;
+  let swipeStartX: number | null = null;
+  let suppressHashCleanup = false;
+
+  const visibleButtons = () => openButtons.filter(button => !button.closest<HTMLElement>(".gallery-work")?.hidden);
+  const showImage = (button: HTMLButtonElement) => {
+    if (!dialogImage || !dialogVideo || !dialogTitle || !dialogDescription || !dialogUploaded || !dialogPermalink) return;
+    const isVideo = button.dataset.type === "video";
+    dialogVideo.pause();
+    dialogImage.hidden = isVideo;
+    dialogVideo.hidden = !isVideo;
+    if (isVideo) {
+      dialogImage.removeAttribute("src");
+      dialogVideo.src = button.dataset.src || "";
+      dialogVideo.poster = button.dataset.poster || "";
+      dialogVideo.load();
+    } else {
+      dialogVideo.removeAttribute("src");
+      dialogVideo.removeAttribute("poster");
+      dialogVideo.load();
+      dialogImage.src = button.dataset.src || "";
+      dialogImage.alt = button.dataset.title || "";
+    }
+    dialogTitle.textContent = button.dataset.title || "";
+    dialogDescription.textContent = button.dataset.description || "";
+    dialogUploaded.textContent = `${dialogUploaded.dataset.label}: ${button.dataset.uploaded || ""}`;
+    dialogPermalink.href = `${window.location.pathname}${window.location.search}#${button.dataset.slug || ""}`;
+    currentIndex = Math.max(0, visibleButtons().indexOf(button));
+  };
+  const move = (direction: number) => {
+    const buttons = visibleButtons();
+    if (!buttons.length) return;
+    currentIndex = (currentIndex + direction + buttons.length) % buttons.length;
+    showImage(buttons[currentIndex]);
+    history.replaceState(null, "", `#${buttons[currentIndex].dataset.slug || ""}`);
+  };
+  openButtons.forEach(button => button.addEventListener("click", () => {
+    if (!dialog) return;
+    showImage(button);
+    history.pushState(null, "", `#${button.dataset.slug || ""}`);
+    dialog.showModal();
+  }));
+  document.querySelector("[data-gallery-previous]")?.addEventListener("click", () => move(-1));
+  document.querySelector("[data-gallery-next]")?.addEventListener("click", () => move(1));
+  document.querySelector("[data-gallery-close]")?.addEventListener("click", () => dialog?.close());
+  dialog?.addEventListener("close", () => {
+    dialogVideo?.pause();
+    if (!suppressHashCleanup && window.location.hash) history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    suppressHashCleanup = false;
+  });
+  dialog?.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+  dialog?.addEventListener("keydown", event => {
+    if (event.key === "ArrowLeft") move(-1);
+    if (event.key === "ArrowRight") move(1);
+  });
+  const stage = document.querySelector<HTMLElement>("[data-dialog-stage]");
+  stage?.addEventListener("pointerdown", event => {
+    if ((event.target as Element).closest("button, video")) return;
+    swipeStartX = event.clientX;
+    stage.setPointerCapture(event.pointerId);
+  });
+  stage?.addEventListener("pointerup", event => {
+    if (swipeStartX === null) return;
+    const distance = event.clientX - swipeStartX;
+    if (Math.abs(distance) > 45) move(distance > 0 ? -1 : 1);
+    swipeStartX = null;
+    if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
+  });
+
+  const openFromHash = () => {
+    const slug = decodeURIComponent(window.location.hash.slice(1));
+    const button = openButtons.find(item => item.dataset.slug === slug);
+    if (button && dialog) {
+      showImage(button);
+      if (!dialog.open) dialog.showModal();
+    } else if (dialog?.open) {
+      suppressHashCleanup = true;
+      dialog.close();
+    }
+  };
+  window.addEventListener("popstate", openFromHash);
+  if (window.location.hash) openFromHash();
+
+</script>
+
+<style>
+  :global(body) { background: #14140f; }
+  .gallery-page { --paper:#f0ecdd; --ink:#191915; --muted:#6c685c; --line:#aaa392; --signal:#b33b13; min-height:100dvh; padding:clamp(.75rem,2.2vw,2rem); background:#14140f; color:var(--ink); }
+  .museum-shell { max-width:1480px; margin:0 auto; background:var(--paper); min-height:calc(100dvh - 4rem); overflow:hidden; position:relative; }
+  .museum-nav { position:relative; z-index:2; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem; margin:0 clamp(1.25rem,4vw,4.5rem); padding:1.4rem 0 1.15rem; border-bottom:1px solid var(--ink); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+  .back-link,.museum-mark,.locale-rail { display:flex; align-items:center; gap:.7rem; }
+  .back-link { width:max-content; }.back-link:hover{color:var(--signal)} .back-link span:first-child{font-size:1.15rem}
+  .museum-mark { font-family:Georgia,serif; font-size:.9rem; letter-spacing:.03em; text-transform:none; }.mark-star{color:var(--signal);font-size:1.25rem}
+  .locale-rail { justify-content:flex-end; }.locale-rail a{opacity:.45;border-bottom:1px solid transparent}.locale-rail a.active{opacity:1;border-color:var(--signal);color:var(--signal)}
+  .exhibition { position:relative; z-index:1; width:min(100%,1160px); margin:0 auto; padding:clamp(2rem,4vw,3.5rem) clamp(1.25rem,3vw,2.5rem) clamp(4rem,7vw,6rem); }
+  .filter-bars { position:sticky; top:.75rem; z-index:5; margin-bottom:clamp(1.5rem,3vw,2.75rem); background:var(--paper); border:1px solid var(--line); }
+  .room-filter,.year-filter { display:flex; align-items:center; gap:clamp(1rem,2vw,2rem); padding:.7rem 1rem; }
+  .room-filter { overflow-x:auto; scrollbar-width:none; }.year-filter { justify-content:space-between; border-top:1px solid var(--line); }.year-filter label{flex:none;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.year-filter select{min-width:9rem;border:1px solid var(--line);border-radius:0;padding:.45rem 2rem .45rem .65rem;background:var(--paper);color:var(--ink);font:inherit;font-size:.75rem;cursor:pointer}
+  .filter-button { flex:none; border:0; padding:.25rem 0; background:transparent; color:var(--muted); font:inherit; font-size:.75rem; cursor:pointer; }.filter-button span{margin-right:.45rem;font-size:.6rem;color:var(--signal)}.filter-button.active{color:var(--ink);font-weight:700}.filter-button.active::after{content:"";display:block;height:1px;margin-top:.35rem;background:var(--signal)}
+  .gallery-grid { columns:3; column-gap:clamp(1rem,1.7vw,1.5rem); }
+  .gallery-work { break-inside:avoid; margin:0 0 clamp(1.25rem,2vw,1.8rem); }.gallery-work[hidden]{display:none}
+  .work-open { display:block; width:100%; border:0; padding:0; background:none; color:inherit; text-align:left; cursor:zoom-in; }
+  .image-wrap { position:relative; display:block; overflow:hidden; background:#d7d0bd; }
+  .image-wrap img { display:block; width:100%; height:auto; }
+  .work-number,.open-cue { position:absolute; top:.75rem; padding:.35rem .45rem; background:var(--paper); color:var(--ink); font-size:.65rem; }.work-number{left:.75rem}.open-cue{right:.75rem;font-size:.9rem;opacity:0}.video-cue{opacity:1;border-radius:50%}.work-open:hover .open-cue,.work-open:focus-visible .open-cue{opacity:1}
+  figcaption { display:flex; justify-content:space-between; gap:1rem; padding-top:.85rem; border-top:1px solid var(--ink); }figcaption strong{display:block;font-family:Georgia,serif;font-size:clamp(1rem,1.5vw,1.35rem);font-weight:400}figcaption small{display:block;max-width:34rem;margin-top:.4rem;color:var(--muted);font-size:.76rem;line-height:1.5}figcaption time{display:block;margin-top:.45rem;color:var(--muted);font-size:.65rem;letter-spacing:.04em}.work-meta{flex:none;text-align:right;font-size:.62rem;line-height:1.6;text-transform:uppercase;color:var(--muted)}
+  .museum-footer { position:relative; z-index:1; display:flex; justify-content:space-between; margin:0 clamp(1.25rem,4vw,4.5rem); padding:1.2rem 0 1.7rem; border-top:1px solid var(--ink); font-size:.65rem; letter-spacing:.12em; }
+  .gallery-dialog { width:100%; max-width:none; height:100%; max-height:none; margin:0; border:0; padding:0; background:#11110d;color:#f0ecdd}.gallery-dialog::backdrop{background:#11110d}.dialog-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(18rem,28rem);grid-template-rows:auto 1fr;min-height:100dvh}.dialog-close{grid-column:1/-1;justify-self:end;margin:1rem 1.4rem;border:1px solid #777266;background:transparent;color:#f0ecdd;padding:.6rem .8rem;cursor:pointer}.dialog-close span{margin-left:.4rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}.dialog-stage{position:relative;display:grid;place-items:center;padding:1rem 4vw 3rem;touch-action:pan-y;user-select:none}.dialog-stage img,.dialog-stage video{max-width:100%;max-height:78dvh;object-fit:contain}.dialog-arrow{position:absolute;top:50%;z-index:2;width:2.8rem;height:2.8rem;border:1px solid #777266;border-radius:50%;background:#11110dcc;color:#f0ecdd;cursor:pointer}.dialog-previous{left:1rem}.dialog-next{right:1rem}.dialog-caption{align-self:end;padding:3rem 3rem 4rem;border-left:1px solid #4c493f}.dialog-caption h2{margin:0;font-family:Georgia,serif;font-size:clamp(2rem,4vw,4rem);font-weight:400;line-height:.95}.dialog-caption p{margin:1.5rem 0 0;color:#aaa392;line-height:1.7}.dialog-caption time{display:block;margin-top:1rem;color:#777266;font-size:.7rem;letter-spacing:.06em}.post-link{display:inline-block;margin-top:1.5rem;border-bottom:1px solid #f0ecdd;padding-bottom:.2rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+  :global(.gallery-page a:focus-visible),button:focus-visible{outline:2px solid var(--signal);outline-offset:4px}
+  @media (max-width:900px){.gallery-grid{columns:2}}
+  @media (max-width:600px){.gallery-page{padding:0}.museum-shell{min-height:100dvh}.museum-nav{grid-template-columns:1fr auto;margin:0 1rem}.museum-mark{display:none}.exhibition{padding:1.5rem 0 4rem}.filter-bars{top:.4rem;margin:0 .75rem 1rem}.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:dense;columns:unset;gap:3px}.gallery-work{margin:0}.gallery-work.work-wide{grid-column:1/-1}.image-wrap{background:#d7d0bd}figcaption{display:none}.year-filter select{min-width:8rem}.museum-footer{margin:0 1rem}.dialog-inner{display:flex;flex-direction:column}.dialog-stage{flex:1;padding:1rem 3.5rem}.dialog-arrow{width:2.5rem;height:2.5rem}.dialog-previous{left:.4rem}.dialog-next{right:.4rem}.dialog-caption{padding:1.5rem 1rem 3rem;border-left:0;border-top:1px solid #4c493f}}
+</style>
