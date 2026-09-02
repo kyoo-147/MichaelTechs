@@ -1,0 +1,21 @@
+---
+import { CONTACT } from "@/consts";
+import AllAboutLayout from "@/layouts/AllAboutLayout.astro";
+---
+
+<AllAboutLayout
+  active="links"
+  pageTitle="Links — Michael Bui"
+  description="Professional profiles and useful links for Michael Bui."
+>
+  <h1>Links</h1>
+  <ul>
+    <li><a href="/">Full portfolio</a></li>
+    <li><a href="/work">Work archive</a></li>
+    <li><a href="/gallery">Personal gallery</a></li>
+    <li><a href="/Founder_BuiMinhCuong.pdf">Résumé (PDF)</a></li>
+    <li><a href={CONTACT.github}>GitHub</a></li>
+    <li><a href={CONTACT.linkedin}>LinkedIn</a></li>
+    <li><a href={CONTACT.youtube}>YouTube</a></li>
+  </ul>
+</AllAboutLayout>
