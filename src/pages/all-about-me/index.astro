@@ -1,0 +1,47 @@
+---
+import { CONTACT } from "@/consts";
+import AllAboutLayout from "@/layouts/AllAboutLayout.astro";
+---
+
+<AllAboutLayout
+  active="about"
+  pageTitle="Michael Bui / Cuong Minh Bui"
+  description="About Michael Bui, also known as Cuong Minh Bui: an AI Research & Product Engineer and founder."
+>
+  <h1>Michael Bui / Cuong Minh Bui</h1>
+
+  <img
+    class="portrait"
+    src="/assets/all-about-me/michael.webp"
+    width="140"
+    height="140"
+    alt="Michael Bui"
+    decoding="sync"
+    fetchpriority="high"
+  />
+
+  <section>
+    <div class="heading-line">
+      <h2>Contact</h2>
+      <p>If you are interested in a fuller website about me, visit <a href="/">my main website</a>.</p>
+    </div>
+    <ul>
+      <li><a href={CONTACT.github} rel="me">kyoo-147</a> on GitHub</li>
+      <li><a href={CONTACT.linkedin} rel="me">Michael Bui</a> on LinkedIn</li>
+      <li><a href={CONTACT.x} rel="me">@mih_cuog</a> on X</li>
+      <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> via email</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Interests</h2>
+    <p>
+      I love to build practical and useful AI systems and products, and to train models that can
+      learn, adapt, and work reliably in the real world. I am especially interested in foundation
+      models, model research, machine learning, computer vision, speech, AI agents, embedded AI,
+      automation, developer tools, and human-centered technology. I also enjoy books, drawing,
+      physics, science, robotics, engines, and space. I sometimes
+      <a href="/all-about-me/writing">write about what I learn</a>.
+    </p>
+  </section>
+</AllAboutLayout>

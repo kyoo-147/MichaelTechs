@@ -1,0 +1,103 @@
+---
+interface Props {
+  active: string;
+  pageTitle: string;
+  description: string;
+}
+
+const { active, pageTitle, description } = Astro.props;
+const canonicalPath = active === "about" ? "/all-about-me" : `/all-about-me/${active}`;
+const navigation = [
+  { id: "about", label: "About", href: "/all-about-me" },
+  { id: "current-focus", label: "Current focus", href: "/all-about-me/current-focus" },
+  { id: "projects", label: "Projects", href: "/all-about-me/projects" },
+  { id: "papers", label: "Papers", href: "/all-about-me/papers" },
+  { id: "awards", label: "Awards", href: "/all-about-me/awards" },
+  { id: "writing", label: "Writing", href: "/all-about-me/writing" },
+  { id: "gallery", label: "Gallery", href: "/all-about-me/gallery" },
+  { id: "links", label: "Links", href: "/all-about-me/links" },
+  { id: "misc", label: "Misc unsorted", href: "/all-about-me/misc" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Michael Bui" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href={`https://michaeltechs.xyz${canonicalPath}`} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=mc" />
+  </head>
+  <body>
+    <aside class="site-nav" aria-label="All about Michael">
+      <strong>Michael Bui</strong>
+      {
+        navigation.map(item => (
+          <a href={item.href} aria-current={active === item.id ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </aside>
+
+    <main data-pagefind-body>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  html { background: #686868; }
+  body { margin: 0; color: #000; font-family: "Times New Roman", Times, serif; font-size: 17px; line-height: 1.35; }
+  main, .site-nav { box-sizing: border-box; }
+  main { width: min(1056px, calc(100% - 64px)); min-height: calc(100vh - 30px); margin: 15px auto 0; padding: 18px 32px 48px; background: #fff; }
+  .site-nav { position: fixed; top: 32px; right: max(16px, calc(50% - 760px)); width: 150px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.08; text-align: left; }
+  .site-nav strong, .site-nav a { display: block; }
+  .site-nav strong { margin-bottom: 3px; color: #fff; font-weight: 400; }
+  .site-nav a { color: #78b7ff; }
+  .site-nav a[aria-current="page"] { font-weight: 700; }
+  h1 { margin: 0 0 16px; font-size: 36px; line-height: 1.1; }
+  h2 { margin: 18px 0 12px; font-size: 28px; line-height: 1.15; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 16px; padding-left: 40px; }
+  li { margin: 4px 0; }
+  a, .future-link { color: #0000ee; }
+  .future-link { text-decoration: underline; text-underline-offset: 1px; }
+  .portrait { float: right; width: 140px; height: 140px; margin: 0 0 24px 40px; object-fit: cover; }
+  .heading-line { display: flex; align-items: baseline; gap: 18px; }
+  .heading-line h2 { flex: none; }
+  .heading-line p, .small-note { font-size: 14px; }
+  .heading-line p { margin: 0; }
+
+  @media (max-width: 1360px) {
+    .site-nav { position: static; width: min(1056px, calc(100% - 64px)); margin: 15px auto 0; padding: 10px 32px; background: #686868; line-height: 1.35; }
+    .site-nav strong, .site-nav a { display: inline; margin-right: 12px; }
+    main { margin-top: 0; }
+  }
+
+  @media (max-width: 640px) {
+    html { background: #fff; }
+    body { font-size: 16px; }
+    .site-nav { width: 100%; margin: 0; padding: 12px 16px 8px; }
+    .site-nav strong { display: block; margin-bottom: 5px; }
+    .site-nav a { display: inline-block; margin-bottom: 4px; }
+    main { width: 100%; min-height: 100vh; margin: 0; padding: 18px 16px 40px; }
+    h1 { font-size: 32px; }
+    h2 { font-size: 25px; }
+    ul { padding-left: 28px; }
+    .portrait { width: 112px; height: 112px; margin-left: 20px; }
+    .heading-line { display: block; }
+    .heading-line p { margin: -6px 0 12px; }
+  }
+
+  @media print {
+    html { background: #fff; }
+    .site-nav { display: none; }
+    main { width: 100%; margin: 0; padding: 0; }
+  }
+</style>
