@@ -1,7 +1,7 @@
 ---
 title: "SVD Is the Useful Decomposition"
 description: "Eigenvalues are taught first because the algebra is tidy, not because they predict anything. For matrices that come out of data, the singular-value spectrum answers the questions worth asking."
-pubDatetime: "2026-11-08T08:00:00.000Z"
+pubDatetime: "2023-06-18T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

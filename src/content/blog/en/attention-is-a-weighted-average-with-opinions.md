@@ -1,7 +1,7 @@
 ---
 title: "Attention Is a Weighted Average with Opinions"
 description: "Attention is three learned projections, a scaled inner product, and a softmax that makes every head output a convex combination of value vectors."
-pubDatetime: "2026-11-13T09:30:00.000Z"
+pubDatetime: "2023-09-30T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

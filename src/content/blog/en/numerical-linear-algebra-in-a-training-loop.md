@@ -1,7 +1,7 @@
 ---
 title: "Numerical Linear Algebra in a Training Loop"
 description: "What actually costs time and precision inside one training step: arithmetic intensity, accumulation order, and the precision choices that paper FLOP counts ignore."
-pubDatetime: "2026-11-16T09:30:00.000Z"
+pubDatetime: "2023-11-25T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

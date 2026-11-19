@@ -1,7 +1,7 @@
 ---
 title: "Forward or Reverse Mode: A Choice, Not a Detail"
 description: "Automatic differentiation is usually taught as the chain rule with a framework attached. The direction you evaluate it in decides the cost, and reverse mode comes with a memory bill."
-pubDatetime: "2026-11-12T09:30:00.000Z"
+pubDatetime: "2023-09-10T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

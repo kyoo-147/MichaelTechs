@@ -1,7 +1,7 @@
 ---
 title: "Entropy, KL, and the Losses They Became"
 description: "Cross-entropy and KL are compression costs before they are loss functions, and the direction of the KL decides what a model actually fits."
-pubDatetime: "2026-11-10T08:00:00.000Z"
+pubDatetime: "2023-07-30T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

@@ -1,7 +1,7 @@
 ---
 title: "Convexity Is a Certificate, Not a Vibe"
 description: "Convexity buys a checkable certificate of optimality, not speed. Where that certificate still pays in an ML pipeline, and where conditioning turns it into a boundary condition."
-pubDatetime: "2026-11-11T08:00:00.000Z"
+pubDatetime: "2023-08-20T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

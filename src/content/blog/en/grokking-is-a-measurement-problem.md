@@ -1,7 +1,7 @@
 ---
 title: "Grokking Is a Measurement Problem"
 description: "Delayed generalisation looks mysterious when the only instrument is the loss curve. On a small algorithmic task it is a measurable phase transition in a specific circuit."
-pubDatetime: "2026-11-15T09:30:00.000Z"
+pubDatetime: "2023-11-11T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

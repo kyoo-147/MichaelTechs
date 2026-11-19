@@ -1,7 +1,7 @@
 ---
 title: "AMC and AIME Reward the Economics of a Minute"
 description: "A number-theory problem in competition style, and why answer-getting is a different skill from proving."
-pubDatetime: "2026-11-19T02:00:00.000Z"
+pubDatetime: "2023-08-05T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

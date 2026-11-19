@@ -1,7 +1,7 @@
 ---
 title: "Vietnam's THPT Exam: Speed, Templates, and the One Clause That Costs Marks"
 description: "A calculus problem in the style of the national graduation exam, and why template recognition is both the skill and the trap."
-pubDatetime: "2026-11-19T03:00:00.000Z"
+pubDatetime: "2023-07-15T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

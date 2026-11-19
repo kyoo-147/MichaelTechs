@@ -1,7 +1,7 @@
 ---
 title: "Superposition: More Features Than Dimensions"
 description: "Why a layer with fewer dimensions than features can still represent most of them, what sparsity has to do with it, and where the toy model stops mapping onto a real network."
-pubDatetime: "2026-11-14T09:30:00.000Z"
+pubDatetime: "2023-10-14T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

@@ -1,7 +1,7 @@
 ---
 title: "What a VCE Maths Exam Actually Rewards"
 description: "A worked problem in the style of Victorian Mathematical Methods, and the part of the paper that no mark scheme covers."
-pubDatetime: "2026-11-18T08:00:00.000Z"
+pubDatetime: "2023-06-03T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

@@ -1,7 +1,7 @@
 ---
 title: "Probability Is a Language for Uncertainty, Not a Claim About Truth"
 description: "Why cross-entropy and squared error are maximum-likelihood estimates in disguise, and why a good likelihood does not give you calibrated confidence."
-pubDatetime: "2026-11-15T08:00:00.000Z"
+pubDatetime: "2023-04-16T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false
@@ -80,6 +80,26 @@ $$
 Modern neural networks are systematically overconfident, and the correction is often embarrassingly simple — temperature scaling divides the logits by a single scalar $T$ fitted on validation data. It changes no prediction, only the confidence attached to it.
 
 So "the softmax output is a probability" is true in the sense that it sums to one, and false in the sense that anyone cares about. It is a score that has been normalised. If a downstream decision depends on the number — routing, abstention, human review — measure the calibration before you trust it.
+
+## Calibration, worked
+
+Suppose a classifier makes 1,000 predictions with the confidence bins below. "Confidence" is the mean predicted probability in the bin; "accuracy" is the observed hit rate.
+
+| confidence bin | n | mean confidence | accuracy | gap × weight |
+| --- | --- | --- | --- | --- |
+| 0.0–0.2 | 100 | 0.08 | 0.15 | $0.07 \times 0.1 = 0.007$ |
+| 0.2–0.4 | 150 | 0.30 | 0.25 | $0.05 \times 0.15 = 0.0075$ |
+| 0.4–0.6 | 200 | 0.50 | 0.48 | $0.02 \times 0.2 = 0.004$ |
+| 0.6–0.8 | 250 | 0.70 | 0.62 | $0.08 \times 0.25 = 0.02$ |
+| 0.8–1.0 | 300 | 0.92 | 0.80 | $0.12 \times 0.3 = 0.036$ |
+
+Overall accuracy is $0.544$, and
+
+$$
+\mathrm{ECE} = 0.007 + 0.0075 + 0.004 + 0.02 + 0.036 = 0.0745 .
+$$
+
+Read the table rather than the scalar. The model is under-confident in the lowest bin and badly over-confident in the highest: when it says 0.92 it is right 0.80 of the time. A downstream policy that routes on "confidence above 0.9" is therefore firing on a population that is wrong one time in five, while a threshold at 0.5 would be almost exactly calibrated. No single number would have told me that; the table does, and the ECE only summarises it.
 
 ## What I actually do
 

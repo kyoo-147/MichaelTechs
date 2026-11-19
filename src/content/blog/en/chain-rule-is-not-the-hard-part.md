@@ -1,7 +1,7 @@
 ---
 title: "The Chain Rule Is Not the Hard Part"
 description: "Path sums, reverse-mode accumulation, and why the derivative you compute in practice is often a surrogate for one that does not exist."
-pubDatetime: "2026-11-14T08:00:00.000Z"
+pubDatetime: "2023-03-26T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false
@@ -54,6 +54,29 @@ $$
 At $x = 0$: $f(0) = \log 2 \approx 0.693$, $\sigma(0) = 0.5$, $\sigma(\log 2) \approx 0.667$, so $dy/dx \approx 0.333$.
 
 You can verify that in four lines of NumPy, and you should, once, for a function whose derivative you can also write by hand. It is the cheapest way to discover that your mental model of the backward pass is off by a term.
+
+## The diamond, worked by hand
+
+The simplest graph where paths actually multiply is a diamond: one input feeding two branches that rejoin.
+
+$$
+a = 2x, \qquad b = 5x, \qquad y = 3a + 7b .
+$$
+
+**Sum over paths.** There are two paths from $x$ to $y$:
+
+$$
+\frac{\partial y}{\partial x}
+= \frac{\partial y}{\partial a}\frac{\partial a}{\partial x}
++ \frac{\partial y}{\partial b}\frac{\partial b}{\partial x}
+= 3 \cdot 2 + 7 \cdot 5 = 6 + 35 = 41 .
+$$
+
+**Substitute and differentiate.** Eliminating the intermediates first gives $y = 3(2x) + 7(5x) = 41x$, and the derivative is $41$. Same number. That equality is not a coincidence; it is the statement that the chain rule agrees with algebra.
+
+**Reverse mode.** Start at $y$ with an incoming gradient of $1$. Pushing through the addition sends $3$ into $a$ and $7$ into $b$. Pushing through the branches multiplies: $3 \cdot 2 = 6$ into $x$ from the left, $7 \cdot 5 = 35$ from the right. Where the two paths meet at $x$, the contributions **add**: $6 + 35 = 41$.
+
+That last step is the whole point of the example. It is also the bug I described above: if the implementation assigns instead of accumulating at $x$, it produces $35$ and the loss quietly drifts. The arithmetic is one line; remembering to add is the engineering.
 
 ## What I take from this
 

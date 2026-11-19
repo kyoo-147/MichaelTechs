@@ -1,7 +1,7 @@
 ---
 title: "Gradients and Jacobians Are the Same Object at Different Shapes"
 description: "What a derivative of a vector-valued function actually is, why the Jacobian has the shape it has, and the object autograd returns instead."
-pubDatetime: "2026-11-13T08:00:00.000Z"
+pubDatetime: "2023-03-05T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

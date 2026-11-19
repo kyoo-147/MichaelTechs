@@ -1,7 +1,7 @@
 ---
 title: "Singapore H2 Maths Rewards Exactness. Real Work Rarely Does."
 description: "An integration-by-parts problem in the style of the H2 paper, and why 'hence, or otherwise' is the most transferable phrase on the page."
-pubDatetime: "2026-11-18T09:30:00.000Z"
+pubDatetime: "2023-06-24T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

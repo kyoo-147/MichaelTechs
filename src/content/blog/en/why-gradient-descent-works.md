@@ -1,7 +1,7 @@
 ---
 title: "Why Gradient Descent Works When It Shouldn't"
 description: "The one inequality behind gradient descent, what convexity actually buys you, and why the optimizer advice you read online ages badly."
-pubDatetime: "2026-11-16T08:00:00.000Z"
+pubDatetime: "2023-05-07T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

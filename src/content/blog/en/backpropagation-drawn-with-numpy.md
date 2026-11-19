@@ -1,7 +1,7 @@
 ---
 title: "Backpropagation, Drawn: One Graph, Twenty Lines of NumPy"
 description: "A two-layer network with a hand-written backward pass, a finite-difference check, and the three bugs that survive the maths."
-pubDatetime: "2026-11-17T08:00:00.000Z"
+pubDatetime: "2023-05-28T09:00:00.000Z"
 locale: en
 author: Michael
 featured: true

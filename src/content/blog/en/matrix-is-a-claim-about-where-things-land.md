@@ -1,7 +1,7 @@
 ---
 title: "A Matrix Is a Claim About Where Things Land"
 description: "Reading a weight matrix as a set of destinations instead of a grid of numbers, and where that picture quietly stops being true."
-pubDatetime: "2026-11-12T08:00:00.000Z"
+pubDatetime: "2023-02-11T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false
@@ -46,6 +46,22 @@ That gives three questions worth asking about any weight matrix, none of which i
 1. **Rank.** How many independent directions survive? A rank-$k$ matrix in $\mathbb{R}^{m \times n}$ crushes the input onto a $k$-dimensional subspace, no matter what $m$ and $n$ are.
 2. **Singular values.** How much does the layer stretch or shrink each direction? A large ratio between the largest and smallest is where gradients and float16 both start to hurt.
 3. **What the bias is doing.** See the next section, because this is where the textbook picture and the framework disagree.
+
+## A worked example: what a layer cannot do
+
+Take two matrices and ask what each one preserves.
+
+$$
+A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix},
+\qquad
+B = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}.
+$$
+
+$A$ is a shear. Its columns $(1,0)$ and $(1,1)$ are independent, so it has rank two: every direction in the plane survives, and the inverse exists. $B$ is rank one. Both columns are $(1,1)$, so the map sends the entire plane onto the single line $y = x$. Two inputs that differ by a vector along $(1,-1)$ land on exactly the same output, and no downstream matrix can separate them again, because the information is gone before the next layer sees it.
+
+That is the practical content of "a matrix is a claim about where things land". The claim of $B$ is that one direction is not worth keeping. When a model's accuracy stalls in a way that looks like two classes are being confused, checking the rank of the layer that feeds the classifier is a cheaper diagnostic than another week of hyperparameter tuning.
+
+The singular values make the same point quantitatively. For $A$, $\sigma_1 \approx 1.618$ and $\sigma_2 \approx 0.618$: a ratio of about $2.6$, comfortable. For $B$, $\sigma_1 = 2$ and $\sigma_2 = 0$: the ratio is infinite, and the layer is exactly singular. Real layers sit between these two extremes, and the spectrum is where the intermediate cases become visible.
 
 ## Where the picture breaks: `nn.Linear` is not linear
 

@@ -1,7 +1,7 @@
 ---
 title: "The Math You Actually Need Before Training a Model"
 description: "A study order chosen by engineering leverage rather than mathematical dependency, what each subject is used for, and what can honestly be deferred."
-pubDatetime: "2026-11-17T09:30:00.000Z"
+pubDatetime: "2023-12-16T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false

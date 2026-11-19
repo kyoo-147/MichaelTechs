@@ -1,7 +1,7 @@
 ---
 title: "Condition Number Decides Whether Float16 Survives"
 description: "Most low-precision instability is not an optimizer problem. It is a layer whose condition number times the format's mantissa has already exceeded one."
-pubDatetime: "2026-11-09T08:00:00.000Z"
+pubDatetime: "2023-07-09T09:00:00.000Z"
 locale: en
 author: Michael
 featured: false
