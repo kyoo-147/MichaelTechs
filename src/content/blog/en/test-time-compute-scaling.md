@@ -109,10 +109,10 @@ The dial is real. There is genuine headroom in spending more compute at inferenc
 
 ## Sources
 
-- Yixin Ji et al. A Survey of Test-Time Compute: From Intuitive Inference to Deliberate Reasoning. [arXiv:2501.02497](https://arxiv.org/abs/2501.02497), 2025. https://arxiv.org/abs/2501.02497
-- Fengli Xu et al. Towards Large Reasoning Models: A Survey of Reinforced Reasoning with Large Language Models. [arXiv:2501.09686](https://arxiv.org/abs/2501.09686), 2025. https://arxiv.org/abs/2501.09686
-- Xinyu Guan et al. rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking. [arXiv:2501.04519](https://arxiv.org/abs/2501.04519), 2025. https://arxiv.org/abs/2501.04519
-- Zhongxiang Sun et al. ReARTeR: Retrieval-Augmented Reasoning with Trustworthy Process Rewarding. [arXiv:2501.07861](https://arxiv.org/abs/2501.07861), 2025. https://arxiv.org/abs/2501.07861
-- Yunzhuo Hao et al. Can MLLMs Reason in Multimodality? EMMA: An Enhanced MultiModal ReAsoning Benchmark. [arXiv:2501.05444](https://arxiv.org/abs/2501.05444), 2025. https://arxiv.org/abs/2501.05444
-- Zhongzhen Huang et al. O1 Replication Journey, Part 3: Inference-time Scaling for Medical Reasoning. [arXiv:2501.06458](https://arxiv.org/abs/2501.06458), 2025. https://arxiv.org/abs/2501.06458
-- Vaskar Nath et al. ToolComp: A Multi-Tool Reasoning and Process Supervision Benchmark. [arXiv:2501.01290](https://arxiv.org/abs/2501.01290), 2025. https://arxiv.org/abs/2501.01290
+- Yixin Ji et al. A Survey of Test-Time Compute: From Intuitive Inference to Deliberate Reasoning. "A Survey of Test-Time Compute: From Intuitive Inference to Deliberate Reasoning", [arXiv:2501.02497](https://arxiv.org/abs/2501.02497), 2025. https://arxiv.org/abs/2501.02497
+- Fengli Xu et al. Towards Large Reasoning Models: A Survey of Reinforced Reasoning with Large Language Models. "Towards Large Reasoning Models: A Survey of Reinforced Reasoning with Large Language Models", [arXiv:2501.09686](https://arxiv.org/abs/2501.09686), 2025. https://arxiv.org/abs/2501.09686
+- Xinyu Guan et al. rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking. "rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking", [arXiv:2501.04519](https://arxiv.org/abs/2501.04519), 2025. https://arxiv.org/abs/2501.04519
+- Zhongxiang Sun et al. ReARTeR: Retrieval-Augmented Reasoning with Trustworthy Process Rewarding. "ReARTeR: Retrieval-Augmented Reasoning with Trustworthy Process Rewarding", [arXiv:2501.07861](https://arxiv.org/abs/2501.07861), 2025. https://arxiv.org/abs/2501.07861
+- Yunzhuo Hao et al. Can MLLMs Reason in Multimodality? EMMA: An Enhanced MultiModal ReAsoning Benchmark. "Can MLLMs Reason in Multimodality? EMMA: An Enhanced MultiModal ReAsoning Benchmark", [arXiv:2501.05444](https://arxiv.org/abs/2501.05444), 2025. https://arxiv.org/abs/2501.05444
+- Zhongzhen Huang et al. O1 Replication Journey, Part 3: Inference-time Scaling for Medical Reasoning. "O1 Replication Journey -- Part 3: Inference-time Scaling for Medical Reasoning", [arXiv:2501.06458](https://arxiv.org/abs/2501.06458), 2025. https://arxiv.org/abs/2501.06458
+- Vaskar Nath et al. ToolComp: A Multi-Tool Reasoning and Process Supervision Benchmark. "ToolComp: A Multi-Tool Reasoning & Process Supervision Benchmark", [arXiv:2501.01290](https://arxiv.org/abs/2501.01290), 2025. https://arxiv.org/abs/2501.01290

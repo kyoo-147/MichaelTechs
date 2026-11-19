@@ -123,8 +123,8 @@ The Tuesday price change is not solved by picking a side. It is solved by knowin
 
 ## Sources
 
-- [arXiv:2602.07525](https://arxiv.org/abs/2602.07525) - Xingliang Hou, Yuyan Liu, Qi Sun et al., 2026. IGMiRAG: intuition-guided retrieval with adaptive mining of in-depth memory.
-- [arXiv:2601.07054](https://arxiv.org/abs/2601.07054) - Zhuoyi Yang, Yurun Song, Iftekhar Ahmed, Ian Harris, 2026. Fine-tuning versus RAG for multi-hop question answering with novel knowledge.
-- [arXiv:2601.03746](https://arxiv.org/abs/2601.03746) - Jakob Schuster, Vagrant Gautam, Katja Markert, 2026. Source preferences under knowledge conflicts in 13 open-weight models.
-- [arXiv:2602.08221](https://arxiv.org/abs/2602.08221) - Xuhua Ma, Richong Zhang, Zhijie Nie, 2026. CoRect: parametric suppression and hidden state rectification.
-- [arXiv:2601.00756](https://arxiv.org/abs/2601.00756) - Thomas Katraouras, Dimitrios Rafailidis, 2026. Memory bank compression for continual adaptation.
+- "IGMiRAG: Intuition-Guided Retrieval-Augmented Generation with Adaptive Mining of In-Depth Memory", [arXiv:2602.07525](https://arxiv.org/abs/2602.07525) - Xingliang Hou, Yuyan Liu, Qi Sun et al., 2026. IGMiRAG: intuition-guided retrieval with adaptive mining of in-depth memory.
+- "Fine-Tuning vs. RAG for Multi-Hop Question Answering with Novel Knowledge", [arXiv:2601.07054](https://arxiv.org/abs/2601.07054) - Zhuoyi Yang, Yurun Song, Iftekhar Ahmed, Ian Harris, 2026. Fine-tuning versus RAG for multi-hop question answering with novel knowledge.
+- "Whose Facts Win? LLM Source Preferences under Knowledge Conflicts", [arXiv:2601.03746](https://arxiv.org/abs/2601.03746) - Jakob Schuster, Vagrant Gautam, Katja Markert, 2026. Source preferences under knowledge conflicts in 13 open-weight models.
+- "CoRect: Context-Aware Logit Contrast for Hidden State Rectification to Resolve Knowledge Conflicts", [arXiv:2602.08221](https://arxiv.org/abs/2602.08221) - Xuhua Ma, Richong Zhang, Zhijie Nie, 2026. CoRect: parametric suppression and hidden state rectification.
+- "Memory Bank Compression for Continual Adaptation of Large Language Models", [arXiv:2601.00756](https://arxiv.org/abs/2601.00756) - Thomas Katraouras, Dimitrios Rafailidis, 2026. Memory bank compression for continual adaptation.

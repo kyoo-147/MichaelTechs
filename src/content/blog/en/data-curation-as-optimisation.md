@@ -98,10 +98,10 @@ The reframe earns its keep. A corpus is not gathered, it is designed, and every 
 
 ## Sources
 
-- [arXiv:2608.03089](https://arxiv.org/abs/2608.03089) - Wang, H. et al. (2026). Scalable Frequency- and Length-Aware Subdocument Deduplication for Large Language Model Pretraining.
-- [arXiv:2608.28622](https://arxiv.org/abs/2608.28622) - Yang, X., Aldape, E. E., & Millidge, B. (2026). PUFFER: Incremental Fuzzy Deduplication for Continuously Evolving Corpora.
-- [arXiv:2606.03001](https://arxiv.org/abs/2606.03001) - Bore, N. et al. (2026). FOLD: Fuzzy Online Deduplication for Very Large Evolving Datasets via Approximate Nearest Neighbor Search.
-- [arXiv:2601.20896](https://arxiv.org/abs/2601.20896) - Whetten, R. et al. (2026). A Study of Data Selection Strategies for Pre-training Self-Supervised Speech Models.
-- [arXiv:2602.05251](https://arxiv.org/abs/2602.05251) - Cheng, G. et al. (2026). TADS: Task-Aware Data Selection for Multi-Task Multimodal Pre-Training.
-- [arXiv:2602.05400](https://arxiv.org/abs/2602.05400) - Wang, S. et al. (2026). OPUS: Towards Efficient and Principled Data Selection in Large Language Model Pre-training in Every Iteration.
-- [arXiv:2607.09762](https://arxiv.org/abs/2607.09762) - Zhu, T., Wang, H., & Wen, Y. (2026). BatteryLake: Agentic, Physics-Grounded Curation of Heterogeneous Battery Aging Data and Benchmarking.
+- "Scalable Frequency- and Length-Aware Subdocument Deduplication for Large Language Model Pretraining", [arXiv:2608.03089](https://arxiv.org/abs/2608.03089) - Wang, H. et al. (2026). Scalable Frequency- and Length-Aware Subdocument Deduplication for Large Language Model Pretraining.
+- "PUFFER: Incremental Fuzzy Deduplication for Continuously Evolving Corpora", [arXiv:2608.28622](https://arxiv.org/abs/2608.28622) - Yang, X., Aldape, E. E., & Millidge, B. (2026). PUFFER: Incremental Fuzzy Deduplication for Continuously Evolving Corpora.
+- "FOLD: Fuzzy Online Deduplication for Very Large Evolving Datasets via Approximate Nearest Neighbor Search", [arXiv:2606.03001](https://arxiv.org/abs/2606.03001) - Bore, N. et al. (2026). FOLD: Fuzzy Online Deduplication for Very Large Evolving Datasets via Approximate Nearest Neighbor Search.
+- "A Study of Data Selection Strategies for Pre-training Self-Supervised Speech Models", [arXiv:2601.20896](https://arxiv.org/abs/2601.20896) - Whetten, R. et al. (2026). A Study of Data Selection Strategies for Pre-training Self-Supervised Speech Models.
+- "TADS: Task-Aware Data Selection for Multi-Task Multimodal Pre-Training", [arXiv:2602.05251](https://arxiv.org/abs/2602.05251) - Cheng, G. et al. (2026). TADS: Task-Aware Data Selection for Multi-Task Multimodal Pre-Training.
+- "OPUS: Towards Efficient and Principled Data Selection in Large Language Model Pre-training in Every Iteration", [arXiv:2602.05400](https://arxiv.org/abs/2602.05400) - Wang, S. et al. (2026). OPUS: Towards Efficient and Principled Data Selection in Large Language Model Pre-training in Every Iteration.
+- "BatteryLake: Agentic, Physics-Grounded Curation of Heterogeneous Battery Aging Data and Benchmarking", [arXiv:2607.09762](https://arxiv.org/abs/2607.09762) - Zhu, T., Wang, H., & Wen, Y. (2026). BatteryLake: Agentic, Physics-Grounded Curation of Heterogeneous Battery Aging Data and Benchmarking.

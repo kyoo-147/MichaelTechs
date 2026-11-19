@@ -111,9 +111,9 @@ A scaling law is still good at one thing. It ranks experiments cheaply, before y
 
 ## Sources
 
-- Kaplan, McCandlish, Henighan et al. (2020). *Scaling Laws for Neural Language Models*. [arXiv:2001.08361](https://arxiv.org/abs/2001.08361)
-- Hoffmann, Borgeaud, Mensch et al. (2022). *Training Compute-Optimal Large Language Models*. [arXiv:2203.15556](https://arxiv.org/abs/2203.15556)
-- Chudnovsky, Kazdan, Levi et al. (2026). *Internal Data Repetition Destroys Language Models*. [arXiv:2606.24998](https://arxiv.org/abs/2606.24998)
-- Zhu, Wang, Wu et al. (2026). *How Should LLMs Consume High-Quality Data? Optimal Data Scheduling via Quality-Aware Functional Scaling Laws*. [arXiv:2605.25698](https://arxiv.org/abs/2605.25698)
-- Qin, Hamidieh, Alvarez-Melis (2026). *Bridging Compute- and Data-Optimal Pretraining*. [arXiv:2607.25271](https://arxiv.org/abs/2607.25271)
-- Mlodozeniec, Frei (2026). *Ambiguous Fits: The Rashomon Effect and Challenges in Scaling Law Estimation*. [arXiv:2610.34514](https://arxiv.org/abs/2610.34514)
+- Kaplan, McCandlish, Henighan et al. (2020). *Scaling Laws for Neural Language Models*. "Scaling Laws for Neural Language Models", [arXiv:2001.08361](https://arxiv.org/abs/2001.08361)
+- Hoffmann, Borgeaud, Mensch et al. (2022). *Training Compute-Optimal Large Language Models*. "Training Compute-Optimal Large Language Models", [arXiv:2203.15556](https://arxiv.org/abs/2203.15556)
+- Chudnovsky, Kazdan, Levi et al. (2026). *Internal Data Repetition Destroys Language Models*. "Internal Data Repetition Destroys Language Models", [arXiv:2606.24998](https://arxiv.org/abs/2606.24998)
+- Zhu, Wang, Wu et al. (2026). *How Should LLMs Consume High-Quality Data? Optimal Data Scheduling via Quality-Aware Functional Scaling Laws*. "How Should LLMs Consume High-Quality Data? Optimal Data Scheduling via Quality-Aware Functional Scaling Laws", [arXiv:2605.25698](https://arxiv.org/abs/2605.25698)
+- Qin, Hamidieh, Alvarez-Melis (2026). *Bridging Compute- and Data-Optimal Pretraining*. "Bridging Compute- and Data-Optimal Pretraining", [arXiv:2607.25271](https://arxiv.org/abs/2607.25271)
+- Mlodozeniec, Frei (2026). *Ambiguous Fits: The Rashomon Effect and Challenges in Scaling Law Estimation*. "Ambiguous Fits: The Rashomon Effect and Challenges in Scaling Law Estimation", [arXiv:2610.34514](https://arxiv.org/abs/2610.34514)

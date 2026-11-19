@@ -122,7 +122,7 @@ A last note on how I read the numbers in these papers. The $10.57\times$ and $55
 
 ## Sources
 
-- Wang et al., 2026. Latent Spatial Memory for Video World Models. [arXiv:2606.09828](https://arxiv.org/abs/2606.09828)
-- Barbeau et al., 2026. Latent Goal Prediction from Language for Model-Based Planning. [arXiv:2606.20627](https://arxiv.org/abs/2606.20627)
-- Zhang et al., 2026. DiLA: Disentangled Latent Action World Models. [arXiv:2605.15725](https://arxiv.org/abs/2605.15725)
-- Huang et al., 2026. Nano World Models: A Minimalist Implementation of Future Video Prediction. [arXiv:2605.23993](https://arxiv.org/abs/2605.23993)
+- Wang et al., 2026. Latent Spatial Memory for Video World Models. "Latent Spatial Memory for Video World Models", [arXiv:2606.09828](https://arxiv.org/abs/2606.09828)
+- Barbeau et al., 2026. Latent Goal Prediction from Language for Model-Based Planning. "Latent Goal Prediction from Language for Model-Based Planning", [arXiv:2606.20627](https://arxiv.org/abs/2606.20627)
+- Zhang et al., 2026. DiLA: Disentangled Latent Action World Models. "DiLA: Disentangled Latent Action World Models", [arXiv:2605.15725](https://arxiv.org/abs/2605.15725)
+- Huang et al., 2026. Nano World Models: A Minimalist Implementation of Future Video Prediction. "Nano World Models: A Minimalist Implementation of Future Video Prediction", [arXiv:2605.23993](https://arxiv.org/abs/2605.23993)

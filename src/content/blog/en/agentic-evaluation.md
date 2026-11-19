@@ -107,6 +107,6 @@ Keep final-answer accuracy. It is cheap, it catches gross regressions, and it is
 
 ## Sources
 
-- [arXiv:2504.08942](https://arxiv.org/abs/2504.08942) - Lù, X. H. et al. (2025). AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories.
-- [arXiv:2503.08669](https://arxiv.org/abs/2503.08669) - Li, Z. et al. (2025). SOPBench: Evaluating Language Agents at Following Standard Operating Procedures and Constraints.
-- [arXiv:2510.02837](https://arxiv.org/abs/2510.02837) - Kim, W. et al. (2025). Beyond the Final Answer: Evaluating the Reasoning Trajectories of Tool-Augmented Agents.
+- "AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories", [arXiv:2504.08942](https://arxiv.org/abs/2504.08942) - Lù, X. H. et al. (2025). AgentRewardBench: Evaluating Automatic Evaluations of Web Agent Trajectories.
+- "SOPBench: Evaluating Language Agents at Following Standard Operating Procedures and Constraints", [arXiv:2503.08669](https://arxiv.org/abs/2503.08669) - Li, Z. et al. (2025). SOPBench: Evaluating Language Agents at Following Standard Operating Procedures and Constraints.
+- "Beyond the Final Answer: Evaluating the Reasoning Trajectories of Tool-Augmented Agents", [arXiv:2510.02837](https://arxiv.org/abs/2510.02837) - Kim, W. et al. (2025). Beyond the Final Answer: Evaluating the Reasoning Trajectories of Tool-Augmented Agents.

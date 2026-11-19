@@ -111,8 +111,8 @@ Pick the loss you need, cost the deployment you will actually run, and solve for
 
 ## Sources
 
-- [arXiv:2001.08361](https://arxiv.org/abs/2001.08361) - Kaplan, J. et al. (2020). Scaling Laws for Neural Language Models.
-- [arXiv:2203.15556](https://arxiv.org/abs/2203.15556) - Hoffmann, J. et al. (2022). Training Compute-Optimal Large Language Models.
-- [arXiv:2605.01188](https://arxiv.org/abs/2605.01188) - Limisiewicz, T. et al. (2026). Compute Optimal Tokenization.
-- [arXiv:2609.34174](https://arxiv.org/abs/2609.34174) - Liu, B. and Liu, Q. (2026). GradLev: Token-Parallel Test-Time Training Via Costate Prediction.
-- [arXiv:2610.06387](https://arxiv.org/abs/2610.06387) - Dwyer, J. (2026). Scaling Down the Scaling Laws: Parameter Efficiency and Compute-Optimal Training in Resource-Constrained Large Language Models.
+- "Scaling Laws for Neural Language Models", [arXiv:2001.08361](https://arxiv.org/abs/2001.08361) - Kaplan, J. et al. (2020). Scaling Laws for Neural Language Models.
+- "Training Compute-Optimal Large Language Models", [arXiv:2203.15556](https://arxiv.org/abs/2203.15556) - Hoffmann, J. et al. (2022). Training Compute-Optimal Large Language Models.
+- "Compute Optimal Tokenization", [arXiv:2605.01188](https://arxiv.org/abs/2605.01188) - Limisiewicz, T. et al. (2026). Compute Optimal Tokenization.
+- "GradLev: Token-Parallel Test-Time Training Via Costate Prediction", [arXiv:2609.34174](https://arxiv.org/abs/2609.34174) - Liu, B. and Liu, Q. (2026). GradLev: Token-Parallel Test-Time Training Via Costate Prediction.
+- "Scaling Down the Scaling Laws: Parameter Efficiency and Compute-Optimal Training in Resource-Constrained Large Language Models", [arXiv:2610.06387](https://arxiv.org/abs/2610.06387) - Dwyer, J. (2026). Scaling Down the Scaling Laws: Parameter Efficiency and Compute-Optimal Training in Resource-Constrained Large Language Models.

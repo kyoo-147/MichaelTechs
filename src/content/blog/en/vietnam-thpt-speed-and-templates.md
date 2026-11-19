@@ -57,6 +57,42 @@ $$
 
 Notice how little thinking parts (a)-(c) require once the template "tangent parallel ⇒ $f'(x) = m$" is recognised. That recognition *is* the exam.
 
+## A second problem, same template, different trap
+
+The coordinate-geometry question is where the paper changes gear. The template is fixed: write the line in parametric form, substitute into the plane, solve for the parameter. The trap is that the template also works when there is no solution, and students keep solving.
+
+Let line $d$ be given by
+
+$$
+\frac{x-1}{2} = \frac{y}{-1} = \frac{z+2}{3}
+$$
+
+and plane $(P)$ by $x + y + z - 3 = 0$. Find the intersection point.
+
+Write the parametric form first, which is the step that either unlocks or blocks the whole question:
+
+$$
+x = 1 + 2t, \qquad y = -t, \qquad z = -2 + 3t .
+$$
+
+Substituting into $(P)$:
+
+$$
+(1 + 2t) + (-t) + (-2 + 3t) - 3 = 4t - 4 = 0 \;\Longrightarrow\; t = 1 .
+$$
+
+So the intersection is $(3, -1, 1)$. Check it in the plane equation: $3 + (-1) + 1 - 3 = 0$. The check takes four seconds and catches the arithmetic error that otherwise costs the whole question.
+
+Now the variant that separates candidates. Suppose the substitution gives $0t + 7 = 0$ instead. There is no $t$, which means the line is parallel to the plane, not that you made a mistake. A student who has only practised questions with an answer will keep hunting for one. The same substitution gives the diagnostic for free, if you read it: a coefficient of zero on $t$ is a structural fact, and it should be reported as "parallel", not worked around.
+
+The follow-up part is usually a distance. From the origin to $(P)$:
+
+$$
+d = \frac{|0 + 0 + 0 - 3|}{\sqrt{1^2 + 1^2 + 1^2}} = \frac{3}{\sqrt{3}} = \sqrt{3} \approx 1.732 .
+$$
+
+Two marks, one formula, and the only real risk is forgetting the absolute value in the numerator. Negative distance is the single most common way to lose this point.
+
 ## Where students actually lose marks
 
 Not in the derivative. In three small places, all of them clause-reading:
@@ -74,6 +110,14 @@ This format trains a real skill and hides a real gap. The skill is fast retrieva
 The gap is that every question has a known template, and the paper never asks a student to *choose* a representation. In practice the hard part of applied mathematics is exactly that choice: whether to model a system as a recurrence or a differential equation, whether to linearise or solve exactly, whether the quantity you want is a value or a distribution. A template exam cannot test that, because a template exam has a syllabus and the syllabus pre-commits the choice for you.
 
 There is a second cost: the exam's standard forms are all clean. $x^2 = 4$ gives nice integers. Real problems give $x^2 = 4.13$ and a domain restriction, and the candidate trained only on the clean case has never had to decide whether an approximate root is acceptable.
+
+## The clock is part of the question
+
+Ninety minutes for roughly fifty questions gives about one hundred seconds each, and that number changes what a correct solution looks like. A derivation that takes four minutes is a failure even when it is right, because it costs three other questions. The paper is therefore not only a test of knowledge; it is a test of whether your knowledge is compressed enough to be used under a clock.
+
+That has a concrete consequence for practice. Solving a problem slowly and understanding it is necessary but not sufficient. The skill that transfers is solving it at speed and still being able to explain why each step was legal. The two are different, and the second is what the paper measures.
+
+There is a useful diagnostic here. If you can do a question correctly but only slowly, the gap is retrieval, not understanding, and the fix is spaced repetition on the template. If you can do it fast but cannot explain the clause that selected the template, the gap is understanding, and speed will not save you on the one variant you have not seen.
 
 ## If you are preparing
 

@@ -129,6 +129,6 @@ The agent that scored 0.83 was not misbehaving. It found the maximum of the func
 
 ## Sources
 
-- [arXiv:2602.12375](https://arxiv.org/abs/2602.12375) - Wahab, A., Kumaraswamy, R., White, M. (2026). Value Bonuses using Ensemble Errors for Exploration in Reinforcement Learning.
-- [arXiv:2607.18488](https://arxiv.org/abs/2607.18488) - Lupu, E. S. et al. (2026). The Open Ant: A Robot Platform for Reinforcement Learning Research.
-- [arXiv:2602.04518](https://arxiv.org/abs/2602.04518) - Holgado-Sánchez, A. et al. (2026). Learning the Value Systems of Agents with Preference-based and Inverse Reinforcement Learning.
+- "Value Bonuses using Ensemble Errors for Exploration in Reinforcement Learning", [arXiv:2602.12375](https://arxiv.org/abs/2602.12375) - Wahab, A., Kumaraswamy, R., White, M. (2026). Value Bonuses using Ensemble Errors for Exploration in Reinforcement Learning.
+- "The Open Ant: A Robot Platform for Reinforcement Learning Research", [arXiv:2607.18488](https://arxiv.org/abs/2607.18488) - Lupu, E. S. et al. (2026). The Open Ant: A Robot Platform for Reinforcement Learning Research.
+- "Learning the Value Systems of Agents with Preference-based and Inverse Reinforcement Learning", [arXiv:2602.04518](https://arxiv.org/abs/2602.04518) - Holgado-Sánchez, A. et al. (2026). Learning the Value Systems of Agents with Preference-based and Inverse Reinforcement Learning.

@@ -143,4 +143,4 @@ The cone is real and it costs resolution. It is not the same as a bad encoder, a
 - Ali Forooghi, Shaghayegh Sadeghi and Jianguo Lu, "Whitening Not Recommended for Classification Tasks in LLMs", [arXiv:2407.12886](https://arxiv.org/abs/2407.12886), 2024.
 - Kidist Amde Mekonnen, Yubao Tang and Maarten de Rijke, "Lightweight and Direct Document Relevance Optimization for Generative Information Retrieval", [arXiv:2504.05181](https://arxiv.org/abs/2504.05181), 2025.
 - Yuchen Zhuang et al., "Towards Better Instruction Following Retrieval Models", [arXiv:2505.21439](https://arxiv.org/abs/2505.21439), 2025.
-- Qing Wang, Chong-Wah Ngo and Ee-Peng Lim, "Towards Unbiased Cross-Modal Representation Learning for Food Image-to-Recipe Retrieval", [arXiv:2511.15201](https://arxiv.org/abs/2511.15201), 2025.
+- Kawin Ethayarajh, "How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings", [arXiv:1909.00512](https://arxiv.org/abs/1909.00512), 2019.

@@ -118,13 +118,13 @@ The 2026 work has largely stopped arguing about which pattern wins. Fixed patter
 
 ## Sources
 
-- Alfred Shen and Aaron Shen, [arXiv:2601.15305](https://arxiv.org/abs/2601.15305) (2026). Gated Sparse Attention.
-- Oğuz Kaan Yüksel, [arXiv:2602.19143](https://arxiv.org/abs/2602.19143) (2026). Incremental Learning of Sparse Attention Patterns in Transformers.
-- Jintao Zhang, [arXiv:2602.13515](https://arxiv.org/abs/2602.13515) (2026). SpargeAttention2: Trainable Sparse Attention.
-- Ping Gong, [arXiv:2506.02572](https://arxiv.org/abs/2506.02572) (2025). HATA: Hash-Aware Top-k Attention.
-- Aditya Desai, [arXiv:2510.05688](https://arxiv.org/abs/2510.05688) (2025). vAttention: Verified Sparse Attention.
-- Zhenyi Shen, [arXiv:2511.20102](https://arxiv.org/abs/2511.20102) (2025). SSA: Sparse Sparse Attention.
-- Jiayi Luo, [arXiv:2603.18636](https://arxiv.org/abs/2603.18636) (2026). Attention Sparsity is Input-Stable.
-- Yizhao Gao, [arXiv:2602.03560](https://arxiv.org/abs/2602.03560) (2026). HySparse: A Hybrid Sparse Attention Architecture.
-- Yushi Bai, [arXiv:2603.12201](https://arxiv.org/abs/2603.12201) (2026). IndexCache: Cross-Layer Index Reuse.
-- Junxiang Qiu, [arXiv:2601.02819](https://arxiv.org/abs/2601.02819) (2026). Punctuation-aware Hybrid Trainable Sparse Attention.
+- Alfred Shen and Aaron Shen, "Gated Sparse Attention: Combining Computational Efficiency with Training Stability for Long-Context Language Models", [arXiv:2601.15305](https://arxiv.org/abs/2601.15305) (2026). Gated Sparse Attention.
+- Oğuz Kaan Yüksel, "Incremental Learning of Sparse Attention Patterns in Transformers", [arXiv:2602.19143](https://arxiv.org/abs/2602.19143) (2026). Incremental Learning of Sparse Attention Patterns in Transformers.
+- Jintao Zhang, "SpargeAttention2: Trainable Sparse Attention via Hybrid Top-k+Top-p Masking and Distillation Fine-Tuning", [arXiv:2602.13515](https://arxiv.org/abs/2602.13515) (2026). SpargeAttention2: Trainable Sparse Attention.
+- Ping Gong, "HATA: Trainable and Hardware-Efficient Hash-Aware Top-k Attention for Scalable Large Model Inference", [arXiv:2506.02572](https://arxiv.org/abs/2506.02572) (2025). HATA: Hash-Aware Top-k Attention.
+- Aditya Desai, "vAttention: Verified Sparse Attention", [arXiv:2510.05688](https://arxiv.org/abs/2510.05688) (2025). vAttention: Verified Sparse Attention.
+- Zhenyi Shen, "SSA: Sparse Sparse Attention by Aligning Full and Sparse Attention Outputs in Feature Space", [arXiv:2511.20102](https://arxiv.org/abs/2511.20102) (2025). SSA: Sparse Sparse Attention.
+- Jiayi Luo, "Attention Sparsity is Input-Stable: Training-Free Sparse Attention for Video Generation via Offline Sparsity Profiling and Online QK Co-Clustering", [arXiv:2603.18636](https://arxiv.org/abs/2603.18636) (2026). Attention Sparsity is Input-Stable.
+- Yizhao Gao, "HySparse: A Hybrid Sparse Attention Architecture with Oracle Token Selection and KV Cache Sharing", [arXiv:2602.03560](https://arxiv.org/abs/2602.03560) (2026). HySparse: A Hybrid Sparse Attention Architecture.
+- Yushi Bai, "IndexCache: Accelerating Sparse Attention via Cross-Layer Index Reuse", [arXiv:2603.12201](https://arxiv.org/abs/2603.12201) (2026). IndexCache: Cross-Layer Index Reuse.
+- Junxiang Qiu, "Punctuation-aware Hybrid Trainable Sparse Attention for Large Language Models", [arXiv:2601.02819](https://arxiv.org/abs/2601.02819) (2026). Punctuation-aware Hybrid Trainable Sparse Attention.

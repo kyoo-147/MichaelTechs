@@ -125,11 +125,10 @@ Three numbers are worth writing down before any model is chosen: bytes per token
 
 ## Sources
 
-- Jinghan Cao, Yu Ma, Xinjin Li, Qingyang Ren and Xiangyun Chen, [arXiv:2603.21389](https://arxiv.org/abs/2603.21389), 2026.
-- Lachlan McGinness, [arXiv:2607.18767](https://arxiv.org/abs/2607.18767), 2026.
-- Jindong Li, Tenglong Li, Guobin Shen, Dongcheng Zhao, Qian Zhang and Yi Zeng, [arXiv:2502.10659](https://arxiv.org/abs/2502.10659), 2025.
-- Qingyu Song, Rui Liu, Wei Lin, Peiyu Liao, Wenqian Zhao, Yiwen Wang, Shoubo Hu, Yining Jiang, Mochun Long, Hui-Ling Zhen, Ning Jiang, Mingxuan Yuan, Qiao Xiang and Hong Xu, [arXiv:2505.15030](https://arxiv.org/abs/2505.15030), 2025.
-- Aryama V Murthy, Yashas N Kotre, Prathmesh Sharma, Pragya Mishra, Sanjith Ganapathi and Priyesh Shukla, [arXiv:2606.27906](https://arxiv.org/abs/2606.27906), 2026.
-- Sayed Pedram Haeri Boroujeni, Niloufar Mehrabi, Patrick Woods, Gabriel Hillesheim and Abolfazl Razi, [arXiv:2604.04722](https://arxiv.org/abs/2604.04722), 2026.
-- Yifan Gong, Yushu Wu, Zheng Zhan, Pu Zhao, Liangkai Liu, Chao Wu, Xulong Tang and Yanzhi Wang, [arXiv:2410.10847](https://arxiv.org/abs/2410.10847), 2024.
-- Mine Kerpicci, Van Nguyen, Shuhua Zhang and Erik Visser, [arXiv:2210.16611](https://arxiv.org/abs/2210.16611), 2022.
+- Jinghan Cao, Yu Ma, Xinjin Li, Qingyang Ren and Xiangyun Chen, "Task-Specific Efficiency Analysis: When Small Language Models Outperform Large Language Models", [arXiv:2603.21389](https://arxiv.org/abs/2603.21389), 2026.
+- Jindong Li, Tenglong Li, Guobin Shen, Dongcheng Zhao, Qian Zhang and Yi Zeng, "Pushing up to the Limit of Memory Bandwidth and Capacity Utilization for Efficient LLM Decoding on Embedded FPGA", [arXiv:2502.10659](https://arxiv.org/abs/2502.10659), 2025.
+- Qingyu Song, Rui Liu, Wei Lin, Peiyu Liao, Wenqian Zhao, Yiwen Wang, Shoubo Hu, Yining Jiang, Mochun Long, Hui-Ling Zhen, Ning Jiang, Mingxuan Yuan, Qiao Xiang and Hong Xu, "A Systematic Evaluation of On-Device LLMs: Quantization, Performance, and Resources", [arXiv:2505.15030](https://arxiv.org/abs/2505.15030), 2025.
+- Aryama V Murthy, Yashas N Kotre, Prathmesh Sharma, Pragya Mishra, Sanjith Ganapathi and Priyesh Shukla, "Phase Matters: Characterizing Heterogeneous Vision-Language Inference on a Mobile SoC", [arXiv:2606.27906](https://arxiv.org/abs/2606.27906), 2026.
+- Sayed Pedram Haeri Boroujeni, Niloufar Mehrabi, Patrick Woods, Gabriel Hillesheim and Abolfazl Razi, "Don't Waste Bits! Adaptive KV-Cache Quantization for Lightweight On-Device LLMs", [arXiv:2604.04722](https://arxiv.org/abs/2604.04722), 2026.
+- Yifan Gong, Yushu Wu, Zheng Zhan, Pu Zhao, Liangkai Liu, Chao Wu, Xulong Tang and Yanzhi Wang, "Lotus: learning-based online thermal and latency variation management for two-stage detectors on edge devices", [arXiv:2410.10847](https://arxiv.org/abs/2410.10847), 2024.
+- Haoxin Wang et al., [lm-Meter: Unveiling Runtime Inference Latency for On-Device Language Models](https://arxiv.org/abs/2510.06126), 2025.

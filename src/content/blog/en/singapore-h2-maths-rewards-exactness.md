@@ -67,6 +67,28 @@ $$
 
 Part (b) contains no new integration. That is the whole design of the question: part (a) exists so that part (b) is one line.
 
+## A second integral, one power higher
+
+The paper rarely stops at $(\ln x)^2$. The natural follow-up raises the power, and the follow-up is where the reduction structure becomes visible instead of memorised.
+
+Find $\displaystyle\int_1^e x\ln x\,dx$ in exact form.
+
+Integrate by parts with $u = \ln x$ and $dv = x\,dx$, so $du = dx/x$ and $v = x^2/2$:
+
+$$
+\int x\ln x\,dx = \frac{x^2}{2}\ln x - \int \frac{x}{2}\,dx = \frac{x^2}{2}\ln x - \frac{x^2}{4} + C .
+$$
+
+Evaluate. At $x = e$: $\frac{e^2}{2} - \frac{e^2}{4} = \frac{e^2}{4}$. At $x = 1$: $0 - \frac{1}{4} = -\frac{1}{4}$. The difference is
+
+$$
+\int_1^e x\ln x\,dx = \frac{e^2}{4} + \frac{1}{4} = \frac{e^2 + 1}{4} \approx 2.097 .
+$$
+
+The interesting part is not the answer but the pattern. Every power of $\ln x$ reduces to the one below it by the same move: integrate by parts with $u = (\ln x)^n$ and $dv$ equal to whatever polynomial sits next to it. That is why $(\ln x)^2$ appears in part (a) of a longer question and $x\ln x$ appears in a later part. The paper is not testing two unrelated integrals; it is testing whether you noticed they are the same recursion.
+
+Two places to lose marks here. First, the sign on the second term: $-\int x/2\,dx$ becomes $-x^2/4$, and a dropped minus turns $e^2/4 + 1/4$ into $e^2/4 - 1/4$. Second, evaluating at $1$: the polynomial terms do not vanish at the lower limit, only the logarithm does. Both errors are arithmetic, and both are invisible unless the antiderivative is written out before the limits are substituted.
+
 ## What this paper is testing
 
 The phrase to notice is "**hence, or otherwise**". It is an instruction about method, not decoration. "Hence" means *use the result you just proved*; "otherwise" gives you permission to find another route (numerical integration, a different substitution) but never relieves you of justifying it.

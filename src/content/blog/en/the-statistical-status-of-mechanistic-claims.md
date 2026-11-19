@@ -125,8 +125,8 @@ A mechanistic claim has a statistical status, and the status is not binary. The 
 
 ## Sources
 
-- Itamar Hadad, Guy Katz, Shahaf Bassan. Formal Mechanistic Interpretability: Automated Circuit Discovery with Provable Guarantees. 2026. [arXiv:2602.16823](https://arxiv.org/abs/2602.16823)
-- Panayiotis Panayiotou, Özgür Şimşek. Causal Discovery in Action: Learning Chain-Reaction Mechanisms from Interventions. 2026. [arXiv:2603.22620](https://arxiv.org/abs/2603.22620)
-- Nina Żukowska, Wolfgang Stammer, Bernt Schiele, Jonas Fischer. Seeing Through Circuits: Faithful Mechanistic Interpretability for Vision Transformers. 2026. [arXiv:2604.14477](https://arxiv.org/abs/2604.14477)
-- Tobias Ladner, Matthias Althoff. The Misery of Mechanistic Interpretability: A Formal Perspective. 2026. [arXiv:2609.15533](https://arxiv.org/abs/2609.15533)
-- Gautam Ranka, Shubham Santosh Pandere, Aiden Dsouza. Topographic Training Concentrates Causal Circuits Without Improving Neuron Monosemanticity. 2026. [arXiv:2609.24379](https://arxiv.org/abs/2609.24379)
+- Itamar Hadad, Guy Katz, Shahaf Bassan. Formal Mechanistic Interpretability: Automated Circuit Discovery with Provable Guarantees. 2026. "Formal Mechanistic Interpretability: Automated Circuit Discovery with Provable Guarantees", [arXiv:2602.16823](https://arxiv.org/abs/2602.16823)
+- Panayiotis Panayiotou, Özgür Şimşek. Causal Discovery in Action: Learning Chain-Reaction Mechanisms from Interventions. 2026. "Causal Discovery in Action: Learning Chain-Reaction Mechanisms from Interventions", [arXiv:2603.22620](https://arxiv.org/abs/2603.22620)
+- Nina Żukowska, Wolfgang Stammer, Bernt Schiele, Jonas Fischer. Seeing Through Circuits: Faithful Mechanistic Interpretability for Vision Transformers. 2026. "Seeing Through Circuits: Faithful Mechanistic Interpretability for Vision Transformers", [arXiv:2604.14477](https://arxiv.org/abs/2604.14477)
+- Tobias Ladner, Matthias Althoff. The Misery of Mechanistic Interpretability: A Formal Perspective. 2026. "The Misery of Mechanistic Interpretability: A Formal Perspective", [arXiv:2609.15533](https://arxiv.org/abs/2609.15533)
+- Gautam Ranka, Shubham Santosh Pandere, Aiden Dsouza. Topographic Training Concentrates Causal Circuits Without Improving Neuron Monosemanticity. 2026. "Topographic Training Concentrates Causal Circuits Without Improving Neuron Monosemanticity", [arXiv:2609.24379](https://arxiv.org/abs/2609.24379)

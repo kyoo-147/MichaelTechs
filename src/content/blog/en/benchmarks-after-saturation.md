@@ -131,6 +131,6 @@ So the useful question after saturation is not what to build next. It is what is
 
 ## Sources
 
-- [arXiv:2609.11115](https://arxiv.org/abs/2609.11115) - Wu, K. et al. (2026). Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation.
-- [arXiv:2605.11209](https://arxiv.org/abs/2605.11209) - Kim, E. et al. (2026). Measuring Five-Nines Reliability: Sample-Efficient LLM Evaluation in Saturated Benchmarks.
-- [arXiv:2607.26191](https://arxiv.org/abs/2607.26191) - Gilda, S. and Gilda, S. (2026). Position: Evaluation Scores Are Perishable Knowledge Claims.
+- "Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation", [arXiv:2609.11115](https://arxiv.org/abs/2609.11115) - Wu, K. et al. (2026). Benchmark Radar: A Living Database and Search Engine for AI Benchmarks and Evaluation.
+- "Measuring Five-Nines Reliability: Sample-Efficient LLM Evaluation in Saturated Benchmarks", [arXiv:2605.11209](https://arxiv.org/abs/2605.11209) - Kim, E. et al. (2026). Measuring Five-Nines Reliability: Sample-Efficient LLM Evaluation in Saturated Benchmarks.
+- "Position: Evaluation Scores Are Perishable Knowledge Claims", [arXiv:2607.26191](https://arxiv.org/abs/2607.26191) - Gilda, S. and Gilda, S. (2026). Position: Evaluation Scores Are Perishable Knowledge Claims.

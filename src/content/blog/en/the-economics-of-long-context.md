@@ -115,4 +115,4 @@ Long context is a capacity product sold as a capability. Some questions cannot b
 
 - Yangshen Deng et al., [AlayaDB: The Data Foundation for Efficient and Effective Long-context LLM Inference](https://arxiv.org/abs/2504.10326) (2025).
 - Chi-Chih Chang et al., [xKV: Cross-Layer KV-Cache Compression via Aligned Singular Vector Extraction](https://arxiv.org/abs/2503.18893) (2025).
-- Yuwei Guo et al., [Long Context Tuning for Video Generation](https://arxiv.org/abs/2503.10589) (2025).
+- Xiaoran Liu et al., [Thus Spake Long-Context Large Language Model](https://arxiv.org/abs/2502.17129) (2025).

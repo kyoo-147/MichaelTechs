@@ -119,9 +119,9 @@ The verifier is the part of the system you are optimizing against, whether or no
 
 ## Sources
 
-- Fei Yu, Yingru Li, Benyou Wang. Scaling Flaws of Verifier-Guided Search in Mathematical Reasoning. 2025. [arXiv:2502.00271](https://arxiv.org/abs/2502.00271)
-- Lukas Helff et al. LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking. 2026. [arXiv:2604.15149](https://arxiv.org/abs/2604.15149)
-- Anas Mahmoud et al. Reward Hacking in Rubric-Based Reinforcement Learning. 2026. [arXiv:2605.12474](https://arxiv.org/abs/2605.12474)
-- Leo Gao, John Schulman, Jacob Hilton. Scaling Laws for Reward Model Overoptimization. 2022. [arXiv:2210.10760](https://arxiv.org/abs/2210.10760)
-- Johannes Ackermann et al. Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards. 2026. [arXiv:2602.18037](https://arxiv.org/abs/2602.18037)
-- Amit Roth et al. Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale. 2026. [arXiv:2605.20744](https://arxiv.org/abs/2605.20744)
+- Fei Yu, Yingru Li, Benyou Wang. Scaling Flaws of Verifier-Guided Search in Mathematical Reasoning. 2025. "Scaling Flaws of Verifier-Guided Search in Mathematical Reasoning", [arXiv:2502.00271](https://arxiv.org/abs/2502.00271)
+- Lukas Helff et al. LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking. 2026. "LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking", [arXiv:2604.15149](https://arxiv.org/abs/2604.15149)
+- Anas Mahmoud et al. Reward Hacking in Rubric-Based Reinforcement Learning. 2026. "Reward Hacking in Rubric-Based Reinforcement Learning", [arXiv:2605.12474](https://arxiv.org/abs/2605.12474)
+- Leo Gao, John Schulman, Jacob Hilton. Scaling Laws for Reward Model Overoptimization. 2022. "Scaling Laws for Reward Model Overoptimization", [arXiv:2210.10760](https://arxiv.org/abs/2210.10760)
+- Johannes Ackermann et al. Gradient Regularization Prevents Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards. 2026. "Gradient Regularization Mitigates Reward Hacking in Reinforcement Learning from Human Feedback and Verifiable Rewards", [arXiv:2602.18037](https://arxiv.org/abs/2602.18037)
+- Amit Roth et al. Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale. 2026. "Hack-Verifiable Environments: Towards Evaluating Reward Hacking at Scale", [arXiv:2605.20744](https://arxiv.org/abs/2605.20744)
