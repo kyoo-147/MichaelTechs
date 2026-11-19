@@ -17,6 +17,7 @@ type Props = {
 
 const { locale, post } = Astro.props;
 const t = useTranslations(locale);
+const hasMath = /\$[^$\n]+\$|\$\$/.test(post.body ?? "");
 const canonicalURL = new URL(getLocalizedPath(locale, `/posts/${getPostSlug(post.id)}`), Astro.site);
 
 const allPosts = await getCollection(
@@ -86,6 +87,7 @@ const backToTopLabel = locale === "vi" ? "Lên đầu trang" : locale === "zh-cn
   ogType="article"
   locale={locale}
   structuredData={postStructuredData}
+  math={hasMath}
 >
   <Header locale={locale} switcherPathname={getLocalizedPath(locale, `/posts/${getPostSlug(post.id)}`)} />
   <main class="site-shell pb-16 pt-10">
@@ -98,6 +100,14 @@ const backToTopLabel = locale === "vi" ? "Lên đầu trang" : locale === "zh-cn
         >
           {post.data.title}
         </h1>
+
+        {locale === "en" && (
+          <p class="mb-4 font-mono text-[0.85rem] text-subtle-foreground">
+            <a class="underline decoration-dotted underline-offset-4 hover:text-accent" href={`/all-about-me/notes/${getPostSlug(post.id)}`}>
+              Read this note in the minimal view
+            </a>
+          </p>
+        )}
 
         <div class="flex flex-wrap items-center gap-4 font-mono text-[0.9rem] text-subtle-foreground">
           <div class="flex items-center gap-3">

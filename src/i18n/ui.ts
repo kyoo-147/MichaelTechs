@@ -49,6 +49,7 @@ export const ui = {
     categories: {
       Technical: "Technical",
       AI: "AI",
+      Math: "Math",
       Product: "Product",
       Experience: "Experience",
       Books: "Books",
@@ -144,6 +145,7 @@ export const ui = {
     categories: {
       Technical: "Kỹ thuật",
       AI: "AI",
+      Math: "Toán",
       Product: "Sản phẩm",
       Experience: "Kinh nghiệm",
       Books: "Sách",
@@ -239,6 +241,7 @@ export const ui = {
     categories: {
       Technical: "技术",
       AI: "AI",
+      Math: "数学",
       Product: "产品",
       Experience: "经验",
       Books: "读书",

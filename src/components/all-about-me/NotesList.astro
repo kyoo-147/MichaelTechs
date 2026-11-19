@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getPostSlug } from "@/utils/content";
+import { calculateReadingTime } from "@/utils/readingTime";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  emptyLabel: string;
+}
+
+const { posts, emptyLabel } = Astro.props;
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }).format(date);
+
+const yearOf = (post: CollectionEntry<"blog">) => new Date(post.data.pubDatetime).getUTCFullYear();
+
+const years = [...new Set(posts.map(yearOf))].sort((a, b) => b - a);
+---
+
+{
+  posts.length === 0 ? (
+    <p>{emptyLabel}</p>
+  ) : (
+    <div class="notes">
+      <p class="notes-count">
+        {`${posts.length} ${posts.length === 1 ? "note" : "notes"}`}
+      </p>
+      {years.map(year => (
+        <section class="notes-year">
+          <h3 class="notes-year-label">{year}</h3>
+          <ul class="notes-list">
+            {posts
+              .filter(post => yearOf(post) === year)
+              .map(post => (
+                <li class="note">
+                  <a class="note-title" href={`/all-about-me/notes/${getPostSlug(post.id)}`}>
+                    {post.data.title}
+                  </a>
+                  <p class="note-desc">{post.data.description}</p>
+                  <p class="note-meta">
+                    {formatDate(post.data.pubDatetime)} · {calculateReadingTime(post.body ?? "")}
+                  </p>
+                </li>
+              ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  )
+}

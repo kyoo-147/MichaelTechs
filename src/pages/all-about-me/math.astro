@@ -1,0 +1,44 @@
+---
+import AllAboutLayout from "@/layouts/AllAboutLayout.astro";
+import NotesList from "@/components/all-about-me/NotesList.astro";
+import { getLocalizedPosts } from "@/utils/content";
+
+const posts = (await getLocalizedPosts("en")).filter(post =>
+  (post.data.categories ?? []).includes("Math"),
+);
+---
+
+<AllAboutLayout
+  active="math"
+  pageTitle="Math — Michael Bui"
+  description="Mathematics notes by Michael Bui: analysis, linear algebra, probability, optimization, and the math behind machine learning."
+>
+  <h1>Math</h1>
+
+  <p>
+    I use this page for mathematics I study and write about: analysis, linear algebra,
+    probability, optimization, and the parts of mathematics that keep showing up in machine
+    learning.
+  </p>
+  <p>
+    Notes are written while working through a topic, so they read like working notes:
+    definitions, a derivation, a counterexample, and the places I got stuck.
+  </p>
+  <p>
+    My mathematics is still a work in progress. The way I actually learn is to rewrite what I
+    read: restate the definition, redo the proof, and explain the idea in my own words. If I
+    cannot explain it plainly, I do not understand it yet.
+  </p>
+
+  <section>
+    <h2>Notes</h2>
+    <NotesList
+      posts={posts}
+      emptyLabel="No math notes published yet. When I publish one, it appears here and in all writing."
+    />
+  </section>
+
+  <p class="small-note">
+    Related: <a href="/all-about-me/ai">AI notes</a> · <a href="/posts">all writing</a>
+  </p>
+</AllAboutLayout>

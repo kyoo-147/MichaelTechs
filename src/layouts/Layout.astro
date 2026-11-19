@@ -14,6 +14,7 @@ export interface Props {
   scrollSmooth?: boolean;
   robots?: string;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  math?: boolean;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   locale = DEFAULT_LOCALE,
   robots = "index, follow, max-image-preview:large",
   structuredData,
+  math = false,
 } = Astro.props;
 
 const canonical =
@@ -96,6 +98,7 @@ const structuredDataScripts = structuredDataItems.map(item =>
     <meta property="twitter:image" content={socialImageURL} />
     <meta property="twitter:image:alt" content={socialImageAlt} />
     {structuredDataScripts.map(script => <script is:inline type="application/ld+json" set:html={script} />)}
+    {math && <link rel="stylesheet" href="/katex/katex.min.css" />}
   </head>
   <body>
     <div class="page-frame">

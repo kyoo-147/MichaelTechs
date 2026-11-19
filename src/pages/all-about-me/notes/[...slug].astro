@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from "astro:content";
+import AllAboutLayout from "@/layouts/AllAboutLayout.astro";
+import { getPostSlug } from "@/utils/content";
+import { calculateReadingTime } from "@/utils/readingTime";
+
+export async function getStaticPaths() {
+  const posts = await getCollection(
+    "blog",
+    entry =>
+      (entry.data.locale ?? "en") === "en" &&
+      !entry.data.draft &&
+      entry.data.source === "michael",
+  );
+
+  return posts.map(post => ({
+    params: { slug: getPostSlug(post.id) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const slug = getPostSlug(post.id);
+const categories = post.data.categories ?? [];
+const section = categories.includes("Math") ? "math" : categories.includes("AI") ? "ai" : "about";
+const sectionHref = section === "about" ? "/all-about-me" : `/all-about-me/${section}`;
+const sectionLabel = section === "about" ? "All about me" : section === "ai" ? "AI" : "Math";
+const hasMath = /\$[^$\n]+\$|\$\$/.test(post.body ?? "");
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" }).format(date);
+---
+
+<AllAboutLayout
+  active={section}
+  pageTitle={`${post.data.title} — Michael Bui`}
+  description={post.data.description}
+  math={hasMath}
+  canonicalURL={`/posts/${slug}`}
+>
+  <p class="note-back"><a href={sectionHref}>&#8592; {sectionLabel}</a></p>
+
+  <h1>{post.data.title}</h1>
+  <p class="note-head-meta">
+    {formatDate(post.data.pubDatetime)} · {calculateReadingTime(post.body ?? "")} ·{" "}
+    <a href={`/posts/${slug}`}>full version</a>
+  </p>
+
+  <article class="note-body">
+    <Content />
+  </article>
+</AllAboutLayout>

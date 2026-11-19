@@ -1,0 +1,39 @@
+---
+import AllAboutLayout from "@/layouts/AllAboutLayout.astro";
+import NotesList from "@/components/all-about-me/NotesList.astro";
+import { getLocalizedPosts } from "@/utils/content";
+
+const posts = (await getLocalizedPosts("en")).filter(post =>
+  (post.data.categories ?? []).includes("AI"),
+);
+---
+
+<AllAboutLayout
+  active="ai"
+  pageTitle="AI — Michael Bui"
+  description="AI notes by Michael Bui: models, machine learning, deep learning, training, evaluation, inference, agents, computer vision, and speech."
+>
+  <h1>AI</h1>
+
+  <p>
+    I use this page for AI writing: models, machine learning, deep learning, training,
+    evaluation, inference, agents, computer vision, speech, and the systems that keep them
+    running.
+  </p>
+  <p>
+    The notes are working notes rather than announcements. When a topic has enough evidence
+    and a real argument behind it, it becomes a post.
+  </p>
+
+  <section>
+    <h2>Notes</h2>
+    <NotesList
+      posts={posts}
+      emptyLabel="No AI notes published yet. When I publish one, it appears here and in all writing."
+    />
+  </section>
+
+  <p class="small-note">
+    Related: <a href="/all-about-me/math">math notes</a> · <a href="/posts">all writing</a>
+  </p>
+</AllAboutLayout>

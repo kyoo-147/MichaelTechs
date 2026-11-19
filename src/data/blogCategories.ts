@@ -1,6 +1,7 @@
 export const BLOG_CATEGORY_VALUES = [
   "Technical",
   "AI",
+  "Math",
   "Product",
   "Experience",
   "Books",
@@ -12,6 +13,7 @@ export type BlogCategory = (typeof BLOG_CATEGORY_VALUES)[number];
 export const BLOG_CATEGORY_QUERY: Record<BlogCategory, string> = {
   Technical: "technical",
   AI: "ai",
+  Math: "math",
   Product: "product",
   Experience: "experience",
   Books: "books",
@@ -21,6 +23,7 @@ export const BLOG_CATEGORY_QUERY: Record<BlogCategory, string> = {
 export const BLOG_CATEGORY_ORDER: BlogCategory[] = [
   "Technical",
   "AI",
+  "Math",
   "Product",
   "Experience",
   "Books",
