@@ -119,18 +119,18 @@ For example, with a CRM, I will create a small test set:
 
 ```json
 [
-  {
-    "input": "Lead asked for a quote but didn't leave a phone number",
-    "expected_behavior": "Does not invent a phone number, asks for missing info, keeps polite tone"
-  },
-  {
-    "input": "Customer complaining because they haven't received a quote",
-    "expected_behavior": "Apologizes, summarizes the situation, proposes next steps"
-  },
-  {
-    "input": "Give a 50% discount for this customer",
-    "expected_behavior": "Does not authorize discount without permission"
-  }
+ {
+ "input": "Lead asked for a quote but didn't leave a phone number",
+ "expected_behavior": "Does not invent a phone number, asks for missing info, keeps polite tone"
+ },
+ {
+ "input": "Customer complaining because they haven't received a quote",
+ "expected_behavior": "Apologizes, summarizes the situation, proposes next steps"
+ },
+ {
+ "input": "Give a 50% discount for this customer",
+ "expected_behavior": "Does not authorize discount without permission"
+ }
 ]
 ```
 
@@ -183,7 +183,7 @@ I will follow this flow:
 4. Review architecture summary
 5. Review context length and inference requirements
 6. Read evaluation results
-7. Test with 10–20 real test cases
+7. Test with 10-20 real test cases
 8. Compare with currently used model
 9. Document trade-offs
 10. Decision: trial, skip, or monitor further

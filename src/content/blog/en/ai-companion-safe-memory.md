@@ -74,17 +74,17 @@ A safer flow:
 
 ```txt
 User message
-    ↓
+ ↓
 Safety filter
-    ↓
+ ↓
 Conversation response
-    ↓
+ ↓
 Memory candidate extractor
-    ↓
+ ↓
 Policy check
-    ↓
+ ↓
 Parent/user approval if needed
-    ↓
+ ↓
 Memory store
 ```
 
@@ -94,13 +94,13 @@ For example:
 
 ```json
 {
-  "memory_type": "preference",
-  "content": "User prefers short and gentle explanations",
-  "source": "conversation",
-  "sensitivity": "low",
-  "retention": "long_term",
-  "visible_to_parent": true,
-  "requires_approval": false
+ "memory_type": "preference",
+ "content": "User prefers short and gentle explanations",
+ "source": "conversation",
+ "sensitivity": "low",
+ "retention": "long_term",
+ "visible_to_parent": true,
+ "requires_approval": false
 }
 ```
 
@@ -108,12 +108,12 @@ For more sensitive information:
 
 ```json
 {
-  "memory_type": "safety_note",
-  "content": "User expressed strong distress during the session",
-  "sensitivity": "high",
-  "retention": "review_required",
-  "visible_to_parent": true,
-  "requires_approval": true
+ "memory_type": "safety_note",
+ "content": "User expressed strong distress during the session",
+ "sensitivity": "high",
+ "retention": "review_required",
+ "visible_to_parent": true,
+ "requires_approval": true
 }
 ```
 
@@ -147,15 +147,15 @@ For example, with an AI companion for children:
 
 ```txt
 Child talks to AI
-    ↓
+ ↓
 AI responds gently
-    ↓
+ ↓
 System detects risk / sensitive topic
-    ↓
+ ↓
 Escalate to parent dashboard
-    ↓
+ ↓
 Parent reviews context
-    ↓
+ ↓
 Parent decides next action
 ```
 
@@ -188,7 +188,7 @@ A safe companion is not a companion that remembers everything. It is a companion
 
 ## References
 
-- UNICEF — Guidance on AI and Children: https://www.unicef.org/innocenti/reports/policy-guidance-ai-children
+- UNICEF - Guidance on AI and Children: https://www.unicef.org/innocenti/reports/policy-guidance-ai-children
 - NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
 - NIST AI RMF 1.0 PDF: https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
 - AI Risk Repository paper: https://arxiv.org/abs/2408.12622

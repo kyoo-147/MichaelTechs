@@ -41,15 +41,15 @@ It usually sits in the middle of many things:
 
 ```txt
 Form / Website
-    ↓
+ ↓
 Database / CRM
-    ↓
+ ↓
 Business rules
-    ↓
+ ↓
 AI model / LLM / RAG
-    ↓
+ ↓
 Human approval
-    ↓
+ ↓
 Email / Zalo / Slack / Dashboard
 ```
 
@@ -115,15 +115,15 @@ For example, instead of saying "AI CRM Assistant", I would design it more clearl
 
 ```txt
 New lead enters system
-    ↓
+ ↓
 AI summarizes customer needs
-    ↓
+ ↓
 AI suggests tags: hot lead / needs consulting / unclear needs
-    ↓
+ ↓
 AI proposes next action
-    ↓
+ ↓
 Employee reviews or edits
-    ↓
+ ↓
 CRM records activity log
 ```
 
@@ -151,15 +151,15 @@ Suppose a business has the following quoting process:
 
 ```txt
 Customer asks for price
-    ↓
+ ↓
 Sales reads needs
-    ↓
+ ↓
 Find suitable product/service
-    ↓
+ ↓
 Create quote
-    ↓
+ ↓
 Send to customer
-    ↓
+ ↓
 Follow-up
 ```
 
@@ -186,7 +186,7 @@ To me, this is a very practical direction for AI Product Engineering. AI is not 
 
 ## References
 
-- Andrew Ng — Writing: Forward Deployed Engineers and the Future of AI Engineering: https://www.andrewng.org/writing
-- IBM — What are Agentic Workflows?: https://www.ibm.com/think/topics/agentic-workflows
+- Andrew Ng - Writing: Forward Deployed Engineers and the Future of AI Engineering: https://www.andrewng.org/writing
+- IBM - What are Agentic Workflows?: https://www.ibm.com/think/topics/agentic-workflows
 - NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
 - NIST AI RMF 1.0 PDF: https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf

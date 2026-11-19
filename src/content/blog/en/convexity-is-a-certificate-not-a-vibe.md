@@ -13,7 +13,7 @@ categories:
   - Math
 ---
 
-Convexity is one of the few properties in machine learning that arrives with a proof. That is its entire value. A convex problem does not merely tend to converge — it has a certificate saying the point you found is the best point, and the certificate can be checked without trusting the solver.
+Convexity is one of the few properties in machine learning that arrives with a proof. That is its entire value. A convex problem does not merely tend to converge - it has a certificate saying the point you found is the best point, and the certificate can be checked without trusting the solver.
 
 The definition is algebraic. A set $C$ is convex if the segment between any two of its points stays inside it; a function is convex if its epigraph is a convex set. Neither statement is about how the curve looks. Both can be verified by composition rules, by a Hessian check, or by construction.
 
@@ -83,7 +83,24 @@ Convexity is a design constraint and a diagnostic, not a mood. If a piece of a p
 
 So the question I ask is narrower than the textbook one: convex in what, solved by what, certified against which objective. A convex problem solved badly is still solved badly, and a non-convex problem with a good decomposition often wins.
 
+## A certificate you can check by hand
+
+The gap matters only if someone else can verify it, so it is worth checking one by hand. Take a two-variable covering problem: minimise $4x + 3y$ subject to $2x + y \ge 10$, $x + 3y \ge 12$ and $x, y \ge 0$. Its dual maximises $10\lambda_1 + 12\lambda_2$ subject to $2\lambda_1 + \lambda_2 \le 4$, $\lambda_1 + 3\lambda_2 \le 3$ and $\lambda \ge 0$.
+
+Propose $x = (3.6, 2.8)$ alongside $\lambda = (1.8, 0.4)$. The primal point is feasible: $7.2 + 2.8 = 10$, $3.6 + 8.4 = 12$, value $14.4 + 8.4 = 22.8$. The dual point is feasible too: $3.6 + 0.4 = 4$, $1.8 + 1.2 = 3$, value $18 + 4.8 = 22.8$. Two feasible points, one value each, so the gap is zero and both are optimal. That is the entire proof: a dozen multiplications, no iteration, no dependence on a stopping rule.
+
+The pairing is classical, and Dantzig's account of linear programming leans on it: a feasible dual point is a bound you can hand to a reviewer, and optimality is where the two bounds meet.
+
+A loose certificate still certifies. The multiplier $\lambda = (1.5, 0.5)$ is feasible and worth $15 + 6 = 21$, which rules out anything below 21 and nothing more. Pair it with the feasible primal point $(4.5, 2.5)$, worth $18 + 7.5 = 25.5$, and the optimum is trapped inside $[21, 25.5]$. Swap in the multiplier $(1.8, 0.4)$ and the bracket narrows from 4.5 wide to 2.7 on that change alone: the same primal point now sits 2.7 above the optimum, 11.8 percent above 22.8. The certificate is never wrong, only loose until the multiplier is right.
+
+Two details matter. Complementary slackness here is arithmetic rather than insight: both variables are positive, so both dual constraints have to be tight, and they are. And these numbers are rational but not binary-exact, so the feasibility test on a machine is a residual against a tolerance, and the honest thing to report is the residual, not a zero.
+
+The same accounting certifies the answer nobody wants. To prove a model has no feasible point, weight its constraints by non-negative numbers so that every variable coefficient lands at or below zero while the constant turns positive. Adding the weighted constraints then asserts that a non-positive quantity is at least a positive one, which cannot hold. "Infeasible" from a solver is a claim; that combination is a proof.
+
+Checking a candidate pair is one pass over the constraint matrix, a few operations per nonzero, while a solve repeats that work on every iteration. That asymmetry is why a review can audit a claimed optimum without re-running anything, and why rescaling a row is safe: the row's multiplier rescales by the same factor, so it stays a price per unit of that row, in the units you actually wrote down.
+
 ## Sources
 
 - Stephen Boyd and Lieven Vandenberghe, [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/), Cambridge University Press (2004).
 - Ian Goodfellow, Yoshua Bengio, Aaron Courville, [Deep Learning, ch. 8](https://www.deeplearningbook.org/contents/optimization.html) (2016).
+- George B. Dantzig, [Linear Programming and Extensions](https://archive.org/details/linearprogrammin0000dant), Princeton University Press (1963).

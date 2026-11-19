@@ -48,15 +48,15 @@ If we look at it as a workflow, we can draw it very simply:
 
 ```txt
 Lead arrives from website
-    ↓
+ ↓
 Save to CRM
-    ↓
+ ↓
 Classify needs
-    ↓
+ ↓
 Send initial response
-    ↓
+ ↓
 Create deal or follow-up task
-    ↓
+ ↓
 Manager reviews dashboard
 ```
 
@@ -144,17 +144,17 @@ A "just enough" design could look like this:
 
 ```txt
 Website form submitted
-    ↓
+ ↓
 Backend saves lead to PostgreSQL
-    ↓
+ ↓
 AI reads content and summarizes needs
-    ↓
+ ↓
 Rule engine checks source, budget, urgency
-    ↓
+ ↓
 AI suggests next action
-    ↓
+ ↓
 Sales approves or edits
-    ↓
+ ↓
 System creates activity log + follow-up reminder
 ```
 
@@ -176,13 +176,13 @@ At a minimum, you should log:
 
 ```json
 {
-  "workflow_id": "lead_followup_001",
-  "lead_id": "lead_123",
-  "input_summary": "Customer asked for CRM consulting for a sales team of 5",
-  "ai_action": "suggest_next_action",
-  "ai_output": "Suggest calling to consult and send a CRM demo",
-  "human_approved": true,
-  "created_task_id": "task_789"
+ "workflow_id": "lead_followup_001",
+ "lead_id": "lead_123",
+ "input_summary": "Customer asked for CRM consulting for a sales team of 5",
+ "ai_action": "suggest_next_action",
+ "ai_output": "Suggest calling to consult and send a CRM demo",
+ "human_approved": true,
+ "created_task_id": "task_789"
 }
 ```
 
@@ -227,6 +227,6 @@ When the workflow is clear, the agent has its place. When the workflow is unclea
 
 ## References
 
-- IBM — What are Agentic Workflows?: https://www.ibm.com/think/topics/agentic-workflows
-- Andrew Ng — Writing: Agents on the Desktop / Forward Deployed Engineers and the Future of AI Engineering: https://www.andrewng.org/writing
+- IBM - What are Agentic Workflows?: https://www.ibm.com/think/topics/agentic-workflows
+- Andrew Ng - Writing: Agents on the Desktop / Forward Deployed Engineers and the Future of AI Engineering: https://www.andrewng.org/writing
 - NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework

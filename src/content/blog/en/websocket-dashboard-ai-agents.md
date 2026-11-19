@@ -56,11 +56,11 @@ The simplest design consists of 4 parts:
 
 ```text
 Browser Dashboard
-      ↓ WebSocket
+ ↓ WebSocket
 Backend Gateway
-      ↓ process/session manager
+ ↓ process/session manager
 Terminal / Agent Sessions
-      ↓ logs/events
+ ↓ logs/events
 Storage / Log History
 ```
 
@@ -101,22 +101,22 @@ A session shouldn't just be text output. It should have clear metadata.
 
 ```ts
 export type AgentSession = {
-  id: string;
-  name: string;
-  projectPath: string;
-  status: "idle" | "running" | "error" | "stopped";
-  currentTask?: string;
-  branch?: string;
-  createdAt: string;
-  updatedAt: string;
+ id: string;
+ name: string;
+ projectPath: string;
+ status: "idle" | "running" | "error" | "stopped";
+ currentTask?: string;
+ branch?: string;
+ createdAt: string;
+ updatedAt: string;
 };
 
 export type AgentEvent = {
-  id: string;
-  sessionId: string;
-  type: "stdout" | "stderr" | "status" | "command" | "system";
-  message: string;
-  createdAt: string;
+ id: string;
+ sessionId: string;
+ type: "stdout" | "stderr" | "status" | "command" | "system";
+ message: string;
+ createdAt: string;
 };
 ```
 
@@ -128,16 +128,16 @@ Don't let WebSocket send random text. Have a clear contract.
 
 ```ts
 type ClientMessage =
-  | { type: "subscribe"; sessionId: string }
-  | { type: "send_command"; sessionId: string; command: string }
-  | { type: "stop_session"; sessionId: string }
-  | { type: "set_title"; sessionId: string; title: string };
+ | { type: "subscribe"; sessionId: string }
+ | { type: "send_command"; sessionId: string; command: string }
+ | { type: "stop_session"; sessionId: string }
+ | { type: "set_title"; sessionId: string; title: string };
 
 type ServerMessage =
-  | { type: "session_snapshot"; session: AgentSession }
-  | { type: "session_event"; event: AgentEvent }
-  | { type: "session_status"; sessionId: string; status: AgentSession["status"] }
-  | { type: "error"; message: string };
+ | { type: "session_snapshot"; session: AgentSession }
+ | { type: "session_event"; event: AgentEvent }
+ | { type: "session_status"; sessionId: string; status: AgentSession["status"] }
+ | { type: "error"; message: string };
 ```
 
 I like this approach because later the frontend, backend, and agent runner can be developed more independently.
@@ -152,7 +152,7 @@ Center: Terminal Output
 Right: Session Info / Actions
 ```
 
-### Left — Session list
+### Left - Session list
 
 Display:
 
@@ -162,7 +162,7 @@ Display:
 - running/error/idle badge
 - last active time
 
-### Center — Terminal output
+### Center - Terminal output
 
 Display:
 
@@ -172,7 +172,7 @@ Display:
 - search log
 - copy output
 
-### Right — Control panel
+### Right - Control panel
 
 Display:
 
@@ -217,22 +217,22 @@ Example pseudo-code on the frontend:
 const socket = new WebSocket("ws://localhost:3001/ws");
 
 socket.onopen = () => {
-  socket.send(JSON.stringify({
-    type: "subscribe",
-    sessionId: selectedSessionId,
-  }));
+ socket.send(JSON.stringify({
+ type: "subscribe",
+ sessionId: selectedSessionId,
+ }));
 };
 
 socket.onmessage = event => {
-  const message = JSON.parse(event.data);
+ const message = JSON.parse(event.data);
 
-  if (message.type === "session_event") {
-    appendTerminalLine(message.event);
-  }
+ if (message.type === "session_event") {
+ appendTerminalLine(message.event);
+ }
 
-  if (message.type === "session_status") {
-    updateSessionStatus(message.sessionId, message.status);
-  }
+ if (message.type === "session_status") {
+ updateSessionStatus(message.sessionId, message.status);
+ }
 };
 ```
 

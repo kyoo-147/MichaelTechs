@@ -173,5 +173,5 @@ I think this is a very important lesson for people working in AI today. Because 
 ## References
 
 - [150 Successful Machine Learning Models: 6 Lessons Learned at Booking.com](https://booking.ai/150-successful-machine-learning-models-6-lessons-learned-at-booking-com-681e09107bec)
-- [150 Successful Machine Learning Models — ACM Digital Library](https://dl.acm.org/doi/10.1145/3292500.3330744)
+- [150 Successful Machine Learning Models - ACM Digital Library](https://dl.acm.org/doi/10.1145/3292500.3330744)
 - [The Morning Paper: 150 Successful Machine Learning Models](https://blog.acolyer.org/2019/10/07/150-successful-machine-learning-models/)

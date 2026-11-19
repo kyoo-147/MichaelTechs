@@ -90,12 +90,12 @@ The cost is memory: each input element appears in up to $k^2$ columns, so the bu
 import numpy as np
 
 def im2col(x, k, stride=1):
-    # x: (C, H, W) -> (C*k*k, n_positions)
-    patches = []
-    for i in range(0, x.shape[1] - k + 1, stride):
-        for j in range(0, x.shape[2] - k + 1, stride):
-            patches.append(x[:, i:i + k, j:j + k].reshape(-1))
-    return np.stack(patches, axis=1)
+ # x: (C, H, W) -> (C*k*k, n_positions)
+ patches = []
+ for i in range(0, x.shape[1] - k + 1, stride):
+ for j in range(0, x.shape[2] - k + 1, stride):
+ patches.append(x[:, i:i + k, j:j + k].reshape(-1))
+ return np.stack(patches, axis=1)
 ```
 
 Hardware likes regular inner products. Once the convolution is a GEMM, the same kernels that serve dense layers serve convolution, and convolution throughput tracks GEMM throughput on the same chip. That is a fact about libraries, and a quiet admission that the operator was a matrix all along.
@@ -122,5 +122,5 @@ The correction I would make is small. A convolution is not an operation that esc
 
 ## Sources
 
-- Li, Johnson & Yeung (2023). *Stanford CS231n, Convolutional Networks* — https://cs231n.github.io/convolutional-networks/
-- Trefethen & Bau (1997). *Numerical Linear Algebra* — https://people.maths.ox.ac.uk/trefethen/text.html
+- Li, Johnson & Yeung (2023). *Stanford CS231n, Convolutional Networks* - https://cs231n.github.io/convolutional-networks/
+- Trefethen & Bau (1997). *Numerical Linear Algebra* - https://people.maths.ox.ac.uk/trefethen/text.html

@@ -124,7 +124,7 @@ If you don't know, say you don't know. That's also a part of engineering.
 
 ## References
 
-- TikTok Newsroom — How TikTok recommends videos #ForYou: https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you
-- TikTok Support — How TikTok recommends content: https://support.tiktok.com/en/using-tiktok/exploring-videos/how-tiktok-recommends-content
-- Apache Kafka — Introduction: https://kafka.apache.org/intro
-- Apache Flink — What is Apache Flink?: https://flink.apache.org/what-is-flink/
+- TikTok Newsroom - How TikTok recommends videos #ForYou: https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you
+- TikTok Support - How TikTok recommends content: https://support.tiktok.com/en/using-tiktok/exploring-videos/how-tiktok-recommends-content
+- Apache Kafka - Introduction: https://kafka.apache.org/intro
+- Apache Flink - What is Apache Flink?: https://flink.apache.org/what-is-flink/

@@ -19,7 +19,7 @@ That is not a footnote. Remove positional information and a sentence becomes a b
 
 ## Attention has no ordering operator
 
-The symmetry is exact. Self-attention is permutation-equivariant: permute the input sequence and the output is permuted the same way. Scaling by $\sqrt{d_k}$, softmax normalization, the residual connection, the layer norm — none break it, because they act along the feature dimension or pointwise across positions.
+The symmetry is exact. Self-attention is permutation-equivariant: permute the input sequence and the output is permuted the same way. Scaling by $\sqrt{d_k}$, softmax normalization, the residual connection, the layer norm - none break it, because they act along the feature dimension or pointwise across positions.
 
 Formally, for a permutation matrix $P$ acting on the sequence axis,
 
@@ -82,17 +82,17 @@ A few details. Rotary applies to queries and keys, not values, since values are 
 ```python
 import torch
 
-def rotate_half(x):                      # (..., d) -> interleaved pairs rotated
-    x1, x2 = x[..., ::2], x[..., 1::2]
-    return torch.stack((-x2, x1), dim=-1).flatten(-2)
+def rotate_half(x): # (..., d) -> interleaved pairs rotated
+ x1, x2 = x[..., ::2], x[..., 1::2]
+ return torch.stack((-x2, x1), dim=-1).flatten(-2)
 
 def apply_rotary(q, k, base=10000.0):
-    dim = q.shape[-1]
-    inv_freq = base ** (-torch.arange(0, dim, 2, dtype=torch.float32) / dim)
-    angles = torch.outer(torch.arange(q.shape[-2], dtype=torch.float32), inv_freq)
-    cos = torch.repeat_interleave(angles.cos(), 2, dim=-1)
-    sin = torch.repeat_interleave(angles.sin(), 2, dim=-1)
-    return q * cos + rotate_half(q) * sin, k * cos + rotate_half(k) * sin
+ dim = q.shape[-1]
+ inv_freq = base ** (-torch.arange(0, dim, 2, dtype=torch.float32) / dim)
+ angles = torch.outer(torch.arange(q.shape[-2], dtype=torch.float32), inv_freq)
+ cos = torch.repeat_interleave(angles.cos(), 2, dim=-1)
+ sin = torch.repeat_interleave(angles.sin(), 2, dim=-1)
+ return q * cos + rotate_half(q) * sin, k * cos + rotate_half(k) * sin
 ```
 
 That is the mechanism in full.
@@ -113,11 +113,11 @@ But relative position has its own assumptions. Rotary with fixed base frequencie
 
 ## The contrarian part: two claims that need correcting
 
-The first claim I hear often: "the model learns position from the tokens anyway." It is offered as a reason positional encodings are optional. That is wrong in a precise sense. Self-attention has no ordering operator. No parameter, nonlinearity, or normalization in the block can distinguish position $i$ from position $j$ given identical token content. A model can use lexical and syntactic cues as proxies for order — function words, morphology, punctuation — but those are correlations in the data, not a mechanism. Give it a sequence where the same token appears twice and the proxy is silent; the occurrences are indistinguishable to attention. Any claim that order is recoverable from content alone is a claim about the statistics of natural language, not about the architecture.
+The first claim I hear often: "the model learns position from the tokens anyway." It is offered as a reason positional encodings are optional. That is wrong in a precise sense. Self-attention has no ordering operator. No parameter, nonlinearity, or normalization in the block can distinguish position $i$ from position $j$ given identical token content. A model can use lexical and syntactic cues as proxies for order - function words, morphology, punctuation - but those are correlations in the data, not a mechanism. Give it a sequence where the same token appears twice and the proxy is silent; the occurrences are indistinguishable to attention. Any claim that order is recoverable from content alone is a claim about the statistics of natural language, not about the architecture.
 
 The second claim is the one I see most: rotary encodings "extend context for free," as if the mechanism alone buys longer sequences. It does not. What rotary gives you is a score that depends on relative offset, the right *form* of dependence. It does not give you a model that has seen those offsets. Two things break past the trained length. The rotation angles for large positions lie outside the range the model encountered, so the query-key geometry is unfamiliar even though it is well defined. And the highest-frequency dimensions alias once the offset exceeds their period, after which attention cannot separate nearby from far positions in those dimensions. The result is the familiar curve: perplexity flat for a while past the training length, then climbing.
 
-The fixes that work are not free. Position interpolation rescales indices so a longer sequence maps into the range the model saw, at the cost of compressing resolution between nearby positions. Frequency-base adjustments stretch the slow dimensions so their period structure covers more length. Both are fine-tuning interventions with their own hyperparameters, and both trade something — resolution, or fidelity of short-range offsets — for length. It is a reasonable trade, but not free extension.
+The fixes that work are not free. Position interpolation rescales indices so a longer sequence maps into the range the model saw, at the cost of compressing resolution between nearby positions. Frequency-base adjustments stretch the slow dimensions so their period structure covers more length. Both are fine-tuning interventions with their own hyperparameters, and both trade something - resolution, or fidelity of short-range offsets - for length. It is a reasonable trade, but not free extension.
 
 What I take from all this: positional encoding looks like an implementation detail and is really a statement about what the model is allowed to know. Absolute schemes are adequate when the length distribution is fixed; relative schemes put the offset into the score by construction, which is why they travel better. But no scheme removes the need to think about range, and length range is a separate engineering problem with its own evaluation.
 

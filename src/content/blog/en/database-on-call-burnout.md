@@ -81,13 +81,13 @@ Table design must start from query patterns, not just from pretty entities on pa
 
 ```sql
 CREATE TABLE activity_logs (
-  id UUID PRIMARY KEY,
-  workspace_id UUID NOT NULL,
-  entity_type TEXT NOT NULL,
-  entity_id UUID NOT NULL,
-  event_type TEXT NOT NULL,
-  payload JSONB,
-  created_at TIMESTAMP NOT NULL
+ id UUID PRIMARY KEY,
+ workspace_id UUID NOT NULL,
+ entity_type TEXT NOT NULL,
+ entity_id UUID NOT NULL,
+ event_type TEXT NOT NULL,
+ payload JSONB,
+ created_at TIMESTAMP NOT NULL
 );
 
 CREATE INDEX idx_activity_entity_time
@@ -104,5 +104,5 @@ A good system shouldn't just be fast. It must be easy enough to operate so that 
 
 ## References
 
-- Discord Engineering — How Discord Stores Trillions of Messages: https://discord.com/blog/how-discord-stores-trillions-of-messages
-- ScyllaDB Tech Talk — How Discord Migrated Trillions of Messages from Cassandra to ScyllaDB: https://www.scylladb.com/tech-talk/how-discord-migrated-trillions-of-messages-from-cassandra-to-scylladb/
+- Discord Engineering - How Discord Stores Trillions of Messages: https://discord.com/blog/how-discord-stores-trillions-of-messages
+- ScyllaDB Tech Talk - How Discord Migrated Trillions of Messages from Cassandra to ScyllaDB: https://www.scylladb.com/tech-talk/how-discord-migrated-trillions-of-messages-from-cassandra-to-scylladb/

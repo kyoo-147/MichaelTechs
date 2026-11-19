@@ -56,7 +56,7 @@ Conversion rate this month
 Revenue by pipeline stage
 ```
 
-This data usually doesn't need absolute real-time accuracy. A 30–60 second delay is acceptable in many small CRMs.
+This data usually doesn't need absolute real-time accuracy. A 30-60 second delay is acceptable in many small CRMs.
 
 ## 2. When do you NOT need Redis yet?
 
@@ -65,7 +65,7 @@ Don't add Redis too early just to "look professional".
 You don't need Redis yet if:
 
 - the database is still small
-- queries take under 100–200ms
+- queries take under 100-200ms
 - the dashboard has few users
 - you haven't set up good indexes yet
 - you haven't measured the bottleneck
@@ -95,11 +95,11 @@ Example value:
 
 ```json
 {
-  "totalLeads": 1240,
-  "newLeadsToday": 32,
-  "openDeals": 86,
-  "pipelineValue": 45000,
-  "updatedAt": "2026-06-25T00:00:00Z"
+ "totalLeads": 1240,
+ "newLeadsToday": 32,
+ "openDeals": 86,
+ "pipelineValue": 45000,
+ "updatedAt": "2026-06-25T00:00:00Z"
 }
 ```
 
@@ -111,8 +111,8 @@ crm:pipeline:by_stage:org:{orgId}
 
 ```json
 [
-  { "stage": "qualified", "count": 20, "value": 12000 },
-  { "stage": "proposal", "count": 8, "value": 18000 }
+ { "stage": "qualified", "count": 20, "value": 12000 },
+ { "stage": "proposal", "count": 8, "value": 18000 }
 ]
 ```
 
@@ -160,18 +160,18 @@ Pseudo-code:
 
 ```ts
 async function getDashboardSummary(orgId: string) {
-  const key = `crm:dashboard:summary:org:${orgId}`;
+ const key = `crm:dashboard:summary:org:${orgId}`;
 
-  const cached = await redis.get(key);
-  if (cached) return JSON.parse(cached);
+ const cached = await redis.get(key);
+ if (cached) return JSON.parse(cached);
 
-  const summary = await queryDashboardSummaryFromDb(orgId);
+ const summary = await queryDashboardSummaryFromDb(orgId);
 
-  await redis.set(key, JSON.stringify(summary), {
-    EX: 60,
-  });
+ await redis.set(key, JSON.stringify(summary), {
+ EX: 60,
+ });
 
-  return summary;
+ return summary;
 }
 ```
 
@@ -185,7 +185,7 @@ There are 3 simple ways:
 
 ### Method 1: TTL-only
 
-Set a short TTL, for example 30–60 seconds.
+Set a short TTL, for example 30-60 seconds.
 
 Pros:
 
@@ -242,7 +242,7 @@ quotes sent
 activities due today
 ```
 
-TTL: 30–60 seconds.
+TTL: 30-60 seconds.
 
 ### Phase 2
 
@@ -255,7 +255,7 @@ quote acceptance rate
 follow-up completion rate
 ```
 
-TTL: 5–15 minutes.
+TTL: 5-15 minutes.
 
 ### Phase 3
 
@@ -287,7 +287,7 @@ Example:
 
 ```text
 Before cache: dashboard summary p95 = 1200ms
-After cache:  dashboard summary p95 = 180ms
+After cache: dashboard summary p95 = 180ms
 Cache hit rate: 82%
 ```
 
@@ -306,7 +306,7 @@ If the hit rate is low, the key design might not be good or the data is too dyna
 With a multi-tenant CRM, the key should always include `orgId`.
 
 ```text
-bad:  crm:dashboard:summary
+bad: crm:dashboard:summary
 good: crm:dashboard:summary:org:{orgId}
 ```
 
@@ -334,6 +334,6 @@ Key lessons:
 ## References
 
 - Redis Docs: https://redis.io/docs/latest/
-- Redis — Query Caching for Microservices: https://redis.io/tutorials/howtos/solutions/microservices/caching/
-- Azure Architecture Center — Cache-Aside pattern: https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside
+- Redis - Query Caching for Microservices: https://redis.io/tutorials/howtos/solutions/microservices/caching/
+- Azure Architecture Center - Cache-Aside pattern: https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside
 - AWS Caching overview: https://aws.amazon.com/caching/

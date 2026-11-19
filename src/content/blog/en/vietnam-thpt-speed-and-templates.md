@@ -55,7 +55,7 @@ $$
 y - 4 = 9(x - 2) \;\Longrightarrow\; y = 9x - 14 .
 $$
 
-Notice how little thinking parts (a)–(c) require once the template "tangent parallel ⇒ $f'(x) = m$" is recognised. That recognition *is* the exam.
+Notice how little thinking parts (a)-(c) require once the template "tangent parallel ⇒ $f'(x) = m$" is recognised. That recognition *is* the exam.
 
 ## Where students actually lose marks
 
@@ -84,5 +84,5 @@ There is a second cost: the exam's standard forms are all clean. $x^2 = 4$ gives
 
 ## Sources
 
-- Vietnam Ministry of Education and Training, examination regulations and subject structure — [moet.gov.vn](https://moet.gov.vn/).
+- Vietnam Ministry of Education and Training, examination regulations and subject structure - [moet.gov.vn](https://moet.gov.vn/).
 - The problem is original and its numbers were checked independently: the tangent points are $(-2,0)$ and $(2,4)$, the distance is $4\sqrt{2}$, and the tangent at $x = 2$ is $y = 9x - 14$.

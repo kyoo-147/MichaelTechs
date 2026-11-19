@@ -19,7 +19,7 @@ Linear algebra courses spend weeks on eigenvalues before the singular value deco
 
 For $A\mathbf{x} = \lambda \mathbf{x}$ to mean "directions the matrix preserves", $A$ must be square. A data matrix with fifty thousand rows and three hundred columns is not square and has no eigenvectors at all.
 
-Even for square matrices the story fails quietly. Eigenvectors can be complex, so a rotation has none you can see. They can be incomplete: $A = \begin{bmatrix}1 & 1\\ 0 & 1\end{bmatrix}$ has eigenvalue $1$ twice but only one eigenvector, so there is no eigenbasis. And they are generally not orthogonal — only normal matrices, those with $A^\top A = AA^\top$, get an orthogonal eigenbasis, and almost nothing that comes out of a trained model is normal.
+Even for square matrices the story fails quietly. Eigenvectors can be complex, so a rotation has none you can see. They can be incomplete: $A = \begin{bmatrix}1 & 1\\ 0 & 1\end{bmatrix}$ has eigenvalue $1$ twice but only one eigenvector, so there is no eigenbasis. And they are generally not orthogonal - only normal matrices, those with $A^\top A = AA^\top$, get an orthogonal eigenbasis, and almost nothing that comes out of a trained model is normal.
 
 ## The SVD does not
 
@@ -33,8 +33,8 @@ The singular values are gains, not eigenvalues. Each $\sigma_i$ is exactly the f
 
 ```python
 U, s, Vt = np.linalg.svd(A, full_matrices=False)
-print(s[0] / s[-1])        # spectral condition number
-print((s > 1e-10).sum())   # numerical rank at that threshold
+print(s[0] / s[-1]) # spectral condition number
+print((s > 1e-10).sum()) # numerical rank at that threshold
 ```
 
 ## Rank is a number, not a property
@@ -47,7 +47,7 @@ Truncating at $k$ terms is the best rank-$k$ approximation in Frobenius norm, so
 
 Keeping $k$ terms stores $U_k \Sigma_k V_k^\top$ at a cost proportional to $k(m+n)$ instead of $mn$. That is the compression argument, and it is only as good as the spectrum allows.
 
-Low-rank adaptation is the cousin, and the two get conflated. A LoRA-style update writes $W' = W + BA$ with $B \in \mathbb{R}^{m\times r}$, $A \in \mathbb{R}^{r\times n}$ and $r \ll \min(m,n)$. That is not the truncated SVD of anything. The SVD approximates an existing matrix after the fact; an adapter constrains the update during training, so the optimiser never writes outside a rank-$r$ subspace. The trained factors are not the leading singular triplets of the final delta, because gradient descent is not performing an SVD. What they share is an assumption — that the useful part of a big matrix lives in a low-dimensional subspace — not a mechanism.
+Low-rank adaptation is the cousin, and the two get conflated. A LoRA-style update writes $W' = W + BA$ with $B \in \mathbb{R}^{m\times r}$, $A \in \mathbb{R}^{r\times n}$ and $r \ll \min(m,n)$. That is not the truncated SVD of anything. The SVD approximates an existing matrix after the fact; an adapter constrains the update during training, so the optimiser never writes outside a rank-$r$ subspace. The trained factors are not the leading singular triplets of the final delta, because gradient descent is not performing an SVD. What they share is an assumption - that the useful part of a big matrix lives in a low-dimensional subspace - not a mechanism.
 
 ## The error bound comes from singular values, not eigenvalues
 
@@ -63,9 +63,31 @@ $$
 A^k = \begin{bmatrix} 1 & 100k \\ 0 & 1 \end{bmatrix},
 $$
 
-so the norm grows without bound, linearly in depth, and a single application already takes $(0,1)$ to $(100,1)$ — an amplification of about a hundred. The gain is $\sigma_1 \approx 100$, the smallest singular value is about $0.01$, and their ratio is about $10^4$. None of that was visible in the eigenvalues. The matrix is non-normal, its eigenvectors are nearly parallel, and the eigenbasis is a terrible coordinate system in which to reason about growth.
+so the norm grows without bound, linearly in depth, and a single application already takes $(0,1)$ to $(100,1)$ - an amplification of about a hundred. The gain is $\sigma_1 \approx 100$, the smallest singular value is about $0.01$, and their ratio is about $10^4$. None of that was visible in the eigenvalues. The matrix is non-normal, its eigenvectors are nearly parallel, and the eigenbasis is a terrible coordinate system in which to reason about growth.
 
 This is the general shape of the mistake. Error amplification, effective rank, compressibility, sensitivity to quantisation are all singular-value facts. The eigenvalue spectrum describes the matrix in a basis the matrix itself chose; for non-normal matrices that basis can be skewed enough to mislead. When I check a weight matrix now I look at the decay of $s$ and at $\sigma_{\max}/\sigma_{\min}$ first, and often I do not look at the eigenvalues at all.
+
+## What truncation actually costs
+
+Take $A = \begin{bmatrix}1 & 2\\ 3 & 4\end{bmatrix}$. Everything below is arithmetic on that matrix, not a measurement of anything.
+
+The product $A^\top A$ has trace $30$ and determinant $4$, so its eigenvalues solve $\lambda^2 - 30\lambda + 4 = 0$ and come out as $15 \pm \sqrt{221}$, which is $29.86607$ and $0.13393$; for a $2\times2$ matrix the trace and determinant fix both eigenvalues, so there is nothing else to find. The singular values are the square roots: $\sigma_1 \approx 5.46499$ and $\sigma_2 \approx 0.36597$.
+
+Two identities audit a hand SVD. The singular values squared must sum to $\|A\|_F^2 = 30$, and $29.86607 + 0.13393$ is $30$. For a square matrix they must also multiply to $|\det A| = 2$, and $5.46499 \times 0.36597$ returns that up to the rounding in the printed decimals. If either check misses, the arithmetic is wrong, and that is worth establishing before the numbers reach a sentence. Both checks are one line each, and they catch a transposed or misordered factor before anything downstream depends on it.
+
+Now truncate to rank one. The Frobenius error is not bounded by $\sigma_2$, it equals it:
+
+$$
+\|A - \sigma_1 u_1 v_1^\top\|_F = \sigma_2 \approx 0.36597
+$$
+
+That the error is exactly the tail is Eckart and Young's 1936 result, and it is why the truncated SVD is optimal rather than merely sensible. Against $\|A\|_F = \sqrt{30} \approx 5.47723$ the error is $6.7\%$ relative.
+
+Here is the part worth keeping. The discarded share of the squared norm is $\varepsilon = 0.13393/30$, or $0.45\%$, so $99.55\%$ of the energy survives while the error sits at $6.7\%$. Both figures are correct, and the second is the square root of the first, for every truncation in the Frobenius norm and not only this one. Quoting energy retained therefore reports the square of the quantity that governs accuracy: $99.5\%$ reads as rounding error while carrying $6.7\%$ of the norm. Two reports of the same truncation can call it negligible and substantial, and neither has erred. The relation also sets a budget once it is inverted. A $1\%$ relative error needs $\varepsilon \le 10^{-4}$, so the tail may hold at most one hundredth of a percent of the energy.
+
+The storage argument has the same shape. A rank-one factorisation stores $k(m+n)$ numbers, which here is $4$, plus the singular value if it is kept separately, against the four entries that were already there. Nothing is saved. Break-even needs $k < mn/(m+n)$, and at $2 \times 2$ that means $k < 1$. At $1000 \times 1000$ it means $k < 500$.
+
+That threshold is the number worth carrying, because it turns "low-rank compression" from a technique into a question about the spectrum in front of you. This matrix fails the compression test anyway, since discarding one of its two directions costs a real $6.7\%$, but the example is here to be checkable rather than representative. What transfers is the bookkeeping, not the values.
 
 ## What I take from this
 
@@ -74,4 +96,5 @@ The SVD is not a harder version of the eigenvalue decomposition. It always exist
 ## Sources
 
 - Gilbert Strang, [MIT 18.06 Linear Algebra](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/) (2010).
-- Lloyd N. Trefethen and David Bau III, *Numerical Linear Algebra*, SIAM — [people.maths.ox.ac.uk/trefethen](https://people.maths.ox.ac.uk/trefethen/text.html).
+- Lloyd N. Trefethen and David Bau III, *Numerical Linear Algebra*, SIAM - [people.maths.ox.ac.uk/trefethen](https://people.maths.ox.ac.uk/trefethen/text.html).
+- Carl Eckart and Gale Young, [The Approximation of One Matrix by Another of Lower Rank](https://doi.org/10.1007/BF02288367), *Psychometrika* 1(3), 211-218 (1936).

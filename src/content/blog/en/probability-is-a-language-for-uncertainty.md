@@ -25,7 +25,7 @@ $$
 \mathbb{E}[X] = \int x\,p(x)\,dx
 $$
 
-and variance $\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}X)^2]$. Those are summaries, and summaries lose information: two very different distributions can share a mean and a variance. Goodfellow, Bengio and Courville make this point early in [chapter 3](https://www.deeplearningbook.org/contents/prob.html) of the *Deep Learning* book — the moment you replace a distribution with its mean, you have chosen to ignore everything else about it.
+and variance $\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}X)^2]$. Those are summaries, and summaries lose information: two very different distributions can share a mean and a variance. Goodfellow, Bengio and Courville make this point early in [chapter 3](https://www.deeplearningbook.org/contents/prob.html) of the *Deep Learning* book - the moment you replace a distribution with its mean, you have chosen to ignore everything else about it.
 
 The distinction that matters for training is between a **parameter** (a fixed but unknown quantity, like the true noise level) and an **estimator** (a function of the data that guesses it). Maximum likelihood is one estimator among several, chosen for convenience as much as for principle.
 
@@ -63,7 +63,7 @@ which is binary cross-entropy. Softmax plus cross-entropy is the same argument w
 
 ## The first reverse angle: the loss is an assumption, not a law
 
-If your residual distribution is heavy-tailed, squared error is not "the natural choice" — it is a Gaussian assumption you did not make deliberately, and it will let a handful of points set your gradient. That is not a hypothetical: it is the everyday behaviour of a regression model on data with a few mislabelled rows.
+If your residual distribution is heavy-tailed, squared error is not "the natural choice" - it is a Gaussian assumption you did not make deliberately, and it will let a handful of points set your gradient. That is not a hypothetical: it is the everyday behaviour of a regression model on data with a few mislabelled rows.
 
 The fix is not "use a better optimizer". It is to write down the noise model you actually believe, and derive the loss from it. Huber exists precisely because someone did that and decided the tails were not Gaussian. If you cannot state the assumption behind your loss, you cannot say when it is the wrong loss.
 
@@ -71,15 +71,15 @@ The fix is not "use a better optimizer". It is to write down the noise model you
 
 This is the one that costs people money. A model can achieve excellent negative log-likelihood and still be badly calibrated. Cross-entropy rewards *ranking* the correct class above the others; it does not force the score to mean what it looks like.
 
-Concretely: a binary classifier that outputs 0.9 on a thousand examples and is correct on 700 of them has good accuracy and terrible calibration — its confidence overstates its hit rate by 20 points. Expected calibration error measures exactly this gap by binning predictions and comparing mean confidence to observed frequency:
+Concretely: a binary classifier that outputs 0.9 on a thousand examples and is correct on 700 of them has good accuracy and terrible calibration - its confidence overstates its hit rate by 20 points. Expected calibration error measures exactly this gap by binning predictions and comparing mean confidence to observed frequency:
 
 $$
 \mathrm{ECE} = \sum_{b} \frac{n_b}{N}\,\left|\,\mathrm{acc}(b) - \mathrm{conf}(b)\,\right|.
 $$
 
-Modern neural networks are systematically overconfident, and the correction is often embarrassingly simple — temperature scaling divides the logits by a single scalar $T$ fitted on validation data. It changes no prediction, only the confidence attached to it.
+Modern neural networks are systematically overconfident, and the correction is often embarrassingly simple - temperature scaling divides the logits by a single scalar $T$ fitted on validation data. It changes no prediction, only the confidence attached to it.
 
-So "the softmax output is a probability" is true in the sense that it sums to one, and false in the sense that anyone cares about. It is a score that has been normalised. If a downstream decision depends on the number — routing, abstention, human review — measure the calibration before you trust it.
+So "the softmax output is a probability" is true in the sense that it sums to one, and false in the sense that anyone cares about. It is a score that has been normalised. If a downstream decision depends on the number - routing, abstention, human review - measure the calibration before you trust it.
 
 ## Calibration, worked
 
@@ -87,11 +87,11 @@ Suppose a classifier makes 1,000 predictions with the confidence bins below. "Co
 
 | confidence bin | n | mean confidence | accuracy | gap × weight |
 | --- | --- | --- | --- | --- |
-| 0.0–0.2 | 100 | 0.08 | 0.15 | $0.07 \times 0.1 = 0.007$ |
-| 0.2–0.4 | 150 | 0.30 | 0.25 | $0.05 \times 0.15 = 0.0075$ |
-| 0.4–0.6 | 200 | 0.50 | 0.48 | $0.02 \times 0.2 = 0.004$ |
-| 0.6–0.8 | 250 | 0.70 | 0.62 | $0.08 \times 0.25 = 0.02$ |
-| 0.8–1.0 | 300 | 0.92 | 0.80 | $0.12 \times 0.3 = 0.036$ |
+| 0.0-0.2 | 100 | 0.08 | 0.15 | $0.07 \times 0.1 = 0.007$ |
+| 0.2-0.4 | 150 | 0.30 | 0.25 | $0.05 \times 0.15 = 0.0075$ |
+| 0.4-0.6 | 200 | 0.50 | 0.48 | $0.02 \times 0.2 = 0.004$ |
+| 0.6-0.8 | 250 | 0.70 | 0.62 | $0.08 \times 0.25 = 0.02$ |
+| 0.8-1.0 | 300 | 0.92 | 0.80 | $0.12 \times 0.3 = 0.036$ |
 
 Overall accuracy is $0.544$, and
 

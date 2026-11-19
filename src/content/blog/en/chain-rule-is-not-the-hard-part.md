@@ -20,7 +20,7 @@ Every explanation of backpropagation eventually says "and then we apply the chai
 
 Chris Olah's essay on [calculus on computational graphs](https://colah.github.io/posts/2015-08-Backprop/) gives the cleanest statement: on a graph, the derivative of one node with respect to another is the **sum over all paths** between them of the product of the edge derivatives along each path. "This general 'sum over paths' rule is just a different way of thinking about the multivariate chain rule."
 
-That is the whole theorem. For the graph below — three nodes, three edges per hop — it produces nine terms.
+That is the whole theorem. For the graph below - three nodes, three edges per hop - it produces nine terms.
 
 ![Left: enumerating all nine paths. Right: factoring the sum at each node, which is what reverse mode does.](/assets/blog/math-chain-rule/paths.svg)
 
@@ -37,11 +37,11 @@ Same value, four additions instead of eight, and the cost is now linear in depth
 
 Three things bother me about the standard telling.
 
-**One: the rule assumes the derivative exists.** The interesting cases in deep learning are exactly the ones where it does not. ReLU has no derivative at zero. `max` has no derivative at a tie — and CS231n's notes write its gradient as $\mathbb{1}[x \geq y]$, where that "$\geq$" is a choice at the tie, not a derivative. Sorting, argmax, quantization, and straight-through estimators all ship backward passes that are gradients of nothing. The framework is happy to run them. No convergence guarantee survives that substitution, and none of the tutorials mention it.
+**One: the rule assumes the derivative exists.** The interesting cases in deep learning are exactly the ones where it does not. ReLU has no derivative at zero. `max` has no derivative at a tie - and CS231n's notes write its gradient as $\mathbb{1}[x \geq y]$, where that "$\geq$" is a choice at the tie, not a derivative. Sorting, argmax, quantization, and straight-through estimators all ship backward passes that are gradients of nothing. The framework is happy to run them. No convergence guarantee survives that substitution, and none of the tutorials mention it.
 
 **Two: the rule does not mention accumulation, which is where the bugs are.** If a variable feeds two branches, its gradient is the *sum* of the contributions. Frameworks implement that with `+=` into an existing buffer. A hand-written backward pass that assigns instead of accumulates produces a number that looks plausible, never errors, and is silently wrong whenever a tensor is reused. Half the "my gradient is off by a factor" incidents I have seen are this.
 
-**Three: the mathematical object and the computed object differ.** The chain rule composes Jacobians. Nobody composes Jacobians. What a backward pass actually computes is a vector–Jacobian product, folded one layer at a time, so the $m \times n$ matrix is never built. Parr and Howard present the matrix product because it is the correct statement; the product they write is also precisely the thing your library never forms.
+**Three: the mathematical object and the computed object differ.** The chain rule composes Jacobians. Nobody composes Jacobians. What a backward pass actually computes is a vector-Jacobian product, folded one layer at a time, so the $m \times n$ matrix is never built. Parr and Howard present the matrix product because it is the correct statement; the product they write is also precisely the thing your library never forms.
 
 ## A worked example, small enough to check
 
@@ -82,7 +82,7 @@ That last step is the whole point of the example. It is also the bug I described
 
 The chain rule is the *licence* to compute derivatives locally. Reverse mode is the *algorithm* that makes it cheap. Everything that actually breaks in production sits between those two sentences: non-differentiable points, accumulation semantics, and the convention for which axis is which.
 
-So when someone says they understand backpropagation because they understand the chain rule, I think they understand the licence. The engineering is elsewhere — and the next note is about the twenty lines of NumPy where the engineering becomes visible.
+So when someone says they understand backpropagation because they understand the chain rule, I think they understand the licence. The engineering is elsewhere - and the next note is about the twenty lines of NumPy where the engineering becomes visible.
 
 ## Sources
 

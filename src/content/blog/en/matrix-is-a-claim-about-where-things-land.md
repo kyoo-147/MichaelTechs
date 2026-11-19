@@ -39,7 +39,7 @@ So a matrix is not an array that happens to multiply vectors. It is the compress
 
 ## Reading a weight matrix
 
-For a layer computing $\mathbf{y} = W\mathbf{x}$ with $W \in \mathbb{R}^{m \times n}$, the columns are the *directions the layer can produce*. Column $j$ is what happens to the $j$-th input coordinate when everything else is zero. If two columns are nearly parallel, the layer cannot distinguish those two inputs — it maps them into almost the same direction, and no downstream layer can undo that, because the information is already gone.
+For a layer computing $\mathbf{y} = W\mathbf{x}$ with $W \in \mathbb{R}^{m \times n}$, the columns are the *directions the layer can produce*. Column $j$ is what happens to the $j$-th input coordinate when everything else is zero. If two columns are nearly parallel, the layer cannot distinguish those two inputs - it maps them into almost the same direction, and no downstream layer can undo that, because the information is already gone.
 
 That gives three questions worth asking about any weight matrix, none of which involve its individual entries:
 
@@ -71,13 +71,13 @@ $$
 \mathbf{y} = W\mathbf{x} + \mathbf{b}.
 $$
 
-With $\mathbf{b} \neq \mathbf{0}$ this is **affine**, not linear. It does not fix the origin. Stacking affine maps still gives an affine map, which is exactly why a "deep linear network" collapses to a single matrix times input plus a constant — adding depth without a nonlinearity buys you nothing, and the usual explanation ("linear functions compose to linear functions") is slightly wrong in a way that hides the real reason.
+With $\mathbf{b} \neq \mathbf{0}$ this is **affine**, not linear. It does not fix the origin. Stacking affine maps still gives an affine map, which is exactly why a "deep linear network" collapses to a single matrix times input plus a constant - adding depth without a nonlinearity buys you nothing, and the usual explanation ("linear functions compose to linear functions") is slightly wrong in a way that hides the real reason.
 
 The bias is a translation of the image. Geometrically it shifts the whole subspace away from the origin; practically it lets the layer produce a nonzero output for a zero input, which matters for things like logits of a never-seen class. Keeping the distinction costs one word and prevents a whole family of confused conversations.
 
 ## Where the picture breaks again: geometry is basis-free, diagnostics are not
 
-The grid-warping picture is beautiful and it is invariant under change of basis. That is the point of it — and also its limitation. Two matrices with the same determinant can behave completely differently, because the determinant measures volume scaling and says nothing about error amplification.
+The grid-warping picture is beautiful and it is invariant under change of basis. That is the point of it - and also its limitation. Two matrices with the same determinant can behave completely differently, because the determinant measures volume scaling and says nothing about error amplification.
 
 Concretely, the quantity that predicts whether your forward pass survives is the ratio of largest to smallest singular value, $\sigma_{\max}/\sigma_{\min}$. A rotation has determinant 1 and ratio 1: perfectly stable. A near-singular stretch can also have determinant 1 and a ratio of $10^{4}$: it will destroy a float16 activation and blow up the backward pass. Textbooks usually introduce the determinant early and the singular values late, which trains the eye to look at the wrong scalar first.
 
@@ -92,7 +92,7 @@ Nothing exotic. Before debugging a model, I read the matrices:
 - remember that `Linear` adds a shift, and that "linear layer" in framework vocabulary means "affine layer" in mathematics;
 - keep the determinant out of arguments about numerical stability.
 
-The grid picture is a good instrument. It is not a proof, and it is not the whole story — which is the reason to hold both the geometric reading and the algebraic one at the same time instead of picking a favourite.
+The grid picture is a good instrument. It is not a proof, and it is not the whole story - which is the reason to hold both the geometric reading and the algebraic one at the same time instead of picking a favourite.
 
 ## Sources
 

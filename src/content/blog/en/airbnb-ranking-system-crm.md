@@ -27,9 +27,9 @@ I read Airbnb's posts on Embedding-Based Retrieval and search ranking to rethink
 
 ## Sources
 
-- Airbnb Engineering — [Embedding-Based Retrieval for Airbnb Search](https://airbnb.tech/ai-ml/embedding-based-retrieval-for-airbnb-search/)
-- Airbnb Engineering — [Machine Learning-Powered Search Ranking of Airbnb Experiences](https://medium.com/airbnb-engineering/machine-learning-powered-search-ranking-of-airbnb-experiences-110b4b1a0789)
-- arXiv — [Learning to Rank for Maps at Airbnb](https://arxiv.org/abs/2407.00091)
+- Airbnb Engineering - [Embedding-Based Retrieval for Airbnb Search](https://airbnb.tech/ai-ml/embedding-based-retrieval-for-airbnb-search/)
+- Airbnb Engineering - [Machine Learning-Powered Search Ranking of Airbnb Experiences](https://medium.com/airbnb-engineering/machine-learning-powered-search-ranking-of-airbnb-experiences-110b4b1a0789)
+- arXiv - [Learning to Rank for Maps at Airbnb](https://arxiv.org/abs/2407.00091)
 
 ## 1. Airbnb doesn't just "search text"
 
@@ -39,10 +39,10 @@ The architecture usually has multiple layers:
 
 ```txt
 Query
-  → candidate retrieval
-  → ranking
-  → re-ranking / business rules
-  → UI result
+ → candidate retrieval
+ → ranking
+ → re-ranking / business rules
+ → UI result
 ```
 
 This is a pattern very much worth learning.
@@ -68,10 +68,10 @@ The first version should be a lightweight hybrid:
 
 ```txt
 Keyword search
-  + filters
-  + recency
-  + entity priority
-  + permission
+ + filters
+ + recency
+ + entity priority
+ + permission
 ```
 
 Example query: "acme quote"
@@ -141,7 +141,7 @@ For example:
 
 ```txt
 Score =
-  0.45 * relevance
+ 0.45 * relevance
 + 0.20 * recency
 + 0.15 * deal_priority
 + 0.10 * user_ownership
@@ -180,23 +180,23 @@ But clicks are not enough. Outcomes are what matters.
 
 ```txt
 /search?q=acme quote
-  → parse query
-  → keyword search PostgreSQL
-  → vector search if query is long/semantic
-  → merge candidates
-  → permission filter
-  → rank
-  → return grouped results
+ → parse query
+ → keyword search PostgreSQL
+ → vector search if query is long/semantic
+ → merge candidates
+ → permission filter
+ → rank
+ → return grouped results
 ```
 
 The response can be grouped:
 
 ```json
 {
-  "customers": [],
-  "deals": [],
-  "quotes": [],
-  "conversations": []
+ "customers": [],
+ "deals": [],
+ "quotes": [],
+ "conversations": []
 }
 ```
 

@@ -29,7 +29,7 @@ I read the Discord case study on storing trillions of messages to rethink this p
 
 ## Sources
 
-- Discord Engineering — [How Discord Stores Trillions of Messages](https://discord.com/blog/how-discord-stores-trillions-of-messages)
+- Discord Engineering - [How Discord Stores Trillions of Messages](https://discord.com/blog/how-discord-stores-trillions-of-messages)
 
 ## 1. Activity logs are not messages, but have the same problem
 
@@ -37,13 +37,13 @@ Discord stores messages by channel and time. A CRM has a very similar pattern:
 
 ```txt
 Customer / Lead / Deal
-  └── Activities over time
-        ├── note
-        ├── call
-        ├── email
-        ├── message
-        ├── quote_sent
-        └── deal_stage_changed
+ └── Activities over time
+ ├── note
+ ├── call
+ ├── email
+ ├── message
+ ├── quote_sent
+ └── deal_stage_changed
 ```
 
 Users usually do not read activities randomly. They read by entity:
@@ -67,23 +67,23 @@ For a small CRM system, I would start with PostgreSQL, no need to jump straight 
 
 ```sql
 CREATE TABLE activity_logs (
-  id UUID PRIMARY KEY,
-  workspace_id UUID NOT NULL,
-  entity_type TEXT NOT NULL,
-  entity_id UUID NOT NULL,
-  actor_id UUID,
-  action TEXT NOT NULL,
-  source TEXT,
-  metadata JSONB,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+ id UUID PRIMARY KEY,
+ workspace_id UUID NOT NULL,
+ entity_type TEXT NOT NULL,
+ entity_id UUID NOT NULL,
+ actor_id UUID,
+ action TEXT NOT NULL,
+ source TEXT,
+ metadata JSONB,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE INDEX idx_activity_timeline
 ON activity_logs (
-  workspace_id,
-  entity_type,
-  entity_id,
-  created_at DESC
+ workspace_id,
+ entity_type,
+ entity_id,
+ created_at DESC
 );
 ```
 
@@ -113,21 +113,21 @@ Nhược điểm: if there's a lot of chatting, the activity table bloats quickl
 
 ```sql
 CREATE TABLE conversations (
-  id UUID PRIMARY KEY,
-  workspace_id UUID NOT NULL,
-  customer_id UUID,
-  channel TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+ id UUID PRIMARY KEY,
+ workspace_id UUID NOT NULL,
+ customer_id UUID,
+ channel TEXT NOT NULL,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE messages (
-  id UUID PRIMARY KEY,
-  conversation_id UUID NOT NULL REFERENCES conversations(id),
-  direction TEXT NOT NULL,
-  sender_id UUID,
-  body TEXT,
-  metadata JSONB,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+ id UUID PRIMARY KEY,
+ conversation_id UUID NOT NULL REFERENCES conversations(id),
+ direction TEXT NOT NULL,
+ sender_id UUID,
+ body TEXT,
+ metadata JSONB,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE INDEX idx_messages_conversation_time
@@ -155,13 +155,13 @@ A better way is to have a read model or summary table:
 
 ```sql
 CREATE TABLE customer_activity_summary (
-  workspace_id UUID NOT NULL,
-  customer_id UUID NOT NULL,
-  last_activity_at TIMESTAMPTZ,
-  last_contact_at TIMESTAMPTZ,
-  last_message_preview TEXT,
-  unread_count INT DEFAULT 0,
-  PRIMARY KEY (workspace_id, customer_id)
+ workspace_id UUID NOT NULL,
+ customer_id UUID NOT NULL,
+ last_activity_at TIMESTAMPTZ,
+ last_contact_at TIMESTAMPTZ,
+ last_message_preview TEXT,
+ unread_count INT DEFAULT 0,
+ PRIMARY KEY (workspace_id, customer_id)
 );
 ```
 
@@ -184,9 +184,9 @@ At that point, it shouldn't all be done in the main request.
 
 ```txt
 User action
-  → write activity
-  → publish event
-  → workers process notification / summary / AI suggestion
+ → write activity
+ → publish event
+ → workers process notification / summary / AI suggestion
 ```
 
 The main request only needs to reliably save the data. The secondary tasks are left for workers to process later.

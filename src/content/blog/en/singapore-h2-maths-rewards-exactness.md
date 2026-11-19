@@ -13,7 +13,7 @@ categories:
   - Math
 ---
 
-Singapore's H2 Mathematics paper has a distinctive temperament. It is short, precise, and almost allergic to numerical approximation. Answers are expected in exact form — $\pi$, $e$, $\ln 2$ — and a decimal is usually only acceptable when the question explicitly says so. Where a Victorian paper trains calculator fluency, an H2 paper trains algebraic control.
+Singapore's H2 Mathematics paper has a distinctive temperament. It is short, precise, and almost allergic to numerical approximation. Answers are expected in exact form - $\pi$, $e$, $\ln 2$ - and a decimal is usually only acceptable when the question explicitly says so. Where a Victorian paper trains calculator fluency, an H2 paper trains algebraic control.
 
 The problem below is **my own**, written in that style; it is not a past question.
 
@@ -83,7 +83,7 @@ Exactness is a beautiful discipline and a poor description of practice. Almost e
 
 An H2 script will never ask any of that. It asks for a closed form, and closed forms exist for a tiny, carefully chosen family of functions. The result is a graduate who is very good at the twenty integrals that have closed forms and has never been asked what happens to the other ten thousand.
 
-The "hence" structure has the same double edge. On one hand, it teaches a genuinely useful habit: notice that a hard problem contains an easier problem you have already solved. On the other hand, it *tells* you that the connection exists. In real work nobody labels the subproblem for you, and finding that $(\ln x)^3$ can be reduced to $(\ln x)^2$ is the actual skill — the paper gives it away and then marks the execution.
+The "hence" structure has the same double edge. On one hand, it teaches a genuinely useful habit: notice that a hard problem contains an easier problem you have already solved. On the other hand, it *tells* you that the connection exists. In real work nobody labels the subproblem for you, and finding that $(\ln x)^3$ can be reduced to $(\ln x)^2$ is the actual skill - the paper gives it away and then marks the execution.
 
 ## If you are preparing
 
@@ -92,7 +92,39 @@ The "hence" structure has the same double edge. On one hand, it teaches a genuin
 - When a question says "hence", look back at the previous result before touching the page again; that is the intended route and usually the fastest.
 - Check the boundary substitution explicitly, term by term.
 
+## One power higher, and where the recurrence gives out
+
+The same trick generates a whole family. Put $I_n = \int_1^e (\ln x)^n\,dx$ and integrate by parts once, with $u = (\ln x)^n$ and $dv = dx$:
+
+$$
+I_n = \Big[x(\ln x)^n\Big]_1^e - n\int_1^e (\ln x)^{n-1}dx = e - nI_{n-1},
+$$
+
+because $\ln e = 1$ and $\ln 1 = 0$ kills the boundary term at the lower limit. With $I_0 = e-1$ the family follows:
+
+| $n$ | exact | decimal |
+| --- | --- | --- |
+| 0 | $e-1$ | 1.7182818 |
+| 1 | $1$ | 1.0000000 |
+| 2 | $e-2$ | 0.7182818 |
+| 3 | $6-2e$ | 0.5634363 |
+| 4 | $9e-24$ | 0.4645365 |
+| 5 | $120-44e$ | 0.3955995 |
+| 6 | $265e-720$ | 0.3446845 |
+| 7 | $5040-1854e$ | 0.3054900 |
+
+Check two of them against the antiderivative, since a recurrence can be wrong and still look plausible. $\int(\ln x)^3dx = x[(\ln x)^3 - 3(\ln x)^2 + 6\ln x - 6]$, which is $-2e$ at $e$ and $-6$ at $1$, giving $I_3 = 6-2e$. And $\int(\ln x)^4dx = x[(\ln x)^4 - 4(\ln x)^3 + 12(\ln x)^2 - 24\ln x + 24]$, which is $9e$ at $e$ and $24$ at $1$, giving $I_4 = 9e-24$. Both agree.
+
+Look again at $n = 7$. The exact answer is $5040 - 1854e$, and both terms are close to five thousand while the value is about $0.305$. The cancellation is already in the algebra, long before any machine sees it.
+
+And it gets worse predictably. $I_n$ is positive and decreasing in $n$, and $nI_{n-1}$ approaches $e$ from below, so each step is a difference of two quantities sliding toward each other. Every step also multiplies an error in $I_{n-1}$ by $n$, so one rounding unit in $I_0$ becomes $n!$ rounding units in $I_n$. With $18! \approx 6.4 \times 10^{15}$ and a double carrying about sixteen digits, the budget is gone around $n = 18$. Carried forward in double precision the recurrence returns $0.15035$ at $n=16$ against a true $0.15146$, $0.16236$ at $n=17$ against $0.14345$, then a negative number at $n=18$. The $n=17$ value is larger than the $n=16$ value, which a decreasing sequence cannot do, so the failure is visible without knowing any answer.
+
+Run it backward instead, $I_{n-1} = (e - I_n)/n$, and each step divides the inherited error by $n$. Seeded with $I_{30} = 0$, which is simply wrong, the backward run still returns $I_2 = e-2$ to fifteen digits. Gautschi's 1961 paper is the standard account of why one direction survives and the other does not.
+
+The closed form was never the problem. What the recurrence shows is narrower: the same exact identity is a good method or a useless one depending on which way you read it.
+
 ## Sources
 
-- Singapore Examinations and Assessment Board, GCE A-Level syllabuses and examinations — [seab.gov.sg](https://www.seab.gov.sg/).
+- Singapore Examinations and Assessment Board, GCE A-Level syllabuses and examinations - [seab.gov.sg](https://www.seab.gov.sg/).
 - The problem is original; the integral was verified numerically as well as symbolically ($\int_1^e (\ln x)^2 dx = 0.718282\ldots = e-2$).
+- Walter Gautschi, Recursive computation of certain integrals, Journal of the ACM 8(1), January 1961, pp. 21-40 - [doi:10.1145/321052.321054](https://doi.org/10.1145/321052.321054).

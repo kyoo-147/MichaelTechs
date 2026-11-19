@@ -82,5 +82,5 @@ If you're doing computer vision for production, this is a much-needed mindset: t
 
 ## References
 
-- Meta Engineering — Mask R-CNN2Go: https://engineering.fb.com/2018/12/12/ml-applications/mask-r-cnn2go/
+- Meta Engineering - Mask R-CNN2Go: https://engineering.fb.com/2018/12/12/ml-applications/mask-r-cnn2go/
 - Mask R-CNN: https://arxiv.org/abs/1703.06870

@@ -34,7 +34,7 @@ Every row points at a subject, and no row starts with "prove that a vector space
 
 ## The five subjects, in the order I would take them
 
-**1. Linear algebra, as geometry plus spectrum.** Vectors as directions, matrices as linear maps, and then — immediately — singular values. Not because the SVD is elegant, but because it is the decomposition that answers "how much does this layer amplify, and along which directions". Strang's 18.06 is the standard course and it is good; the only thing I would add is the singular-value habit early rather than late.
+**1. Linear algebra, as geometry plus spectrum.** Vectors as directions, matrices as linear maps, and then - immediately - singular values. Not because the SVD is elegant, but because it is the decomposition that answers "how much does this layer amplify, and along which directions". Strang's 18.06 is the standard course and it is good; the only thing I would add is the singular-value habit early rather than late.
 
 **2. Calculus with shapes: Jacobians and the chain rule.** The derivative as the best linear approximation, the Jacobian as its matrix, and the chain rule as Jacobian composition. Parr and Howard's [matrix calculus paper](https://explained.ai/matrix-calculus/) is the most efficient route I know, because it derives the rules instead of listing them. Olah's [calculus on computational graphs](https://colah.github.io/posts/2015-08-Backprop/) supplies the algorithmic picture that makes the rules computable.
 
@@ -51,7 +51,7 @@ Notice what is not in the top five: measure theory, real analysis, topology, inf
 - **Linear algebra**: you stop being surprised by shape errors, you can reason about what a layer can and cannot represent, and you know why a low-rank assumption is or is not justified.
 - **Jacobians and chain rule**: you can debug a gradient by hand, write a custom backward pass, and understand why reverse mode costs what it costs.
 - **Probability**: you can say what your model's number means, and you can tell the difference between a well-ranked model and a calibrated one.
-- **Optimisation**: you can diagnose a training run — curvature, step size, conditioning — instead of trying hyperparameters at random.
+- **Optimisation**: you can diagnose a training run - curvature, step size, conditioning - instead of trying hyperparameters at random.
 - **Numerical linear algebra**: you can explain why the same code gives different losses on two machines, and why fp16 broke one layer and not the others.
 
 ## What can be deferred without much cost
@@ -66,7 +66,7 @@ The standard curriculum is ordered by mathematical dependency because that is ho
 
 Engineering leverage runs the other way. The subjects that explain your failures are worth taking first, even when they arrive early with prerequisites you have not finished. You can learn the spectrum of a matrix before you can prove that every vector space has a basis, and you will get more out of the spectrum.
 
-There is a real risk in that advice: skipping foundations produces people who can run a diagnostic and cannot extend it. So the rule I would state is directional rather than absolute — take the applied subject first, then go back for the foundation once you know why you need it. The motivation that comes from having been burned is worth more than the tidiness of a syllabus.
+There is a real risk in that advice: skipping foundations produces people who can run a diagnostic and cannot extend it. So the rule I would state is directional rather than absolute - take the applied subject first, then go back for the foundation once you know why you need it. The motivation that comes from having been burned is worth more than the tidiness of a syllabus.
 
 ## How to test yourself
 
@@ -78,6 +78,28 @@ Three tests, in increasing order of honesty:
 
 The third test is the one I trust. Everything I think I know about this subject is something I have had to explain badly first.
 
+## The one sum worth doing before you rent a GPU
+
+Most pre-training surprises are not mathematical. They are accounting errors, and the bill arrives days into a run, at step 3000, as an out-of-memory kill. The arithmetic is short enough to do on paper, and it should happen before you reserve anything.
+
+Take a 3 billion parameter model trained in bf16 with AdamW. The relevant quantity is bytes held per parameter during training, and it is not two:
+
+- bf16 weights: 2 bytes
+- bf16 gradients: 2 bytes
+- fp32 master weights: 4 bytes
+- fp32 first moment of the gradient: 4 bytes
+- fp32 second moment of the gradient: 4 bytes
+
+That is 16 bytes per parameter, so 3,000,000,000 × 16 = 48,000,000,000 bytes, which is 48 GB in decimal or 44.7 GiB in the units the allocator reports. The figure people usually carry around for the same model is 6 GB, because 3,000,000,000 parameters at 2 bytes each is the weight tensor on its own. The ratio is 16/2 = 8, and it does not move when you change batch size or sequence length. It is the cost of the optimiser, not the data; the levers are fewer parameters, a cheaper optimiser state, or sharding.
+
+The same arithmetic is why mixed precision is not a memory fix. An all-fp32 run costs 4 bytes each for weights and gradients, then 4 and 4 for the two Adam moments, which is also 16. bf16 buys throughput and bandwidth and a smaller activation footprint; it saves nothing at all on model states.
+
+Put the 48 GB on hardware. An 80 GB card holds the states and leaves 32 GB for activations, temporary buffers and allocator slack. Rajbhandari et al. report out-of-memory failures in extreme cases with over 30 percent of memory still nominally free, because the allocator cannot find one contiguous block, so 32 GB nominal is not 32 GB usable. Sharding across four 40 GB cards gives 12 GB of state per card and 28 GB free on each, which is the shape of a configuration that actually trains.
+
+Then the arithmetic stops being obvious. Sharding halves the state term each time you double the device count and leaves the activation term where it was, unless you shard activations as well. If activations cost 20 GB per device, four cards carry 12 + 20 = 32 GB and eight cards carry 6 + 20 = 26 GB. Doubling the hardware bought 6 GB per device rather than 12, and it cost a full all-gather per step.
+
+Ten minutes of paperwork produces a budget. It says nothing about whether the loss will descend at that batch size, or whether the optimiser will hold past the first few thousand steps. Budget arithmetic tells you what you can afford to attempt. The rest of this piece is about knowing whether the attempt was sound.
+
 ## Sources
 
 - Gilbert Strang, [MIT 18.06 Linear Algebra](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/).
@@ -87,3 +109,4 @@ The third test is the one I trust. Everything I think I know about this subject 
 - Kevin P. Murphy, [Probabilistic Machine Learning](https://probml.github.io/pml-book/).
 - Stephen Boyd and Lieven Vandenberghe, [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/).
 - Lloyd N. Trefethen and David Bau III, [Numerical Linear Algebra](https://people.maths.ox.ac.uk/trefethen/text.html).
+- Samyam Rajbhandari, Jeff Rasley, Olatunji Ruwase, Yuxiong He, [ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054).

@@ -27,8 +27,8 @@ I read Netflix's posts on observability and found one very clear point: large sy
 
 ## Sources
 
-- Netflix Tech Blog — [A Microscope on Microservices](https://techblog.netflix.com/2015/02/a-microscope-on-microservices.html)
-- Netflix Tech Blog — [Lessons from Building Observability Tools at Netflix](https://netflixtechblog.com/lessons-from-building-observability-tools-at-netflix-7cfafed6ab17)
+- Netflix Tech Blog - [A Microscope on Microservices](https://techblog.netflix.com/2015/02/a-microscope-on-microservices.html)
+- Netflix Tech Blog - [Lessons from Building Observability Tools at Netflix](https://netflixtechblog.com/lessons-from-building-observability-tools-at-netflix-7cfafed6ab17)
 
 ## 1. AI workflows have more failure points than we think
 
@@ -36,13 +36,13 @@ Take a CRM workflow for example:
 
 ```txt
 Lead is created
-  → check data
-  → enrichment
-  → call LLM for classification
-  → generate follow-up message
-  → save to CRM
-  → send notification
-  → update dashboard
+ → check data
+ → enrichment
+ → call LLM for classification
+ → generate follow-up message
+ → save to CRM
+ → send notification
+ → update dashboard
 ```
 
 When the workflow fails, the cause could be:
@@ -114,16 +114,16 @@ Logs should have context:
 
 ```json
 {
-  "event": "workflow.step_failed",
-  "workflow_id": "lead_follow_up_v1",
-  "run_id": "run_789",
-  "workspace_id": "ws_001",
-  "lead_id": "lead_123",
-  "step": "generate_follow_up_message",
-  "model": "gpt-4.1-mini",
-  "prompt_version": "followup_v3",
-  "error_type": "json_parse_error",
-  "latency_ms": 2840
+ "event": "workflow.step_failed",
+ "workflow_id": "lead_follow_up_v1",
+ "run_id": "run_789",
+ "workspace_id": "ws_001",
+ "lead_id": "lead_123",
+ "step": "generate_follow_up_message",
+ "model": "gpt-4.1-mini",
+ "prompt_version": "followup_v3",
+ "error_type": "json_parse_error",
+ "latency_ms": 2840
 }
 ```
 
@@ -135,12 +135,12 @@ A good trace is like a timeline:
 
 ```txt
 run_789
-  ├── validate_lead: 12ms
-  ├── enrich_company: 430ms
-  ├── classify_lead: 910ms
-  ├── generate_follow_up: 2840ms
-  ├── parse_output: failed
-  └── fallback_to_draft_template: 18ms
+ ├── validate_lead: 12ms
+ ├── enrich_company: 430ms
+ ├── classify_lead: 910ms
+ ├── generate_follow_up: 2840ms
+ ├── parse_output: failed
+ └── fallback_to_draft_template: 18ms
 ```
 
 Looking at this trace, we know immediately the problem is at the parse output step, not the database or the frontend.
@@ -165,9 +165,9 @@ The last point is very important: don't just alert on technical issues, but also
 
 Monitoring for AI workflows doesn't need to start complex. But it must start right.
 
-First, logs with context.  
-Then, metrics for each step.  
-Then, traces to understand the flow.  
+First, logs with context. 
+Then, metrics for each step. 
+Then, traces to understand the flow. 
 Finally, evaluation and business metrics to know if the AI is truly useful.
 
 An unobservable AI workflow is just a pretty black box. It runs today, but nobody knows where it fails tomorrow.

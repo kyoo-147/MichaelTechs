@@ -92,6 +92,6 @@ A computer vision product needs more than a model. It needs cameras, data, prepr
 
 ## References
 
-- Meta Engineering — Facebook joins MLPerf, open-sources Mask R-CNN2Go: https://engineering.fb.com/2018/12/12/ml-applications/mask-r-cnn2go/
+- Meta Engineering - Facebook joins MLPerf, open-sources Mask R-CNN2Go: https://engineering.fb.com/2018/12/12/ml-applications/mask-r-cnn2go/
 - Mask R-CNN paper: https://arxiv.org/abs/1703.06870
 - FAIR at 5: https://engineering.fb.com/2018/12/05/ai-research/fair-fifth-anniversary/

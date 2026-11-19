@@ -27,7 +27,7 @@ $$
 L = D - A.
 $$
 
-Symmetric, sparse, and the discrete analogue of the negative Laplacian on a manifold. That analogy is not decorative — it is why the same algebra reappears in spectral clustering, graph partitioning, and the analysis of GNNs.
+Symmetric, sparse, and the discrete analogue of the negative Laplacian on a manifold. That analogy is not decorative - it is why the same algebra reappears in spectral clustering, graph partitioning, and the analysis of GNNs.
 
 ## The quadratic form is a sum of squared differences
 
@@ -47,13 +47,13 @@ $$
 
 Every term is non-negative, so $x^\top L x \geq 0$ for all $x$: the matrix is positive semi-definite. That is the whole proof, and it never touches an eigenvalue.
 
-The reading is immediate. $x^\top L x$ measures how much $x$ varies across edges — a Dirichlet energy. A signal nearly constant on every edge has small energy; one that swings between adjacent nodes has large energy. Minimising this quantity under a constraint is the discrete version of solving Laplace's equation, and it is why the Laplacian appears wherever something is being smoothed on a graph.
+The reading is immediate. $x^\top L x$ measures how much $x$ varies across edges - a Dirichlet energy. A signal nearly constant on every edge has small energy; one that swings between adjacent nodes has large energy. Minimising this quantity under a constraint is the discrete version of solving Laplace's equation, and it is why the Laplacian appears wherever something is being smoothed on a graph.
 
 ## Kernel, spectrum, and normalisation
 
 Positive semi-definiteness puts the eigenvalues $\lambda_1 \leq \dots \leq \lambda_n$ at or above zero. The quadratic form says exactly when the smallest one is zero: when every term in the sum vanishes, meaning $x_i = x_j$ on every edge. So $\ker L$ consists of vectors constant on each connected component. A graph with $c$ components has $\lambda_1 = \dots = \lambda_c = 0$; a connected graph has a one-dimensional kernel spanned by $\mathbf{1}$, since the rows of $L$ sum to zero. The eigenvectors form an orthonormal basis, ordered from slowly varying to rapidly oscillating, and in that basis $L$ is diagonal. That is the precise sense in which $L$ is a frequency decomposition of a graph.
 
-Because $L$ has a null space it is not invertible. Solving anything with it needs a constraint, a pseudoinverse, or a regulariser — the same fact that forces the limit in the last section.
+Because $L$ has a null space it is not invertible. Solving anything with it needs a constraint, a pseudoinverse, or a regulariser - the same fact that forces the limit in the last section.
 
 The combinatorial Laplacian is also degree-sensitive: its scale grows with the degrees, so two graphs with the same structure and different degree profiles are not comparable. The normalised Laplacian fixes this:
 
@@ -63,7 +63,7 @@ $$
 
 It is symmetric, positive semi-definite by the same averaging argument, and its eigenvalues lie in $[0,2]$ regardless of size or degree scale. Each edge is rescaled by the geometric mean of the endpoint degrees, so a node attached to a hub is not dominated by that hub. In spectral clustering this is the difference between the ratio cut and the normalised cut, and the normalised version avoids the habit of isolating one low-degree node as a cluster. In a GNN the same effect appears on the forward pass: the symmetrically normalised operator keeps representation magnitudes from growing with degree.
 
-The spectrum carries structure. The second eigenvalue of a connected graph, $\lambda_2 > 0$, is the algebraic connectivity — small for graphs close to disconnected, large for expanders — and it bounds how fast diffusion mixes. That bound is the quantitative form of "information travels well here", and it is the number to look at when someone claims a graph is deep in some meaningful sense.
+The spectrum carries structure. The second eigenvalue of a connected graph, $\lambda_2 > 0$, is the algebraic connectivity - small for graphs close to disconnected, large for expanders - and it bounds how fast diffusion mixes. That bound is the quantitative form of "information travels well here", and it is the number to look at when someone claims a graph is deep in some meaningful sense.
 
 ## One propagation step is a smoothing operator
 
@@ -87,9 +87,9 @@ So a graph convolution is not a general-purpose feature transform that happens t
 
 ```python
 # the operator is local, so it fits in a few lines
-L = D - A                      # combinatorial Laplacian
+L = D - A # combinatorial Laplacian
 L_norm = I - D_inv_sqrt @ A @ D_inv_sqrt
-step = lambda x: x - alpha * (L_norm @ x)   # one propagation, no weights
+step = lambda x: x - alpha * (L_norm @ x) # one propagation, no weights
 ```
 
 ## Stacking steps is repeated smoothing
@@ -112,9 +112,9 @@ A $k$-hop field is not a set of independent signals. Distant influence arrives m
 
 The spectral picture makes the failure explicit. Useful content sits in eigenvectors with moderate eigenvalues: the low ones are component-constant directions carrying no discriminating information, the high ones are oscillations the step suppresses. A deep stack pushes mass toward the bottom of the spectrum, which is the part you cannot use. Depth is a bandwidth control, and it reduces the bandwidth you need.
 
-This predicts several things before a model is fitted. Accuracy should peak at a small number of propagation steps and then decline, not plateau. The decline should come with representations becoming more similar across nodes — shrinking effective rank, rising pairwise cosine similarity — rather than with an optimisation failure. The effect should be stronger where the spectral gap is large relative to graph size, because non-constant modes decay faster there. And a wide shallow model should beat a narrow deep stack of equal parameter count, since width does not consume the spectrum. All four follow from $(1-\alpha\lambda)^k$, and none needs a new dataset to check.
+This predicts several things before a model is fitted. Accuracy should peak at a small number of propagation steps and then decline, not plateau. The decline should come with representations becoming more similar across nodes - shrinking effective rank, rising pairwise cosine similarity - rather than with an optimisation failure. The effect should be stronger where the spectral gap is large relative to graph size, because non-constant modes decay faster there. And a wide shallow model should beat a narrow deep stack of equal parameter count, since width does not consume the spectrum. All four follow from $(1-\alpha\lambda)^k$, and none needs a new dataset to check.
 
-The right response is not to add depth and hope residuals, jumping-knowledge connections, or per-layer readouts repair it. Those are sound engineering, and they concede the point: if depth bought range, you would not need to tap intermediate layers to recover accuracy. The honest response is to decide what range you need, then either choose a propagation operator whose passband covers it, or encode the long-range dependency in the input features through something other than propagation. Laplacian eigenvectors, personalised PageRank vectors, or domain features that already aggregate the relevant neighbourhood are all legitimate — and each is an admission that the propagation step is a filter whose band you are choosing on purpose.
+The right response is not to add depth and hope residuals, jumping-knowledge connections, or per-layer readouts repair it. Those are sound engineering, and they concede the point: if depth bought range, you would not need to tap intermediate layers to recover accuracy. The honest response is to decide what range you need, then either choose a propagation operator whose passband covers it, or encode the long-range dependency in the input features through something other than propagation. Laplacian eigenvectors, personalised PageRank vectors, or domain features that already aggregate the relevant neighbourhood are all legitimate - and each is an admission that the propagation step is a filter whose band you are choosing on purpose.
 
 That is the argument for doing the linear algebra first. Once the layer is written as $I - \alpha L$ and diagonalised, the depth question has an answer independent of dataset, optimiser, and seed. You know the operator's response before you train it, and the experiments confirm what you already knew instead of sending you hunting for a bug in the code.
 

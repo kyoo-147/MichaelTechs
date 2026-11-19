@@ -31,7 +31,7 @@ Text-only interfaces force images, audio, and video through lossy conversions. N
 
 ## Tools and verifiable outcomes
 
-When a result can be checked—executable code, a proof, a database query, or a simulation—training and inference can use that signal. This is more reliable than rewarding fluent explanations alone. The model still needs boundaries: tool permissions, timeouts, sandboxing, and an explicit fallback.
+When a result can be checked-executable code, a proof, a database query, or a simulation-training and inference can use that signal. This is more reliable than rewarding fluent explanations alone. The model still needs boundaries: tool permissions, timeouts, sandboxing, and an explicit fallback.
 
 ## Long context is not memory
 
@@ -41,22 +41,22 @@ The direction is clear: frontier progress is becoming a systems problem. Better 
 
 ## Further reading
 
-- [AI as a Scientific Collaborator](https://cdn.openai.com/pdf/f4b4a5da-b2de-418d-9fcd-6b293e9dc157/oai_ai-as-a-scientific-collaborator_jan-2026.pdf) — OpenAI
-- [UniT: Unified Multimodal Chain-of-Thought Test-time Scaling](https://ai.meta.com/research/publications/unit-unified-multimodal-chain-of-thought-test-time-scaling/) — Meta AI
-- [The Evolution of Mixture-of-Experts Architectures](https://arxiv.org/abs/2608.08650) — Jiguo Li
+- [AI as a Scientific Collaborator](https://cdn.openai.com/pdf/f4b4a5da-b2de-418d-9fcd-6b293e9dc157/oai_ai-as-a-scientific-collaborator_jan-2026.pdf) - OpenAI
+- [UniT: Unified Multimodal Chain-of-Thought Test-time Scaling](https://ai.meta.com/research/publications/unit-unified-multimodal-chain-of-thought-test-time-scaling/) - Meta AI
+- [The Evolution of Mixture-of-Experts Architectures](https://arxiv.org/abs/2608.08650) - Jiguo Li
 [D:/work/michael/michael_techs_visitor/src/content/blog/vi/beyond-bigger-models-ai-research.md]
 @APPEND
 
 ## Đọc thêm
 
-- [AI as a Scientific Collaborator](https://cdn.openai.com/pdf/f4b4a5da-b2de-418d-9fcd-6b293e9dc157/oai_ai-as-a-scientific-collaborator_jan-2026.pdf) — OpenAI
-- [UniT: Unified Multimodal Chain-of-Thought Test-time Scaling](https://ai.meta.com/research/publications/unit-unified-multimodal-chain-of-thought-test-time-scaling/) — Meta AI
-- [The Evolution of Mixture-of-Experts Architectures](https://arxiv.org/abs/2608.08650) — Jiguo Li
+- [AI as a Scientific Collaborator](https://cdn.openai.com/pdf/f4b4a5da-b2de-418d-9fcd-6b293e9dc157/oai_ai-as-a-scientific-collaborator_jan-2026.pdf) - OpenAI
+- [UniT: Unified Multimodal Chain-of-Thought Test-time Scaling](https://ai.meta.com/research/publications/unit-unified-multimodal-chain-of-thought-test-time-scaling/) - Meta AI
+- [The Evolution of Mixture-of-Experts Architectures](https://arxiv.org/abs/2608.08650) - Jiguo Li
 [D:/work/michael/michael_techs_visitor/src/content/blog/zh-cn/beyond-bigger-models-ai-research.md]
 @APPEND
 
 ## 延伸阅读
 
-- [AI as a Scientific Collaborator](https://cdn.openai.com/pdf/f4b4a5da-b2de-418d-9fcd-6b293e9dc157/oai_ai-as-a-scientific-collaborator_jan-2026.pdf) — OpenAI
-- [UniT: Unified Multimodal Chain-of-Thought Test-time Scaling](https://ai.meta.com/research/publications/unit-unified-multimodal-chain-of-thought-test-time-scaling/) — Meta AI
-- [The Evolution of Mixture-of-Experts Architectures](https://arxiv.org/abs/2608.08650) — Jiguo Li
+- [AI as a Scientific Collaborator](https://cdn.openai.com/pdf/f4b4a5da-b2de-418d-9fcd-6b293e9dc157/oai_ai-as-a-scientific-collaborator_jan-2026.pdf) - OpenAI
+- [UniT: Unified Multimodal Chain-of-Thought Test-time Scaling](https://ai.meta.com/research/publications/unit-unified-multimodal-chain-of-thought-test-time-scaling/) - Meta AI
+- [The Evolution of Mixture-of-Experts Architectures](https://arxiv.org/abs/2608.08650) - Jiguo Li

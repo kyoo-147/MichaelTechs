@@ -56,7 +56,7 @@ Here the exam version parts company with practice. Exams give you a function and
 
 ## Why doubling the points does not double the accuracy
 
-The order statements assume the integrand has enough derivatives. The $h^2$ rate needs $f''$ bounded; the $h^4$ rate needs $f^{(4)}$. When the integrand is not that smooth, the rates degrade — predictably.
+The order statements assume the integrand has enough derivatives. The $h^2$ rate needs $f''$ bounded; the $h^4$ rate needs $f^{(4)}$. When the integrand is not that smooth, the rates degrade - predictably.
 
 Take
 
@@ -64,11 +64,11 @@ $$
 \int_0^1 \sqrt{x}\,dx .
 $$
 
-The derivative is infinite at the origin. On a uniform grid the trapezoid error decays like $n^{-3/2}$, not $n^{-2}$, and Simpson's rule — needing four derivatives that do not exist — degrades to nearly the same rate. Refining helps, but each doubling of $n$ buys a factor of about $2.83$ instead of four or sixteen.
+The derivative is infinite at the origin. On a uniform grid the trapezoid error decays like $n^{-3/2}$, not $n^{-2}$, and Simpson's rule - needing four derivatives that do not exist - degrades to nearly the same rate. Refining helps, but each doubling of $n$ buys a factor of about $2.83$ instead of four or sixteen.
 
 The general pattern: if the integrand behaves like $x^{\alpha}$ near an endpoint with non-integer $\alpha$, the trapezoid error decays like $n^{-(\alpha+1)}$ and higher-order rules do not rescue you.
 
-Real integrands are frequently not smooth: a payoff with a kink at the strike, a density with a corner where a constraint binds, an empirical distribution that is a sum of step functions. The rate is worse than the textbook, and you cannot detect the degradation from a single run — you have to compute at several resolutions and fit the slope.
+Real integrands are frequently not smooth: a payoff with a kink at the strike, a density with a corner where a constraint binds, an empirical distribution that is a sum of step functions. The rate is worse than the textbook, and you cannot detect the degradation from a single run - you have to compute at several resolutions and fit the slope.
 
 One standard trick is worth knowing: remove the singularity by substitution rather than fight it with points. Substituting $x = u^2$ makes the square-root integrand smooth and restores full order, which is almost always cheaper than refining.
 
@@ -96,7 +96,7 @@ For trapezoid with $p=2$ that is $\epsilon^{1/3}$, around $10^{-5}$ in double pr
 | Near $h^{*}$ | Comparable | Minimum |
 | Small | Roundoff | Rises as $h$ shrinks |
 
-That table is the argument in three rows, and the exam version has only the first. A finer grid can be less accurate than a coarser one, and the degradation is silent — no warning, no exception. The answer simply drifts.
+That table is the argument in three rows, and the exam version has only the first. A finer grid can be less accurate than a coarser one, and the degradation is silent - no warning, no exception. The answer simply drifts.
 
 This is why the summation loop matters: accumulating $\sum f(x_i)$ naively over millions of points accumulates rounding linearly in the worst case, and pairwise summation fixes it almost for free. The difference shows up only at high resolution, exactly when you are relying on refinement.
 
@@ -110,27 +110,27 @@ $$
 I \approx \frac{V}{N}\sum_{i=1}^{N} f(X_i),
 $$
 
-with $X_i$ drawn uniformly from a domain of volume $V$. The standard error is $\sigma_f/\sqrt{N}$ — a rate of $N^{-1/2}$ regardless of dimension or smoothness.
+with $X_i$ drawn uniformly from a domain of volume $V$. The standard error is $\sigma_f/\sqrt{N}$ - a rate of $N^{-1/2}$ regardless of dimension or smoothness.
 
 A product grid in $d$ dimensions uses $N = m^d$ points and achieves $O(N^{-p/d})$. With Simpson's rule in one dimension that exponent is four, and Monte Carlo loses badly; in four dimensions it is one; in ten it is $0.4$, and the grid is worse than sampling. That is the honest case for Monte Carlo: a dimensional argument, not a claim that random beats deterministic.
 
-Non-smoothness is the second case. If the integrand is an indicator — a digital payoff, a constraint check, a classification decision — every grid rule degrades to first order or worse because derivative bounds fail everywhere. Monte Carlo does not degrade, because it never differentiated anything.
+Non-smoothness is the second case. If the integrand is an indicator - a digital payoff, a constraint check, a classification decision - every grid rule degrades to first order or worse because derivative bounds fail everywhere. Monte Carlo does not degrade, because it never differentiated anything.
 
-The cost is that $N^{-1/2}$ is unforgiving: one more decimal digit costs a hundred times the samples. Variance reduction — importance sampling, antithetic variates, control variates — is not decoration here, it is how the method becomes usable. Quasi-Monte Carlo recovers close to $N^{-1}$ for smooth integrands in moderate dimension, though its error estimates are harder to trust.
+The cost is that $N^{-1/2}$ is unforgiving: one more decimal digit costs a hundred times the samples. Variance reduction - importance sampling, antithetic variates, control variates - is not decoration here, it is how the method becomes usable. Quasi-Monte Carlo recovers close to $N^{-1}$ for smooth integrands in moderate dimension, though its error estimates are harder to trust.
 
 ## The contrarian point: exactness is the wrong goal
 
-Calculus courses teach integration as a search for the exact answer. The integral either has a closed form, which you find, or it does not, and you are told it cannot be expressed in elementary terms — at which point the topic ends. Numerical integration appears, if at all, as an afterthought: an approximation, a lesser result standing in for the real one.
+Calculus courses teach integration as a search for the exact answer. The integral either has a closed form, which you find, or it does not, and you are told it cannot be expressed in elementary terms - at which point the topic ends. Numerical integration appears, if at all, as an afterthought: an approximation, a lesser result standing in for the real one.
 
 That framing installs two habits, and both are wrong.
 
 The first is that accuracy is monotone in effort. If the goal is to approach the exact answer and more points means closer, then the rational strategy is always to add points until the budget runs out. This is precisely the habit that leads people to refine past $h^{*}$ and report a worse number with more confidence. The framing offers no vocabulary for an optimum, because in a world where error only shrinks, no optimum exists.
 
-The second is that error is a single quantity. In the exam framing it is truncation error, bounded by a formula you can evaluate, and there is no second error — so a competing error that grows with effort, and turns the problem from "maximize effort" to "locate an interior optimum", is absent entirely.
+The second is that error is a single quantity. In the exam framing it is truncation error, bounded by a formula you can evaluate, and there is no second error - so a competing error that grows with effort, and turns the problem from "maximize effort" to "locate an interior optimum", is absent entirely.
 
 What this hides is the engineering question: given a fixed budget of evaluations and a required accuracy, what is the cheapest rule that meets it, and how do I know it did? That has no exact answer, only a procedure. Pick a rule whose order suits the smoothness you believe the integrand has. Compute at increasing resolution. Watch the differences. Stop when they stabilize or begin to grow, and report where you stopped so the number is auditable.
 
-That requires a belief about smoothness, which is a modelling judgment; a convergence check, which costs extra evaluations; and reporting the resolution alongside the answer. An integral quoted to twelve digits with no stated grid is not more precise than one quoted to six digits with a stated grid — it is less informative, because the reader cannot tell whether the last six digits are signal or roundoff.
+That requires a belief about smoothness, which is a modelling judgment; a convergence check, which costs extra evaluations; and reporting the resolution alongside the answer. An integral quoted to twelve digits with no stated grid is not more precise than one quoted to six digits with a stated grid - it is less informative, because the reader cannot tell whether the last six digits are signal or roundoff.
 
 The right mental model is not "approximation of the exact value" but "a number with a stated error budget". The exact integral is a limit, not a target; credibility comes from the convergence evidence attached to the number, not from how many digits were printed.
 

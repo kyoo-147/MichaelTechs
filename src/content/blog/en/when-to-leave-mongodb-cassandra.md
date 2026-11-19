@@ -26,7 +26,7 @@ Discord went from MongoDB to Cassandra, and then migrated message storage to Scy
 
 ## Sources
 
-- Discord Engineering — [How Discord Stores Trillions of Messages](https://discord.com/blog/how-discord-stores-trillions-of-messages)
+- Discord Engineering - [How Discord Stores Trillions of Messages](https://discord.com/blog/how-discord-stores-trillions-of-messages)
 
 ## 1. Don't choose databases based on emotions
 
@@ -71,8 +71,8 @@ For example, a CRM has leads, contacts, deals, quotes. This is naturally relatio
 
 ```txt
 Customer ── Deals ── Quotes
-    │
-    └── Activities
+ │
+ └── Activities
 ```
 
 Using SQL helps model clearly and avoids data becoming too loose too early.
@@ -91,12 +91,12 @@ For example, storing workflow configs:
 
 ```json
 {
-  "workflow_id": "wf_123",
-  "steps": [
-    { "type": "trigger", "event": "lead.created" },
-    { "type": "condition", "field": "source", "equals": "website" },
-    { "type": "action", "name": "send_follow_up" }
-  ]
+ "workflow_id": "wf_123",
+ "steps": [
+ { "type": "trigger", "event": "lead.created" },
+ { "type": "condition", "field": "source", "equals": "website" },
+ { "type": "action", "name": "send_follow_up" }
+ ]
 }
 ```
 

@@ -47,21 +47,21 @@ A sketch of the mechanics, close enough to the standard implementation:
 
 ```python
 class MixtureOfSoftmaxes(nn.Module):
-    def __init__(self, d_model, d_vocab, n_components):
-        super().__init__()
-        self.prior = nn.Linear(d_model, n_components)
-        self.mixture = nn.Linear(d_model, n_components * d_model)
-        self.output = nn.Linear(d_model, d_vocab, bias=False)
-        self.k = n_components
+ def __init__(self, d_model, d_vocab, n_components):
+ super().__init__()
+ self.prior = nn.Linear(d_model, n_components)
+ self.mixture = nn.Linear(d_model, n_components * d_model)
+ self.output = nn.Linear(d_model, d_vocab, bias=False)
+ self.k = n_components
 
-    def forward(self, h):
-        pi = torch.softmax(self.prior(h), dim=-1)            # (B, K)
-        z = torch.tanh(self.mixture(h))
-        z = z.view(*h.shape[:-1], self.k, -1)                # (B, K, D)
-        logits = self.output(z)                              # (B, K, V)
-        return torch.logsumexp(
-            pi.unsqueeze(-1).log() + torch.log_softmax(logits, dim=-1), dim=-2
-        )
+ def forward(self, h):
+ pi = torch.softmax(self.prior(h), dim=-1) # (B, K)
+ z = torch.tanh(self.mixture(h))
+ z = z.view(*h.shape[:-1], self.k, -1) # (B, K, D)
+ logits = self.output(z) # (B, K, V)
+ return torch.logsumexp(
+ pi.unsqueeze(-1).log() + torch.log_softmax(logits, dim=-1), dim=-2
+ )
 ```
 
 The table below makes the trade explicit.
@@ -80,7 +80,7 @@ It is easy to read the result as a verdict on the architecture, and that reading
 
 This distinction has consequences. When people say a model is "bottlenecked," they normally mean the body cannot represent the input well enough. Here the body may represent the input perfectly and the head still cannot turn that representation into the required distribution. The fix therefore lives at the boundary: add components, widen, share the embedding matrix or not, factorize the vocabulary. Changing the body does not remove the ceiling; it changes $d$, which changes where the ceiling sits.
 
-The two quantities are also measured differently. The capacity of the body is about the geometry of $h(x)$ across contexts — how distinguishable the representations are, how much of the input survives to the last layer. The capacity of the head is the rank of a matrix over contexts times vocabulary. Confusing the two produces a whole genre of confused commentary.
+The two quantities are also measured differently. The capacity of the body is about the geometry of $h(x)$ across contexts - how distinguishable the representations are, how much of the input survives to the last layer. The capacity of the head is the rank of a matrix over contexts times vocabulary. Confusing the two produces a whole genre of confused commentary.
 
 ## The contrarian point: width is not a wall
 
@@ -88,7 +88,7 @@ The standard framing of this result is that language models are fundamentally li
 
 The first is that the bound is on the rank of the logit matrix, and models buy rank aggressively. Widths that would have seemed absurd a few years ago are ordinary, and increasing $d$ raises the ceiling linearly. Depth compounds the effect indirectly, because a deeper network can place more of the discriminative work in the representation itself, leaving the head with an easier matrix to approximate. The claim "rank is capped at $d+1$" is true and, at contemporary widths, unremarkable. Saying it louder does not make it a wall.
 
-The second reason is statistical. Exact representation of the full matrix is the wrong target. The objective is the log-likelihood of one observed token per position, and most of the vocabulary carries negligible mass. A rank-deficient $P$ can be excellent where it counts — on the head of the distribution, which is what perplexity and downstream accuracy care about — while being visibly wrong in the tail, which little of the loss touches. The reported gains from higher-rank parametrizations are real, but the question worth asking is whether they look like a wall coming down or like a nuisance being relieved.
+The second reason is statistical. Exact representation of the full matrix is the wrong target. The objective is the log-likelihood of one observed token per position, and most of the vocabulary carries negligible mass. A rank-deficient $P$ can be excellent where it counts - on the head of the distribution, which is what perplexity and downstream accuracy care about - while being visibly wrong in the tail, which little of the loss touches. The reported gains from higher-rank parametrizations are real, but the question worth asking is whether they look like a wall coming down or like a nuisance being relieved.
 
 There is a third, subtler problem with the strong reading. The argument needs the true conditional distributions of natural language to be high rank. Measuring that is hard, and any measurement depends on the corpus, the tokenizer, and the context window. A claim about the rank of a matrix you cannot observe is a claim about a model of the data, not about the data. It is entirely possible that the effective rank any given benchmark requires is well below the ceiling, in which case the bottleneck is not binding at all on that benchmark. That raises the practical question.
 
@@ -100,7 +100,7 @@ $$ \operatorname{erank}(P) = \exp\left(-\sum_{i} \bar\sigma_i \log \bar\sigma_i\
 
 where $\sigma_i$ are singular values. Apply it to the log-probability matrix your model produces, and apply it, as far as the data permits, to the empirical distribution you are trying to match. The comparison tells you whether the ceiling is close to binding or far away, which is the only version of the question that changes any decision.
 
-I would do it in three steps. Compute $\operatorname{erank}$ of the model's log-probability matrix over a held-out batch of contexts, and compare it against the best estimate of the target's rank you can build on the same contexts. Look at where the rank is consumed: if a small set of contexts accounts for most of the spectral energy, the average is hiding the interesting cases. Then check whether widening, adding mixture components, or improving the body moves the number — a ceiling that does not respond to any of these is telling you something different from one that moves monotonically with width.
+I would do it in three steps. Compute $\operatorname{erank}$ of the model's log-probability matrix over a held-out batch of contexts, and compare it against the best estimate of the target's rank you can build on the same contexts. Look at where the rank is consumed: if a small set of contexts accounts for most of the spectral energy, the average is hiding the interesting cases. Then check whether widening, adding mixture components, or improving the body moves the number - a ceiling that does not respond to any of these is telling you something different from one that moves monotonically with width.
 
 None of this settles whether the bottleneck matters for a particular training run. It does replace a claim repeated as though it were proven with a measurement that can be wrong in public, which is the more useful kind of claim.
 

@@ -105,5 +105,5 @@ For small projects, you don't need to copy the whole thing. But you should learn
 
 ## References
 
-- Uber Engineering — Meet Michelangelo: Uber's Machine Learning Platform: https://www.uber.com/us/en/blog/michelangelo-machine-learning-platform/
-- Uber Engineering — Scaling Machine Learning at Uber with Michelangelo: https://www.uber.com/us/en/blog/scaling-michelangelo/
+- Uber Engineering - Meet Michelangelo: Uber's Machine Learning Platform: https://www.uber.com/us/en/blog/michelangelo-machine-learning-platform/
+- Uber Engineering - Scaling Machine Learning at Uber with Michelangelo: https://www.uber.com/us/en/blog/scaling-michelangelo/

@@ -30,9 +30,9 @@ This post isn't trying to reverse-engineer TikTok. I just read TikTok's official
 
 ## Sources
 
-- TikTok Newsroom — [How TikTok recommends videos #ForYou](https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you)
-- TikTok Support — [For You](https://support.tiktok.com/en/getting-started/for-you)
-- arXiv — [Platform architecture determines whether recommendation algorithms can shape information quality on social media](https://arxiv.org/abs/2605.19204)
+- TikTok Newsroom - [How TikTok recommends videos #ForYou](https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you)
+- TikTok Support - [For You](https://support.tiktok.com/en/getting-started/for-you)
+- arXiv - [Platform architecture determines whether recommendation algorithms can shape information quality on social media](https://arxiv.org/abs/2605.19204)
 
 ## 1. What does TikTok say about the For You feed?
 
@@ -54,13 +54,13 @@ TikTok has a very clear advantage: every time a user watches a video, the system
 
 ```txt
 Video A
-  → watched 2 seconds then swiped
+ → watched 2 seconds then swiped
 Video B
-  → watched to the end
+ → watched to the end
 Video C
-  → rewatched
+ → rewatched
 Video D
-  → liked + shared
+ → liked + shared
 ```
 
 For each item, the system can easily measure:
@@ -120,29 +120,29 @@ But if the UI doesn't record skips/corrections, the model will lack feedback. Th
 
 ```txt
 Candidate actions:
-  - Call customer
-  - Send follow-up email
-  - Create quote
-  - Schedule meeting
-  - Mark as cold lead
+ - Call customer
+ - Send follow-up email
+ - Create quote
+ - Schedule meeting
+ - Mark as cold lead
 
 Features:
-  - deal stage
-  - last activity time
-  - lead source
-  - customer segment
-  - previous response behavior
+ - deal stage
+ - last activity time
+ - lead source
+ - customer segment
+ - previous response behavior
 
 Ranking:
-  - rule-based baseline first
-  - then ML if there is enough data
+ - rule-based baseline first
+ - then ML if there is enough data
 
 Feedback:
-  - accepted
-  - ignored
-  - edited
-  - completed
-  - resulted in conversion
+ - accepted
+ - ignored
+ - edited
+ - completed
+ - resulted in conversion
 ```
 
 The first version doesn't need deep learning. What it needs is the right feedback loop.

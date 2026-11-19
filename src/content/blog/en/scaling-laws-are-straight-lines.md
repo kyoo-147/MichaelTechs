@@ -23,7 +23,7 @@ A power law has the form
 
 $$L = a \, N^{-b}$$
 
-where $L$ is loss, $N$ is some measure of scale — parameters, tokens, compute — and $b > 0$ is the exponent. Taking logarithms of both sides gives
+where $L$ is loss, $N$ is some measure of scale - parameters, tokens, compute - and $b > 0$ is the exponent. Taking logarithms of both sides gives
 
 $$\log L = \log a - b \log N$$
 

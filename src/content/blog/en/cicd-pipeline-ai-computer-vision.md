@@ -42,15 +42,15 @@ For a small project, I don't need Kubernetes or a heavy MLOps system from the st
 
 ```text
 Push / Pull Request
-      ↓
+ ↓
 Lint & Unit Test
-      ↓
+ ↓
 Model/API Smoke Test
-      ↓
+ ↓
 Build Docker Image
-      ↓
+ ↓
 Push Image / Deploy
-      ↓
+ ↓
 Basic Monitoring
 ```
 
@@ -60,24 +60,24 @@ This pipeline helps the project transition from a "demo running on my machine" t
 
 ```text
 cv-defect-api/
-  app/
-    main.py
-    inference.py
-    schemas.py
-  models/
-    model.onnx
-  tests/
-    test_api.py
-    test_inference.py
-  sample_data/
-    normal.jpg
-    defect.jpg
-  Dockerfile
-  requirements.txt
-  .github/
-    workflows/
-      ci.yml
-  README.md
+ app/
+ main.py
+ inference.py
+ schemas.py
+ models/
+ model.onnx
+ tests/
+ test_api.py
+ test_inference.py
+ sample_data/
+ normal.jpg
+ defect.jpg
+ Dockerfile
+ requirements.txt
+ .github/
+ workflows/
+ ci.yml
+ README.md
 ```
 
 If the model is large, it shouldn't be committed directly to Git. It can be stored in release artifacts, S3, an internal Google Drive, or a model registry. But for a small portfolio project, a lightweight model or a mock model can be used to demo the pipeline.
@@ -93,14 +93,14 @@ app = FastAPI()
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+ return {"status": "ok"}
 
 @app.post("/predict")
 async def predict(file: UploadFile):
-    image_bytes = await file.read()
-    # result = run_inference(image_bytes)
-    result = {"label": "normal", "confidence": 0.98}
-    return result
+ image_bytes = await file.read()
+ # result = run_inference(image_bytes)
+ result = {"label": "normal", "confidence": 0.98}
+ return result
 ```
 
 The `/health` endpoint is extremely important. It helps CI/CD and deployment platforms know if the service is alive or dead.
@@ -115,9 +115,9 @@ Test the preprocessing function:
 
 ```python
 def test_preprocess_returns_expected_shape():
-    image = load_sample_image("sample_data/normal.jpg")
-    tensor = preprocess(image)
-    assert tensor.shape == (1, 3, 224, 224)
+ image = load_sample_image("sample_data/normal.jpg")
+ tensor = preprocess(image)
+ assert tensor.shape == (1, 3, 224, 224)
 ```
 
 ### API smoke test
@@ -131,9 +131,9 @@ from app.main import app
 client = TestClient(app)
 
 def test_health():
-    response = client.get("/health")
-    assert response.status_code == 200
-    assert response.json()["status"] == "ok"
+ response = client.get("/health")
+ assert response.status_code == 200
+ assert response.json()["status"] == "ok"
 ```
 
 ### Inference sanity test
@@ -142,10 +142,10 @@ No need to expect a perfect model. But you should check if the output format is 
 
 ```python
 def test_prediction_schema():
-    result = run_inference("sample_data/normal.jpg")
-    assert "label" in result
-    assert "confidence" in result
-    assert 0 <= result["confidence"] <= 1
+ result = run_inference("sample_data/normal.jpg")
+ assert "label" in result
+ assert "confidence" in result
+ assert 0 <= result["confidence"] <= 1
 ```
 
 ## 5. Minimal Dockerfile
@@ -175,33 +175,33 @@ A simple workflow:
 name: CI
 
 on:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
+ pull_request:
+ branches: [main]
+ push:
+ branches: [main]
 
 jobs:
-  test-and-build:
-    runs-on: ubuntu-latest
+ test-and-build:
+ runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+ steps:
+ - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+ - name: Set up Python
+ uses: actions/setup-python@v5
+ with:
+ python-version: "3.11"
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+ - name: Install dependencies
+ run: |
+ python -m pip install --upgrade pip
+ pip install -r requirements.txt
 
-      - name: Run tests
-        run: pytest
+ - name: Run tests
+ run: pytest
 
-      - name: Build Docker image
-        run: docker build -t cv-defect-api:latest .
+ - name: Build Docker image
+ run: docker build -t cv-defect-api:latest .
 ```
 
 This version doesn't push the image yet. But it ensures: every pull request must install dependencies, run tests, and successfully build the Docker image.
@@ -214,17 +214,17 @@ High-level example:
 
 ```yaml
 - name: Login to Docker Hub
-  uses: docker/login-action@v3
-  with:
-    username: ${{ secrets.DOCKERHUB_USERNAME }}
-    password: ${{ secrets.DOCKERHUB_TOKEN }}
+ uses: docker/login-action@v3
+ with:
+ username: ${{ secrets.DOCKERHUB_USERNAME }}
+ password: ${{ secrets.DOCKERHUB_TOKEN }}
 
 - name: Build and push
-  uses: docker/build-push-action@v6
-  with:
-    context: .
-    push: true
-    tags: username/cv-defect-api:latest
+ uses: docker/build-push-action@v6
+ with:
+ context: .
+ push: true
+ tags: username/cv-defect-api:latest
 ```
 
 Don't hard-code tokens in the repo. Use GitHub Secrets.
@@ -265,10 +265,10 @@ result = run_inference(image)
 latency_ms = int((time.time() - start) * 1000)
 
 logger.info({
-    "event": "prediction_completed",
-    "latency_ms": latency_ms,
-    "label": result["label"],
-    "confidence": result["confidence"],
+ "event": "prediction_completed",
+ "latency_ms": latency_ms,
+ "label": result["label"],
+ "confidence": result["confidence"],
 })
 ```
 
@@ -335,5 +335,5 @@ My main lessons:
 - GitHub Actions overview: https://docs.github.com/articles/getting-started-with-github-actions
 - GitHub Actions workflow syntax: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions
 - Docker Build with GitHub Actions: https://docs.docker.com/build/ci/github-actions/
-- GitHub Docs — Publishing Docker images: https://docs.github.com/actions/guides/publishing-docker-images
+- GitHub Docs - Publishing Docker images: https://docs.github.com/actions/guides/publishing-docker-images
 - FastAPI documentation: https://fastapi.tiangolo.com/

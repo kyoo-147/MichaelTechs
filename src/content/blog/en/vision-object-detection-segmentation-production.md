@@ -42,9 +42,9 @@ For example, in a product inspection camera, the model might return:
 
 ```json
 {
-  "class": "defect",
-  "confidence": 0.91,
-  "box": [120, 80, 260, 190]
+ "class": "defect",
+ "confidence": 0.91,
+ "box": [120, 80, 260, 190]
 }
 ```
 
@@ -103,5 +103,5 @@ This is also the difference between an AI demo and an AI product.
 ## References
 
 - Mask R-CNN: https://arxiv.org/abs/1703.06870
-- Meta Research — Mask R-CNN: https://research.facebook.com/publications/mask-r-cnn/
-- Meta Engineering — Mask R-CNN2Go: https://engineering.fb.com/2018/12/12/ml-applications/mask-r-cnn2go/
+- Meta Research - Mask R-CNN: https://research.facebook.com/publications/mask-r-cnn/
+- Meta Engineering - Mask R-CNN2Go: https://engineering.fb.com/2018/12/12/ml-applications/mask-r-cnn2go/

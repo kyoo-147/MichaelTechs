@@ -33,13 +33,13 @@ The point is that $BA$ is a product of two matrices with inner dimension $r$, so
 
 ## The optimiser only sees a subspace
 
-Precision matters here. Gradient descent on a full-rank parameterisation can move in $mn$ independent directions. The LoRA objective is instead minimised over the rank-$r$ matrices, a manifold of dimension $r(m+n) - r^2$ — less than $r(m+n)$ because $B$ and $A$ are only identifiable up to an invertible $r \times r$ change of basis. Every step stays on that manifold.
+Precision matters here. Gradient descent on a full-rank parameterisation can move in $mn$ independent directions. The LoRA objective is instead minimised over the rank-$r$ matrices, a manifold of dimension $r(m+n) - r^2$ - less than $r(m+n)$ because $B$ and $A$ are only identifiable up to an invertible $r \times r$ change of basis. Every step stays on that manifold.
 
 The consequence is that the correction is confined to an $r$-dimensional subspace of the input space, read through the row space of $A$, and an $r$-dimensional subspace of the output space, spanned by the columns of $B$. Directions orthogonal to both are invisible. The model is not corrected toward a target function in general, only toward the nearest reachable function inside a thin slice of the space of all corrections. If a task needs a modification depending on a high-dimensional slice of the representation, more training time will not get there. The cap is on capacity and it bites immediately rather than asymptotically.
 
 ## Why step zero changes nothing
 
-The initialisation is the detail people skip, and it is what makes the method workable. $A$ starts with small random values — the original implementation used a Gaussian with a small standard deviation — and $B$ is initialised to exactly zero. At the first step $BA = 0$, so
+The initialisation is the detail people skip, and it is what makes the method workable. $A$ starts with small random values - the original implementation used a Gaussian with a small standard deviation - and $B$ is initialised to exactly zero. At the first step $BA = 0$, so
 
 $$\Delta W = 0, \qquad h = W_0 x$$
 
@@ -47,7 +47,7 @@ The adapted model is bit-for-bit the original at initialisation. Not approximate
 
 This buys two things. First, you can start from any pretrained checkpoint and know the loss at step zero is the base model's loss, so anything worse afterwards comes from training rather than from perturbing the weights arbitrarily. A full fine-tune has no such property; its initial loss depends on the noise in the initialisation, and some early budget goes to undoing it.
 
-Second, the gradient signal at step zero is clean. Since $B = 0$, the gradient with respect to $A$ is zero — $\partial L / \partial A$ is proportional to $B^\top(\cdot)$ — while the gradient with respect to $B$ is not. The first update moves $B$ off zero and only then does $A$ receive signal, a mild asymmetry that resolves in a step or two. Later variants zero $A$ and randomise $B$, or give both sides a small nonzero start. The design space is wider than the paper's choice, but the principle holds: make the adapter an identity at step zero.
+Second, the gradient signal at step zero is clean. Since $B = 0$, the gradient with respect to $A$ is zero - $\partial L / \partial A$ is proportional to $B^\top(\cdot)$ - while the gradient with respect to $B$ is not. The first update moves $B$ off zero and only then does $A$ receive signal, a mild asymmetry that resolves in a step or two. Later variants zero $A$ and randomise $B$, or give both sides a small nonzero start. The design space is wider than the paper's choice, but the principle holds: make the adapter an identity at step zero.
 
 The other half is that $W_0$ is frozen, so the base model's knowledge cannot be overwritten. A full fine-tune on a narrow dataset can degrade general capability partly because every weight is a candidate for movement.
 
@@ -59,7 +59,7 @@ Holding $\alpha$ fixed while raising $r$ changes two things at once: it enlarges
 
 So the honest separation is: $r$ sets capacity, $\alpha$ sets how strongly the adapter contributes relative to the frozen path. Confusing them is a common reason people report that raising rank did not help. Raise $r$ at fixed $\alpha$ and you have changed two things, so you cannot attribute the result.
 
-There is a subtler point. Because $A$ and $B$ are trained jointly through a product, the two factors can drift in scale against each other — one growing while the other shrinks — without changing $BA$ much. This is the same non-identifiability that makes the manifold dimension $r(m+n) - r^2$ rather than $r(m+n)$, and it means weight decay on the factors behaves differently than in a full fine-tune.
+There is a subtler point. Because $A$ and $B$ are trained jointly through a product, the two factors can drift in scale against each other - one growing while the other shrinks - without changing $BA$ much. This is the same non-identifiability that makes the manifold dimension $r(m+n) - r^2$ rather than $r(m+n)$, and it means weight decay on the factors behaves differently than in a full fine-tune.
 
 ## Merging back is exact
 
@@ -69,7 +69,7 @@ $$W_{\text{merged}} = W_0 + \frac{\alpha}{r} BA$$
 
 has the original shape, you can compute it once and replace the frozen weights. The result is not an approximation. The adapted model computes $W_0 x + \frac{\alpha}{r} B A x$; the merged model computes $(W_0 + \frac{\alpha}{r} BA)x$. These are equal by distributivity for every input $x$, with no error term.
 
-This is worth stating plainly because it is sometimes described as a folding that loses something. It does not. What you give up is un-merging and swapping adapters per request over one base — reasons to keep them separate, not reasons the merge is lossy.
+This is worth stating plainly because it is sometimes described as a folding that loses something. It does not. What you give up is un-merging and swapping adapters per request over one base - reasons to keep them separate, not reasons the merge is lossy.
 
 | Quantity | Full fine-tune | LoRA |
 | --- | --- | --- |
@@ -85,17 +85,17 @@ One caveat: after merging, the adapter's effect is entangled with the base weigh
 
 Here is where I think the standard framing is not merely imprecise but backwards.
 
-LoRA is routinely described as compressing a fine-tune with an SVD — as if you first computed the full $\Delta W$ and then approximated it with its leading singular vectors. That description appears in blog posts, in slide decks, and in the mental model many practitioners carry. It predicts the wrong behaviour.
+LoRA is routinely described as compressing a fine-tune with an SVD - as if you first computed the full $\Delta W$ and then approximated it with its leading singular vectors. That description appears in blog posts, in slide decks, and in the mental model many practitioners carry. It predicts the wrong behaviour.
 
 There is no SVD anywhere in LoRA. Nothing is decomposed. No full-rank update is ever computed and truncated. The constraint is imposed during training, on the parameterisation itself, before a single gradient step. The optimiser is never aware that a full-rank solution exists, because that solution is not in its search space.
 
-The difference is not cosmetic. If you computed a full fine-tune $\Delta W$ and took its rank-$r$ SVD truncation, you would get the best rank-$r$ approximation to that matrix in the Frobenius norm, by Eckart–Young. That is a reconstruction problem with a well-defined optimum. LoRA solves a different problem: find the rank-$r$ update that minimises the training loss. Its answer is generally not the leading singular vectors of the full fine-tune's update.
+The difference is not cosmetic. If you computed a full fine-tune $\Delta W$ and took its rank-$r$ SVD truncation, you would get the best rank-$r$ approximation to that matrix in the Frobenius norm, by Eckart-Young. That is a reconstruction problem with a well-defined optimum. LoRA solves a different problem: find the rank-$r$ update that minimises the training loss. Its answer is generally not the leading singular vectors of the full fine-tune's update.
 
 The objectives differ. Truncation minimises $\lVert \Delta W - \Delta W_r \rVert_F$ for a given $\Delta W$. LoRA minimises $\mathcal{L}(W_0 + BA)$ over $B, A$. Nothing forces the second minimiser to coincide with the truncation of the first. The loss cares about the function computed, not the weights, so a rank-$r$ update far from the full fine-tune in weight space can achieve a lower loss.
 
-The distinction predicts something specific: rank bounds capacity, not reconstruction error. Under the SVD reading, raising $r$ would monotonically shrink an approximation gap, giving smooth and predictable gains. The capacity reading predicts something messier. Enlarging $r$ enlarges the reachable set, so the best achievable loss is non-increasing in $r$ — you cannot do worse with more room. But the achieved loss depends on optimisation, and higher rank means a larger space to get stuck in, more interaction between the two factors, and more sensitivity to learning rate. It is entirely normal for $r = 16$ to fail to beat $r = 4$ on a given task, and that is not evidence the method is broken. It is evidence the bottleneck was not rank.
+The distinction predicts something specific: rank bounds capacity, not reconstruction error. Under the SVD reading, raising $r$ would monotonically shrink an approximation gap, giving smooth and predictable gains. The capacity reading predicts something messier. Enlarging $r$ enlarges the reachable set, so the best achievable loss is non-increasing in $r$ - you cannot do worse with more room. But the achieved loss depends on optimisation, and higher rank means a larger space to get stuck in, more interaction between the two factors, and more sensitivity to learning rate. It is entirely normal for $r = 16$ to fail to beat $r = 4$ on a given task, and that is not evidence the method is broken. It is evidence the bottleneck was not rank.
 
-The framing also misleads about what the trained factors contain. The columns of $B$ are not the leading left singular vectors of anything, nor the rows of $A$ the leading right ones. They are whatever pair of thin matrices gradient descent landed on, identifiable only up to a change of basis — rotate $A$ by an invertible $r \times r$ matrix, counter-rotate $B$, and you have the same $\Delta W$ and the same loss.
+The framing also misleads about what the trained factors contain. The columns of $B$ are not the leading left singular vectors of anything, nor the rows of $A$ the leading right ones. They are whatever pair of thin matrices gradient descent landed on, identifiable only up to a change of basis - rotate $A$ by an invertible $r \times r$ matrix, counter-rotate $B$, and you have the same $\Delta W$ and the same loss.
 
 I think the SVD story persists because it is comfortable: low rank is familiar from compression, and SVD is the familiar tool for low rank, so the analogy gives people a handle. But one that predicts the wrong scaling behaviour is worse than none, because it leads people to blame rank for problems that are actually about learning rate, target module choice, or a task that simply does not need many directions.
 

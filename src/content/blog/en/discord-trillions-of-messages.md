@@ -26,7 +26,7 @@ This post is my notes from reading Discord's official engineering blog: **How Di
 
 ## Source
 
-- Discord Engineering — [How Discord Stores Trillions of Messages](https://discord.com/blog/how-discord-stores-trillions-of-messages)
+- Discord Engineering - [How Discord Stores Trillions of Messages](https://discord.com/blog/how-discord-stores-trillions-of-messages)
 
 ## 1. The real problem is not "storing messages"
 
@@ -92,9 +92,9 @@ The most important part to me wasn't the speed, but where they did **dual read /
 A pattern worth remembering:
 
 ```txt
-Old DB  ─┐
-         ├─ compare result → report mismatch
-New DB  ─┘
+Old DB ─┐
+ ├─ compare result → report mismatch
+New DB ─┘
 ```
 
 When migrating a real system, especially critical data, don't trust the "feels fine" instinct. You must have validation.
@@ -105,14 +105,14 @@ A small CRM might store activity logs like this:
 
 ```sql
 CREATE TABLE activity_logs (
-  id BIGSERIAL PRIMARY KEY,
-  workspace_id UUID NOT NULL,
-  entity_type TEXT NOT NULL,
-  entity_id UUID NOT NULL,
-  actor_id UUID,
-  action TEXT NOT NULL,
-  metadata JSONB,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+ id BIGSERIAL PRIMARY KEY,
+ workspace_id UUID NOT NULL,
+ entity_type TEXT NOT NULL,
+ entity_id UUID NOT NULL,
+ actor_id UUID,
+ action TEXT NOT NULL,
+ metadata JSONB,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE INDEX idx_activity_entity_time

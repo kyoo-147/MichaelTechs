@@ -27,8 +27,8 @@ That is why I like Netflix's post **A Microscope on Microservices**. It doesn't 
 
 ## Sources
 
-- Netflix Tech Blog — [A Microscope on Microservices](https://techblog.netflix.com/2015/02/a-microscope-on-microservices.html)
-- Netflix Tech Blog — [Lessons from Building Observability Tools at Netflix](https://netflixtechblog.com/lessons-from-building-observability-tools-at-netflix-7cfafed6ab17)
+- Netflix Tech Blog - [A Microscope on Microservices](https://techblog.netflix.com/2015/02/a-microscope-on-microservices.html)
+- Netflix Tech Blog - [Lessons from Building Observability Tools at Netflix](https://netflixtechblog.com/lessons-from-building-observability-tools-at-netflix-7cfafed6ab17)
 
 ## 1. Microservices increase the number of questions to answer
 
@@ -38,12 +38,12 @@ In microservices, a request might travel like this:
 
 ```txt
 API Gateway
-  → Auth Service
-  → CRM Service
-  → Activity Service
-  → Notification Service
-  → AI Suggestion Service
-  → Database / Cache / Queue
+ → Auth Service
+ → CRM Service
+ → Activity Service
+ → Notification Service
+ → AI Suggestion Service
+ → Database / Cache / Queue
 ```
 
 When a user says "the dashboard is slow", the question is no longer "which function is slow?" but rather:
@@ -61,15 +61,15 @@ Without observability, the answer is usually a guess.
 
 In their post, Netflix talks about observing the system at multiple levels:
 
-### 10x — request flow
+### 10x - request flow
 
 Looking at which services the request passes through. Which service calls which service. Where the demand lies.
 
-### 100x — bottleneck
+### 100x - bottleneck
 
 When a service is slow, seeing which metrics correlate with that change: CPU, GC, downstream calls, database, errors, timeouts.
 
-### 1000x — instance-level metrics
+### 1000x - instance-level metrics
 
 Sometimes the problem is on a specific instance: thread runaways, uneven CPU, anomalous hosts, metrics that only show up at high resolution.
 
@@ -82,10 +82,10 @@ Many small projects think "having logs is enough". But logs are just one part.
 A basic observability suite usually includes:
 
 ```txt
-Logs      → what happened?
-Metrics   → is the system healthy or weak?
-Traces    → where did the request go and where did it spend time?
-Alerts    → when does someone need to look at it?
+Logs → what happened?
+Metrics → is the system healthy or weak?
+Traces → where did the request go and where did it spend time?
+Alerts → when does someone need to look at it?
 Dashboards→ looking at trends and comparing over time
 ```
 
@@ -93,12 +93,12 @@ For example, an AI workflow:
 
 ```txt
 POST /api/leads
-  → validate lead
-  → save database
-  → call enrichment API
-  → call LLM
-  → create follow-up task
-  → send notification
+ → validate lead
+ → save database
+ → call enrichment API
+ → call LLM
+ → create follow-up task
+ → send notification
 ```
 
 If this workflow is slow, a "request timeout" log is not enough. We need to know:
@@ -128,12 +128,12 @@ workflow_retry_total
 
 ```json
 {
-  "workflow_id": "wf_123",
-  "workspace_id": "ws_001",
-  "lead_id": "lead_456",
-  "step": "llm_follow_up_generation",
-  "latency_ms": 2310,
-  "status": "success"
+ "workflow_id": "wf_123",
+ "workspace_id": "ws_001",
+ "lead_id": "lead_456",
+ "step": "llm_follow_up_generation",
+ "latency_ms": 2310,
+ "status": "success"
 }
 ```
 
@@ -141,11 +141,11 @@ workflow_retry_total
 
 ```txt
 Lead Created Request
-  ├── DB insert: 24ms
-  ├── Enrichment API: 410ms
-  ├── LLM call: 2310ms
-  ├── Task creation: 18ms
-  └── Notification: 90ms
+ ├── DB insert: 24ms
+ ├── Enrichment API: 410ms
+ ├── LLM call: 2310ms
+ ├── Task creation: 18ms
+ └── Notification: 90ms
 ```
 
 With just this, when an error happens, we are much less blind.
@@ -172,4 +172,4 @@ A more reasonable order:
 
 Microservices do not naturally make a system better. They just split the system into many smaller parts. Without observability, you just turn one big bug into many small bugs that are harder to find.
 
-For small AI products, the lesson is very clear: before talking about large scale, make your system observable first. Knowing where the request goes, how long it takes, and at what step it fails — just that alone helps the product mature tremendously.
+For small AI products, the lesson is very clear: before talking about large scale, make your system observable first. Knowing where the request goes, how long it takes, and at what step it fails - just that alone helps the product mature tremendously.

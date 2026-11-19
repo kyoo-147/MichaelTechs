@@ -29,7 +29,7 @@ $$
 
 The solution is the leading eigenvector of the covariance matrix, and the projected coordinate of a point $x$ is just $u_1^\top x$. Because the map is linear, the coordinate has a direct additive interpretation: it is a weighted sum of the original features, with the weights being the loadings. This is why PCA plots come with loading arrows and why those arrows are readable. Nothing in the plot requires a stochastic optimiser, and running PCA twice gives the same answer up to sign.
 
-t-SNE commits to nothing linear. It defines a probability distribution over pairs in the high-dimensional space, using a Gaussian kernel whose bandwidth is set per point so that the conditional distribution has a specified entropy; that entropy target is what perplexity parameterises. Then it defines a second distribution over pairs in the low-dimensional space using a heavy-tailed Student-$t$ kernel, and it moves the low-dimensional points to minimise the mismatch between the two distributions, measured as a Kullback–Leibler divergence.
+t-SNE commits to nothing linear. It defines a probability distribution over pairs in the high-dimensional space, using a Gaussian kernel whose bandwidth is set per point so that the conditional distribution has a specified entropy; that entropy target is what perplexity parameterises. Then it defines a second distribution over pairs in the low-dimensional space using a heavy-tailed Student-$t$ kernel, and it moves the low-dimensional points to minimise the mismatch between the two distributions, measured as a Kullback-Leibler divergence.
 
 That is a different contract. PCA promises: among all linear maps, this one loses the least squared reconstruction error. t-SNE promises: the arrangement of neighbours in two dimensions looks like the arrangement of neighbours in $D$ dimensions, as measured by one specific divergence. Neither promise implies the other, and neither is a promise about the thing people most want to read, which is global geometry.
 
@@ -55,7 +55,7 @@ $$
 C = \sum_{i} \mathrm{KL}(P_i \,\|\, Q_i) = \sum_i \sum_j p_{j|i} \log \frac{p_{j|i}}{q_{j|i}}.
 $$
 
-Look at which distribution appears as the weight. The $p_{j|i}$ terms multiply the log ratio. Neighbours that are close in the high-dimensional space — those with substantial $p_{j|i}$ — dominate the cost. Pairs that are far apart in the original space have $p_{j|i}$ near zero, so their contribution to the gradient is negligible no matter where they end up in the embedding.
+Look at which distribution appears as the weight. The $p_{j|i}$ terms multiply the log ratio. Neighbours that are close in the high-dimensional space - those with substantial $p_{j|i}$ - dominate the cost. Pairs that are far apart in the original space have $p_{j|i}$ near zero, so their contribution to the gradient is negligible no matter where they end up in the embedding.
 
 That asymmetry is deliberate and it is the source of the method's strength. It lets t-SNE ignore the huge number of uninformative far-apart pairs and spend its effort getting local neighbourhoods right. It is also the reason the plot cannot tell you about global arrangement. Two clusters sitting on opposite sides of a t-SNE figure cost almost nothing in the objective. The optimiser had no incentive to place them there and no incentive to move them; the placement is a byproduct of initialisation and the path the optimiser took.
 
@@ -69,7 +69,7 @@ The standard framing treats the t-SNE plot as a faithful but fuzzy picture of th
 
 **Cluster size.** The area a cluster occupies in the embedding is likewise not a data property. It reflects how many points the optimiser assigned to that region and how much local repulsion they exert on each other, which depends on density in the original space and on perplexity. A tight cluster in the plot may be a tight cluster in the data, or it may be a dense region whose points could not be pushed apart without violating the local neighbourhood constraints. A sprawling cluster may be genuinely diffuse or may be a moderately tight group that the optimiser spread to make room.
 
-Both of these are consequences of the objective, and both are stable enough across reasonable hyperparameters to look like findings. That is the trap. The plot is not lying — it is answering a different question than the one being asked of it.
+Both of these are consequences of the objective, and both are stable enough across reasonable hyperparameters to look like findings. That is the trap. The plot is not lying - it is answering a different question than the one being asked of it.
 
 The honest use of a t-SNE plot is narrower and, I would argue, more useful: check local neighbourhood consistency. Pick points, find their nearest neighbours in the original space, and verify that the same points are near them in the plot. Look for structure that is stable across seeds and across perplexities. Look for points that never co-locate regardless of the run, because those are the interesting failures. Use it as a diagnostic on a representation, not as a map of a landscape.
 
@@ -85,7 +85,7 @@ None of this makes t-SNE a bad method. It is exceptionally good at what it was d
 
 ## The practical protocol I use
 
-When a t-SNE figure appears in a paper draft or a review deck, I ask four questions. What was the perplexity, and was more than one tried? How many seeds, and is the claimed structure visible in all of them? Are the claims local — neighbourhoods, grouping — or global — separation, relative size? And is there an independent check, such as a nearest-neighbour overlap score computed directly in the original space, that corroborates the visual impression?
+When a t-SNE figure appears in a paper draft or a review deck, I ask four questions. What was the perplexity, and was more than one tried? How many seeds, and is the claimed structure visible in all of them? Are the claims local - neighbourhoods, grouping - or global - separation, relative size? And is there an independent check, such as a nearest-neighbour overlap score computed directly in the original space, that corroborates the visual impression?
 
 If the claim is global and the answers are thin, the figure is decoration. If the claim is local and survives seeds and perplexities, the figure is evidence. That distinction is the whole discipline, and it costs nothing but a rerun.
 

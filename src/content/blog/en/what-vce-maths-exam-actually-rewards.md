@@ -15,7 +15,7 @@ categories:
 
 Victoria's VCE mathematics papers are unusually explicit about what they want. Mathematical Methods and Specialist Mathematics both publish a study design that names every dot point, and the exam is built to hit those dot points in order. That makes the papers a good instrument for one thing: measuring whether you can execute a known procedure under time pressure, with a calculator, without dropping a sign.
 
-The problem below is **written by me in that style** — it is not a past VCE question, and I am not reproducing one. I chose the shape because normal distributions and binomial counts are exactly what the probability area of study rewards.
+The problem below is **written by me in that style** - it is not a past VCE question, and I am not reproducing one. I chose the shape because normal distributions and binomial counts are exactly what the probability area of study rewards.
 
 ## The problem
 
@@ -73,7 +73,7 @@ Three things, and none of them is the modelling:
 
 1. **Queuing the right procedure.** Recognise "normal, upper tail" and reach for the standardisation, not a remembered formula.
 2. **Reading the exact clause.** "At least two" versus "more than two", "below" versus "at most". In (b), $\Pr(X < k) = 0.90$ pins down the side of the distribution before any arithmetic happens.
-3. **Working with a reporting convention.** Four decimal places, two decimal places — the paper is fussy, and the fussiness is deliberate: it forces you to keep precision until the last line rather than rounding mid-calculation.
+3. **Working with a reporting convention.** Four decimal places, two decimal places - the paper is fussy, and the fussiness is deliberate: it forces you to keep precision until the last line rather than rounding mid-calculation.
 
 ## The contrarian reading
 
@@ -81,7 +81,7 @@ The exam assumes the model. It hands you "waiting times are normally distributed
 
 So the paper measures execution, and execution is genuinely worth measuring. But it never asks you to *justify the distribution*, and that is precisely the step where an engineer earns their salary. A student who can compute 0.0668 in thirty seconds and cannot say why the normal model is wrong for a queue has learned the procedure and missed the subject.
 
-There is a second, quieter bias: every part is solvable in isolation. Real analysis is not — choosing which question to ask is most of the work, and a paper that pre-asks it cannot test the choosing.
+There is a second, quieter bias: every part is solvable in isolation. Real analysis is not - choosing which question to ask is most of the work, and a paper that pre-asks it cannot test the choosing.
 
 ## If you are preparing
 
@@ -90,7 +90,30 @@ There is a second, quieter bias: every part is solvable in isolation. Real analy
 - Keep four decimal places internally and round only in the final answer.
 - Practise the tail convention until positive-$z$-means-above-the-mean is automatic.
 
+## What the reported precision is worth
+
+A four-decimal answer and a two-decimal answer look like statements about a quantity. They are statements about arithmetic. The distance between the two is measurable, and it takes two derivatives.
+
+Part (b) reached $k = 23.13$ from $k = \mu + 1.2816\sigma$. Treat $\mu$ and $\sigma$ as inputs carrying their own uncertainty, as every estimated quantity does, and differentiate:
+
+$$
+\frac{\partial k}{\partial \mu} = 1, \qquad \frac{\partial k}{\partial \sigma} = 1.2816.
+$$
+
+A one-minute error in the mean moves the 90th percentile by one minute. A one-minute error in the standard deviation moves it by 1.28 minutes, because the quantile multiplier sits in front of $\sigma$ and never divides out. No part of the paper asks for either, and both are one line of calculus.
+
+Apply them. At $\mu = 18.5$ the answer is $23.63$, exactly half a minute higher. At $\sigma = 4.5$ it is $23.77$, up $0.64$. The answer is reported to $0.01$ minutes, so a half-minute error in the mean is fifty times the resolution being claimed.
+
+Part (a) behaves worse because it lives on a tail. There $\partial \Pr(X > 24)/\partial \mu = \phi(1.5)/4 \approx 0.032$ per minute, so half a minute of error shifts the probability by about $0.016$, and exact recomputation gives $0.0846$ against $0.0668$, a swing of about 27 per cent in a figure quoted to four decimal places. The local slope alone predicts $0.083$; curvature supplies the remaining $0.0015$, since the probability is convex in $\mu$.
+
+Relative sensitivity reverses the ranking. Because $k$ is linear in both inputs, the elasticities sum to one: $18/23.13 \approx 0.78$ for the mean and $5.13/23.13 \approx 0.22$ for the spread. A one per cent error in each gives shifts of $0.18$ and $0.051$ minutes, which combine in quadrature to $0.187$ minutes, about $0.8$ per cent of $k$. The spread accounts for 7.5 per cent of that variance.
+
+Errors compound from part to part. The half minute that lifts part (a) to $0.0846$ also raises $p$, and part (c) is steep in $p$: $\mathrm{d}\Pr(\text{at least } 2)/\mathrm{d}p = 20p(1-p)^3 \approx 1.09$ at the original $p$. Recomputed at the higher value, the binomial answer moves from $0.0390$ to $0.0602$, an increase of 54 per cent. Both chains are sound arithmetic and they disagree by more than half.
+
+This is the ordinary apparatus of an uncertainty budget: multiply each input's uncertainty by its sensitivity coefficient, square, add, take the root. The standard guides on measurement uncertainty give those derivatives a name, sensitivity coefficients, and build the combined uncertainty from them in exactly that way. A Methods paper stops one derivative short of the same machinery and never asks for it. It rewards the second decimal place because a marker can check the second decimal place. Whether the figure means anything depends on a number the paper never supplied.
+
 ## Sources
 
-- Victorian Curriculum and Assessment Authority, VCE study designs and past examinations — [vcaa.vic.edu.au](https://www.vcaa.vic.edu.au/).
+- Victorian Curriculum and Assessment Authority, VCE study designs and past examinations - [vcaa.vic.edu.au](https://www.vcaa.vic.edu.au/).
 - The problem above is original, written in the style of the study design; numerical answers were checked independently ($\Pr(X>24) = 0.0668$, 90th percentile $= 23.13$, binomial tail $= 0.0390$).
+- National Institute of Standards and Technology, Essentials of expressing measurement uncertainty, Physical Measurement Laboratory (1998, last updated 2017) - [physics.nist.gov](https://physics.nist.gov/cuu/Uncertainty/index.html).

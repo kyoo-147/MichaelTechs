@@ -28,9 +28,9 @@ I write this post as a note for product builders: if you ever build CRM recommen
 
 ## Sources
 
-- TikTok Newsroom — [How TikTok recommends videos #ForYou](https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you)
-- arXiv — [The Feedback Loop Between Recommendation Systems and Reactive Users](https://arxiv.org/abs/2504.07105)
-- arXiv — [Dynamics of Algorithmic Content Amplification on TikTok](https://arxiv.org/abs/2503.20231)
+- TikTok Newsroom - [How TikTok recommends videos #ForYou](https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you)
+- arXiv - [The Feedback Loop Between Recommendation Systems and Reactive Users](https://arxiv.org/abs/2504.07105)
+- arXiv - [Dynamics of Algorithmic Content Amplification on TikTok](https://arxiv.org/abs/2503.20231)
 
 ## 1. What is a feedback loop?
 
@@ -38,10 +38,10 @@ A recommendation loop usually looks like this:
 
 ```txt
 System recommends item
-  → user views / ignores / clicks / likes / buys / edits
-  → system logs the signal
-  → model/ranking changes
-  → next recommendation is affected
+ → user views / ignores / clicks / likes / buys / edits
+ → system logs the signal
+ → model/ranking changes
+ → next recommendation is affected
 ```
 
 It looks good. What the user likes, the system learns.
@@ -97,11 +97,11 @@ For example:
 
 ```txt
 Score(action) =
-  relevance_score
-  + urgency_score
-  + business_value_score
-  - risk_score
-  - repetition_penalty
+ relevance_score
+ + urgency_score
+ + business_value_score
+ - risk_score
+ - repetition_penalty
 ```
 
 Initially, it can be rule-based. You don't need ML right away.

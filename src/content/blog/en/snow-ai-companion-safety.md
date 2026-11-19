@@ -73,17 +73,17 @@ I would design Snow with multiple layers, instead of just putting a safety promp
 
 ```txt
 Child UI
-    ↓
+ ↓
 Input safety check
-    ↓
+ ↓
 Conversation policy
-    ↓
+ ↓
 AI response
-    ↓
+ ↓
 Output safety check
-    ↓
+ ↓
 Memory policy
-    ↓
+ ↓
 Parent dashboard / alerts
 ```
 
@@ -163,11 +163,11 @@ A good memory should look like:
 
 ```json
 {
-  "type": "learning_preference",
-  "content": "Prefers visual instructions and short choices",
-  "visibility": "parent_visible",
-  "retention": "until_deleted",
-  "source": "parent_setting"
+ "type": "learning_preference",
+ "content": "Prefers visual instructions and short choices",
+ "visibility": "parent_visible",
+ "retention": "until_deleted",
+ "source": "parent_setting"
 }
 ```
 
@@ -218,7 +218,7 @@ That is why an AI product for children is worth building.
 
 ## References
 
-- UNICEF — Guidance on AI and Children: https://www.unicef.org/innocenti/reports/policy-guidance-ai-children
+- UNICEF - Guidance on AI and Children: https://www.unicef.org/innocenti/reports/policy-guidance-ai-children
 - NIST AI Risk Management Framework: https://www.nist.gov/itl/ai-risk-management-framework
 - NIST AI RMF 1.0 PDF: https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf
 - AI Risk Repository paper: https://arxiv.org/abs/2408.12622

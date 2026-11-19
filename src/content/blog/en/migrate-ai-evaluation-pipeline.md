@@ -67,13 +67,13 @@ A small AI workflow should have this pipeline:
 
 ```text
 Test Cases
-   ↓
+ ↓
 Run Workflow Version
-   ↓
+ ↓
 Evaluate Output
-   ↓
+ ↓
 Compare with Baseline
-   ↓
+ ↓
 Decide: Pass / Warn / Block
 ```
 
@@ -97,9 +97,9 @@ Check if the output matches the schema.
 
 ```ts
 type LeadQualificationResult = {
-  score: number;
-  reason: string;
-  nextAction: string;
+ score: number;
+ reason: string;
+ nextAction: string;
 };
 ```
 
@@ -124,8 +124,8 @@ Example:
 
 ```json
 {
-  "input": "Customer asking for CRM price for 5 users",
-  "expected_behavior": "Classified as sales-qualified lead and suggest sending a quote"
+ "input": "Customer asking for CRM price for 5 users",
+ "expected_behavior": "Classified as sales-qualified lead and suggest sending a quote"
 }
 ```
 
@@ -166,7 +166,7 @@ The new version doesn't replace production immediately. It runs in parallel on t
 
 ```text
 production workflow → baseline score
-new workflow        → candidate score
+new workflow → candidate score
 ```
 
 ### Step 3: Compare by metric
@@ -189,7 +189,7 @@ If it passes offline eval, route a small portion of traffic to the new version.
 
 ```text
 95% traffic → old workflow
-5% traffic  → new workflow
+5% traffic → new workflow
 ```
 
 Monitor logs, feedback, error rate, latency, and cost. Increase gradually if stable.
@@ -212,18 +212,18 @@ I would create test cases:
 
 ```json
 [
-  {
-    "input": "I want a CRM quote for a 10-person team, does it integrate with Zalo?",
-    "expected": "Sales-qualified lead"
-  },
-  {
-    "input": "How do I reset my password?",
-    "expected": "Support request"
-  },
-  {
-    "input": "I'm just browsing",
-    "expected": "Cold lead"
-  }
+ {
+ "input": "I want a CRM quote for a 10-person team, does it integrate with Zalo?",
+ "expected": "Sales-qualified lead"
+ },
+ {
+ "input": "How do I reset my password?",
+ "expected": "Support request"
+ },
+ {
+ "input": "I'm just browsing",
+ "expected": "Cold lead"
+ }
 ]
 ```
 
@@ -231,7 +231,7 @@ The first evaluator doesn't need to be smart:
 
 ```ts
 function evaluateClassification(actual: string, expected: string) {
-  return actual === expected ? "pass" : "fail";
+ return actual === expected ? "pass" : "fail";
 }
 ```
 
@@ -256,20 +256,20 @@ Example simple workflow:
 name: AI Workflow Checks
 
 on:
-  pull_request:
-    branches: [main]
+ pull_request:
+ branches: [main]
 
 jobs:
-  eval:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm ci
-      - run: npm run test
-      - run: npm run eval:ai-workflows
+ eval:
+ runs-on: ubuntu-latest
+ steps:
+ - uses: actions/checkout@v4
+ - uses: actions/setup-node@v4
+ with:
+ node-version: 20
+ - run: npm ci
+ - run: npm run test
+ - run: npm run eval:ai-workflows
 ```
 
 The key point is eval runs on a pull request, not after deploying to production.
@@ -288,7 +288,7 @@ The key point is eval runs on a pull request, not after deploying to production.
 An evaluation pipeline for AI workflows doesn't need to start too big. For small projects, you just need:
 
 ```text
-10–50 golden test cases
+10-50 golden test cases
 schema checks
 rule-based checks
 baseline comparison
@@ -308,7 +308,7 @@ Without eval, an AI workflow is just a demo. With eval, it starts looking like a
 ## References
 
 - OpenAI Evals: https://github.com/openai/evals
-- OpenAI Cookbook — Getting Started with OpenAI Evals: https://developers.openai.com/cookbook/examples/evaluation/getting_started_with_openai_evals
+- OpenAI Cookbook - Getting Started with OpenAI Evals: https://developers.openai.com/cookbook/examples/evaluation/getting_started_with_openai_evals
 - LangSmith Evaluation: https://docs.langchain.com/langsmith/evaluation
 - LangSmith Evaluation Concepts: https://docs.langchain.com/langsmith/evaluation-concepts
 - GitHub Actions workflow syntax: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions

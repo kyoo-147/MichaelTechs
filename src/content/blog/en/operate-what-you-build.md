@@ -26,9 +26,9 @@ I like the phrase **operate what you build** because it pulls engineers away fro
 
 ## Sources
 
-- Netflix Tech Blog — [A Microscope on Microservices](https://techblog.netflix.com/2015/02/a-microscope-on-microservices.html)
-- Netflix Tech Blog — [Lessons from Building Observability Tools at Netflix](https://netflixtechblog.com/lessons-from-building-observability-tools-at-netflix-7cfafed6ab17)
-- Discord Engineering — [How Discord Stores Trillions of Messages](https://discord.com/blog/how-discord-stores-trillions-of-messages)
+- Netflix Tech Blog - [A Microscope on Microservices](https://techblog.netflix.com/2015/02/a-microscope-on-microservices.html)
+- Netflix Tech Blog - [Lessons from Building Observability Tools at Netflix](https://netflixtechblog.com/lessons-from-building-observability-tools-at-netflix-7cfafed6ab17)
+- Discord Engineering - [How Discord Stores Trillions of Messages](https://discord.com/blog/how-discord-stores-trillions-of-messages)
 
 ## 1. Building features is not enough
 
@@ -36,10 +36,10 @@ An AI lead management flow might look great in a demo:
 
 ```txt
 Website form
-  → CRM lead
-  → AI classification
-  → create follow-up message
-  → update dashboard
+ → CRM lead
+ → AI classification
+ → create follow-up message
+ → update dashboard
 ```
 
 But production will ask harder questions:
@@ -93,9 +93,9 @@ For example:
 
 ```txt
 AI generates follow-up message
-  → if normal lead: auto-save draft
-  → if high deal value: requires human approval
-  → if low confidence: add "review needed" flag
+ → if normal lead: auto-save draft
+ → if high deal value: requires human approval
+ → if low confidence: add "review needed" flag
 ```
 
 This is how you make AI less dangerous while remaining useful.

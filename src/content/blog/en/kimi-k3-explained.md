@@ -51,10 +51,10 @@ K3 is therefore important less because “2.8T” is a magic number, and more be
 
 ## Sources
 
-- [Kimi K3 technical blog](https://www.kimi.ai/blog/kimi-k3) — Moonshot AI
-- [Kimi K3 repository and technical report](https://github.com/MoonshotAI/Kimi-K3) — Moonshot AI
-- [Kimi K3 model card](https://huggingface.co/moonshotai/Kimi-K3) — Hugging Face
-- [Kimi K3 serving architecture](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-07-27-k3.md) — vLLM project
+- [Kimi K3 technical blog](https://www.kimi.ai/blog/kimi-k3) - Moonshot AI
+- [Kimi K3 repository and technical report](https://github.com/MoonshotAI/Kimi-K3) - Moonshot AI
+- [Kimi K3 model card](https://huggingface.co/moonshotai/Kimi-K3) - Hugging Face
+- [Kimi K3 serving architecture](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-07-27-k3.md) - vLLM project
 
 *Image: Moonshot AI / Kimi K3 repository. Consult the repository license before reuse.*
 [D:/work/michael/michael_techs_visitor/src/content/blog/vi/kimi-k3-explained.md]
@@ -62,10 +62,10 @@ K3 is therefore important less because “2.8T” is a magic number, and more be
 
 ## Nguồn tham khảo
 
-- [Kimi K3 technical blog](https://www.kimi.ai/blog/kimi-k3) — Moonshot AI
-- [Kimi K3 repository và technical report](https://github.com/MoonshotAI/Kimi-K3) — Moonshot AI
-- [Kimi K3 model card](https://huggingface.co/moonshotai/Kimi-K3) — Hugging Face
-- [Kimi K3 serving architecture](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-07-27-k3.md) — vLLM project
+- [Kimi K3 technical blog](https://www.kimi.ai/blog/kimi-k3) - Moonshot AI
+- [Kimi K3 repository và technical report](https://github.com/MoonshotAI/Kimi-K3) - Moonshot AI
+- [Kimi K3 model card](https://huggingface.co/moonshotai/Kimi-K3) - Hugging Face
+- [Kimi K3 serving architecture](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-07-27-k3.md) - vLLM project
 
 *Hình ảnh: Moonshot AI / Kimi K3 repository. Vui lòng đọc license trước khi tái sử dụng.*
 [D:/work/michael/michael_techs_visitor/src/content/blog/zh-cn/kimi-k3-explained.md]
@@ -73,9 +73,9 @@ K3 is therefore important less because “2.8T” is a magic number, and more be
 
 ## 参考来源
 
-- [Kimi K3 technical blog](https://www.kimi.ai/blog/kimi-k3) — Moonshot AI
-- [Kimi K3 repository 与 technical report](https://github.com/MoonshotAI/Kimi-K3) — Moonshot AI
-- [Kimi K3 model card](https://huggingface.co/moonshotai/Kimi-K3) — Hugging Face
-- [Kimi K3 serving architecture](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-07-27-k3.md) — vLLM project
+- [Kimi K3 technical blog](https://www.kimi.ai/blog/kimi-k3) - Moonshot AI
+- [Kimi K3 repository 与 technical report](https://github.com/MoonshotAI/Kimi-K3) - Moonshot AI
+- [Kimi K3 model card](https://huggingface.co/moonshotai/Kimi-K3) - Hugging Face
+- [Kimi K3 serving architecture](https://github.com/vllm-project/vllm-project.github.io/blob/main/_posts/2026-07-27-k3.md) - vLLM project
 
 *图片：Moonshot AI / Kimi K3 repository。再次使用前请阅读仓库许可证。*

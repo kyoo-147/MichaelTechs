@@ -33,7 +33,7 @@ How do we detect it before users complain?
 How do we rollback or hotfix?
 ```
 
-Netflix calls this practice **RecSysOps** — operating recommender systems at scale.
+Netflix calls this practice **RecSysOps** - operating recommender systems at scale.
 
 ## 1. A recommender system can still fail after deployment
 
@@ -183,15 +183,15 @@ For small projects, I would start with this flow:
 
 ```txt
 Log every recommendation
-  ↓
+ ↓
 Log user action after recommendation
-  ↓
+ ↓
 Track technical health
-  ↓
+ ↓
 Track business outcome
-  ↓
+ ↓
 Alert on abnormal changes
-  ↓
+ ↓
 Keep rollback/fallback path ready
 ```
 
@@ -199,15 +199,15 @@ For example, record a log:
 
 ```json
 {
-  "recommendation_id": "rec_1029",
-  "user_id": "sales_01",
-  "entity_type": "lead",
-  "entity_id": "lead_883",
-  "model_version": "lead_ranker_v2",
-  "score": 0.87,
-  "shown_at": "2026-06-29T09:00:00Z",
-  "user_action": "clicked",
-  "outcome": "follow_up_sent"
+ "recommendation_id": "rec_1029",
+ "user_id": "sales_01",
+ "entity_type": "lead",
+ "entity_id": "lead_883",
+ "model_version": "lead_ranker_v2",
+ "score": 0.87,
+ "shown_at": "2026-06-29T09:00:00Z",
+ "user_action": "clicked",
+ "outcome": "follow_up_sent"
 }
 ```
 
@@ -236,5 +236,5 @@ For small projects, we don't need to build a massive platform yet. But we should
 ## References
 
 - [RecSysOps: Best Practices for Operating a Large-Scale Recommender System](https://netflixtechblog.medium.com/recsysops-best-practices-for-operating-a-large-scale-recommender-system-95bbe195a841)
-- [RecSysOps — ACM Digital Library](https://dl.acm.org/doi/10.1145/3460231.3474620)
+- [RecSysOps - ACM Digital Library](https://dl.acm.org/doi/10.1145/3460231.3474620)
 - [Netflix Research: RecSysOps](https://research.netflix.com/)

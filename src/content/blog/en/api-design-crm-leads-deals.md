@@ -94,10 +94,10 @@ Brief explanation:
 ## 3. APIs for Leads
 
 ```text
-GET    /leads
-POST   /leads
-GET    /leads/{leadId}
-PATCH  /leads/{leadId}
+GET /leads
+POST /leads
+GET /leads/{leadId}
+PATCH /leads/{leadId}
 DELETE /leads/{leadId}
 ```
 
@@ -106,12 +106,12 @@ Example for creating a lead:
 ```json
 POST /leads
 {
-  "name": "Nguyen Van A",
-  "email": "a@example.com",
-  "phone": "+84900000000",
-  "source": "website_form",
-  "companyName": "ABC Manufacturing",
-  "note": "Interested in CRM automation"
+ "name": "Nguyen Van A",
+ "email": "a@example.com",
+ "phone": "+84900000000",
+ "source": "website_form",
+ "companyName": "ABC Manufacturing",
+ "note": "Interested in CRM automation"
 }
 ```
 
@@ -119,11 +119,11 @@ Response:
 
 ```json
 {
-  "id": "lead_123",
-  "name": "Nguyen Van A",
-  "status": "new",
-  "source": "website_form",
-  "createdAt": "2026-06-24T00:00:00Z"
+ "id": "lead_123",
+ "name": "Nguyen Van A",
+ "status": "new",
+ "source": "website_form",
+ "createdAt": "2026-06-24T00:00:00Z"
 }
 ```
 
@@ -149,10 +149,10 @@ Payload:
 
 ```json
 {
-  "createCustomer": true,
-  "createDeal": true,
-  "dealTitle": "CRM automation package",
-  "estimatedValue": 2500
+ "createCustomer": true,
+ "createDeal": true,
+ "dealTitle": "CRM automation package",
+ "estimatedValue": 2500
 }
 ```
 
@@ -160,10 +160,10 @@ Result:
 
 ```json
 {
-  "leadId": "lead_123",
-  "customerId": "cus_456",
-  "contactId": "con_789",
-  "dealId": "deal_001"
+ "leadId": "lead_123",
+ "customerId": "cus_456",
+ "contactId": "con_789",
+ "dealId": "deal_001"
 }
 ```
 
@@ -172,21 +172,21 @@ For this type of operation, you should think about an **idempotency key**. If th
 ## 5. APIs for Contacts and Customers
 
 ```text
-GET    /contacts
-POST   /contacts
-GET    /contacts/{contactId}
-PATCH  /contacts/{contactId}
+GET /contacts
+POST /contacts
+GET /contacts/{contactId}
+PATCH /contacts/{contactId}
 
-GET    /customers
-POST   /customers
-GET    /customers/{customerId}
-PATCH  /customers/{customerId}
+GET /customers
+POST /customers
+GET /customers/{customerId}
+PATCH /customers/{customerId}
 ```
 
 If the customer is a company, the contact is a person in the company:
 
 ```text
-GET  /customers/{customerId}/contacts
+GET /customers/{customerId}/contacts
 POST /customers/{customerId}/contacts
 ```
 
@@ -194,11 +194,11 @@ Example customer:
 
 ```json
 {
-  "id": "cus_456",
-  "name": "ABC Manufacturing",
-  "type": "company",
-  "industry": "manufacturing",
-  "ownerUserId": "user_001"
+ "id": "cus_456",
+ "name": "ABC Manufacturing",
+ "type": "company",
+ "industry": "manufacturing",
+ "ownerUserId": "user_001"
 }
 ```
 
@@ -207,10 +207,10 @@ Example customer:
 The deal is where the sales pipeline happens.
 
 ```text
-GET    /deals
-POST   /deals
-GET    /deals/{dealId}
-PATCH  /deals/{dealId}
+GET /deals
+POST /deals
+GET /deals/{dealId}
+PATCH /deals/{dealId}
 DELETE /deals/{dealId}
 ```
 
@@ -230,12 +230,12 @@ Example:
 ```json
 POST /deals
 {
-  "customerId": "cus_456",
-  "title": "CRM automation package",
-  "stage": "qualified",
-  "estimatedValue": 2500,
-  "currency": "USD",
-  "expectedCloseDate": "2026-07-15"
+ "customerId": "cus_456",
+ "title": "CRM automation package",
+ "stage": "qualified",
+ "estimatedValue": 2500,
+ "currency": "USD",
+ "expectedCloseDate": "2026-07-15"
 }
 ```
 
@@ -244,7 +244,7 @@ To update stage:
 ```json
 PATCH /deals/deal_001
 {
-  "stage": "proposal"
+ "stage": "proposal"
 }
 ```
 
@@ -255,13 +255,13 @@ You should save stage changes to `activities` or `deal_stage_history`, because t
 A quote is usually linked to a deal.
 
 ```text
-GET    /deals/{dealId}/quotes
-POST   /deals/{dealId}/quotes
-GET    /quotes/{quoteId}
-PATCH  /quotes/{quoteId}
-POST   /quotes/{quoteId}:send
-POST   /quotes/{quoteId}:accept
-POST   /quotes/{quoteId}:reject
+GET /deals/{dealId}/quotes
+POST /deals/{dealId}/quotes
+GET /quotes/{quoteId}
+PATCH /quotes/{quoteId}
+POST /quotes/{quoteId}:send
+POST /quotes/{quoteId}:accept
+POST /quotes/{quoteId}:reject
 ```
 
 Example creating quote:
@@ -269,20 +269,20 @@ Example creating quote:
 ```json
 POST /deals/deal_001/quotes
 {
-  "items": [
-    {
-      "name": "CRM setup",
-      "quantity": 1,
-      "unitPrice": 1500
-    },
-    {
-      "name": "Workflow automation package",
-      "quantity": 1,
-      "unitPrice": 1000
-    }
-  ],
-  "currency": "USD",
-  "validUntil": "2026-07-30"
+ "items": [
+ {
+ "name": "CRM setup",
+ "quantity": 1,
+ "unitPrice": 1500
+ },
+ {
+ "name": "Workflow automation package",
+ "quantity": 1,
+ "unitPrice": 1000
+ }
+ ],
+ "currency": "USD",
+ "validUntil": "2026-07-30"
 }
 ```
 
@@ -303,7 +303,7 @@ With `send`, `accept`, `reject`, I use action endpoints because these are clear 
 Activities give the CRM a working history.
 
 ```text
-GET  /activities?entityType=deal&entityId=deal_001
+GET /activities?entityType=deal&entityId=deal_001
 POST /activities
 ```
 
@@ -311,11 +311,11 @@ Payload:
 
 ```json
 {
-  "entityType": "deal",
-  "entityId": "deal_001",
-  "type": "follow_up",
-  "content": "Send quote tomorrow morning",
-  "dueAt": "2026-06-25T02:00:00Z"
+ "entityType": "deal",
+ "entityId": "deal_001",
+ "type": "follow_up",
+ "content": "Send quote tomorrow morning",
+ "dueAt": "2026-06-25T02:00:00Z"
 }
 ```
 
@@ -346,8 +346,8 @@ Response:
 
 ```json
 {
-  "data": [],
-  "nextCursor": "next_abc"
+ "data": [],
+ "nextCursor": "next_abc"
 }
 ```
 
@@ -359,11 +359,11 @@ Should have a consistent error format:
 
 ```json
 {
-  "error": {
-    "code": "LEAD_NOT_FOUND",
-    "message": "Lead not found",
-    "requestId": "req_123"
-  }
+ "error": {
+ "code": "LEAD_NOT_FOUND",
+ "message": "Lead not found",
+ "requestId": "req_123"
+ }
 }
 ```
 
@@ -394,8 +394,8 @@ If done correctly, the API will not only serve the frontend, but also automation
 
 ## References
 
-- Azure Architecture Center — RESTful web API design: https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design
+- Azure Architecture Center - RESTful web API design: https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design
 - Google API Design Guide: https://docs.cloud.google.com/apis/design
 - Google AIP-121 Resource-oriented design: https://google.aip.dev/121
 - Microsoft Azure REST API Guidelines: https://github.com/microsoft/api-guidelines/blob/vNext/azure/Guidelines.md
-- Stripe API — Idempotent requests: https://docs.stripe.com/api/idempotent_requests
+- Stripe API - Idempotent requests: https://docs.stripe.com/api/idempotent_requests

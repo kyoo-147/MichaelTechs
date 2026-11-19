@@ -102,4 +102,4 @@ The important thing is not to drag LLMs into everything, but to learn the useful
 ## References
 
 - OnePiece: Bringing Context Engineering and Reasoning to Industrial Cascade Ranking System: https://arxiv.org/abs/2509.18091
-- Hugging Face Papers — OnePiece: https://huggingface.co/papers/2509.18091
+- Hugging Face Papers - OnePiece: https://huggingface.co/papers/2509.18091

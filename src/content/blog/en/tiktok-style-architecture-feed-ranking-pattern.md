@@ -53,7 +53,7 @@ User signals
 → New feedback signals
 ```
 
-In which the feedback loop is a very important part. Users watch, swipe, like, follow, comment, click "not interested" — all of these become signals for the feed to continue adjusting.
+In which the feedback loop is a very important part. Users watch, swipe, like, follow, comment, click "not interested" - all of these become signals for the feed to continue adjusting.
 
 ### 3. What should not be asserted
 
@@ -96,6 +96,6 @@ When writing technical blogs, an important part is knowing the boundaries: what 
 
 ## References
 
-- TikTok Newsroom — How TikTok recommends videos #ForYou: https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you
-- TikTok Support — How TikTok recommends content: https://support.tiktok.com/en/using-tiktok/exploring-videos/how-tiktok-recommends-content
-- TikTok Newsroom — Safeguard and diversify recommendations: https://newsroom.tiktok.com/en-us/an-update-on-our-work-to-safeguard-and-diversify-recommendations
+- TikTok Newsroom - How TikTok recommends videos #ForYou: https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you
+- TikTok Support - How TikTok recommends content: https://support.tiktok.com/en/using-tiktok/exploring-videos/how-tiktok-recommends-content
+- TikTok Newsroom - Safeguard and diversify recommendations: https://newsroom.tiktok.com/en-us/an-update-on-our-work-to-safeguard-and-diversify-recommendations

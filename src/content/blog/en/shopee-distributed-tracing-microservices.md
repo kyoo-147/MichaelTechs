@@ -84,13 +84,13 @@ If every step has the same `trace_id`, debugging will be much easier.
 
 ```json
 {
-  "trace_id": "lead_20260623_001",
-  "steps": [
-    {"service": "lead-api", "status": "ok", "latency_ms": 42},
-    {"service": "crm-db", "status": "ok", "latency_ms": 18},
-    {"service": "ai-scoring", "status": "timeout", "latency_ms": 5000},
-    {"service": "follow-up-worker", "status": "skipped"}
-  ]
+ "trace_id": "lead_20260623_001",
+ "steps": [
+ {"service": "lead-api", "status": "ok", "latency_ms": 42},
+ {"service": "crm-db", "status": "ok", "latency_ms": 18},
+ {"service": "ai-scoring", "status": "timeout", "latency_ms": 5000},
+ {"service": "follow-up-worker", "status": "skipped"}
+ ]
 }
 ```
 
@@ -104,5 +104,5 @@ A good system shouldn't just run during a demo. It must be debuggable when there
 
 ## References
 
-- ClickHouse — Seeing the Big Picture: Shopee's Journey to Distributed Tracing with ClickHouse: https://clickhouse.com/blog/seeing-the-big-picture-shopees-journey-to-distributed-tracing-with-clickhouse
-- ClickHouse video — Distributed Tracing in ClickHouse at Shopee: https://clickhouse.com/videos/distributed-tracing-clickhouse-shopee
+- ClickHouse - Seeing the Big Picture: Shopee's Journey to Distributed Tracing with ClickHouse: https://clickhouse.com/blog/seeing-the-big-picture-shopees-journey-to-distributed-tracing-with-clickhouse
+- ClickHouse video - Distributed Tracing in ClickHouse at Shopee: https://clickhouse.com/videos/distributed-tracing-clickhouse-shopee

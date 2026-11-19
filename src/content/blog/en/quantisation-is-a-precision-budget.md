@@ -53,18 +53,18 @@ The standard fix is to stop sharing one scale. Per-channel quantisation gives ea
 
 ```python
 def quantise_groups(w, group=64, qmax=127):
-    # w: (out_features, in_features), one scale per block of in_features
-    blocks = w.reshape(w.shape[0], -1, group)
-    scale = blocks.abs().amax(dim=-1, keepdim=True).clamp_min(1e-8) / qmax
-    q = (blocks / scale).round().clamp(-qmax - 1, qmax).to(torch.int8)
-    return q, scale
+ # w: (out_features, in_features), one scale per block of in_features
+ blocks = w.reshape(w.shape[0], -1, group)
+ scale = blocks.abs().amax(dim=-1, keepdim=True).clamp_min(1e-8) / qmax
+ q = (blocks / scale).round().clamp(-qmax - 1, qmax).to(torch.int8)
+ return q, scale
 ```
 
 The trade is explicit: smaller groups shrink $k$ inside each group, and each group pays a few bytes for its scale plus a kernel that handles the extra multiply; below about thirty-two elements the metadata and instruction overhead usually dominate.
 
 ## Weights and activations are not the same problem
 
-Weights are static. You know them before the request arrives, you can run them through a calibration set, and you can choose the scale that minimises reconstruction error rather than the scale that merely contains the maximum. You can even compensate: quantise a column, compute the residual it introduces in the layer output, and push that residual into the next column before quantising it. Layer-wise post-training methods along these lines are what made four-bit weight quantisation credible, and the error they chase is the one that actually matters — the difference in the layer's output, not the difference in its parameters.
+Weights are static. You know them before the request arrives, you can run them through a calibration set, and you can choose the scale that minimises reconstruction error rather than the scale that merely contains the maximum. You can even compensate: quantise a column, compute the residual it introduces in the layer output, and push that residual into the next column before quantising it. Layer-wise post-training methods along these lines are what made four-bit weight quantisation credible, and the error they chase is the one that actually matters - the difference in the layer's output, not the difference in its parameters.
 
 Activations are dynamic. Their range depends on the token, the batch, and the prompt, and a scale chosen from a calibration set is a guess about inputs you have not seen. Per-tensor activation scales are therefore the weakest link in a naive scheme, and per-token scales help but cost a reduction before every matmul.
 
@@ -86,13 +86,13 @@ The standard framing is that quantisation gives you the same model in less memor
 
 Quantisation does not compress a fixed object. It replaces the function the model computes with a different function, one whose arithmetic has been reparametrised, and calibration data is part of the definition of that new function. Two int8 checkpoints of the same weights, calibrated on different data, are different functions with the same file size. That is a stronger statement than "slight accuracy loss" and it changes what you should measure.
 
-The second error is uniformity. A drop in average perplexity is an average over tokens, and tokens are wildly unequal. Most of the loss lands on the bulk of easy predictions, which have large margins and absorb perturbation without changing rank. The predictions that matter — the ones where the top two logits are close, which is where a model's behaviour actually lives — have small margins, and there the same perturbation flips the answer. A model can lose a fraction of a point of perplexity and lose a capability, because the capability was concentrated in the thin part of the distribution that the average hides.
+The second error is uniformity. A drop in average perplexity is an average over tokens, and tokens are wildly unequal. Most of the loss lands on the bulk of easy predictions, which have large margins and absorb perturbation without changing rank. The predictions that matter - the ones where the top two logits are close, which is where a model's behaviour actually lives - have small margins, and there the same perturbation flips the answer. A model can lose a fraction of a point of perplexity and lose a capability, because the capability was concentrated in the thin part of the distribution that the average hides.
 
 Layer by layer, the same argument applies with more force. For $y = Wx$,
 
 $$ \frac{\|\delta y\|}{\|y\|} \;\le\; \kappa(W)\,\frac{\|\delta x\|}{\|x\|}, $$
 
-with $\kappa$ the ratio of largest to smallest singular value. Two layers given identical quantisation error on their inputs produce output errors that differ by however much their spectra differ, and the residual stream decides what survives: a perturbation added where the layer update is small relative to the residual is damped, and one added where the update is large is not. Uniform bit-width is a uniform allocation of bits. It is not a uniform allocation of error, and error is the thing that costs you accuracy. This is precisely why keeping the first and last layers wide, allocating bits per layer by measured sensitivity, and fine-tuning through the quantiser all work — each of them spends precision where the margin is thin instead of spreading it evenly.
+with $\kappa$ the ratio of largest to smallest singular value. Two layers given identical quantisation error on their inputs produce output errors that differ by however much their spectra differ, and the residual stream decides what survives: a perturbation added where the layer update is small relative to the residual is damped, and one added where the update is large is not. Uniform bit-width is a uniform allocation of bits. It is not a uniform allocation of error, and error is the thing that costs you accuracy. This is precisely why keeping the first and last layers wide, allocating bits per layer by measured sensitivity, and fine-tuning through the quantiser all work - each of them spends precision where the margin is thin instead of spreading it evenly.
 
 So the question I ask of a quantised checkpoint is not how many bits it has. It is where the error budget was spent, and whether anyone checked the layers with the least slack. In practice that means injecting the real quantisation error rather than simulating it by zeroing bits, reading the per-layer change in output rather than only the change in loss, and testing the tasks where two answers were nearly tied.
 

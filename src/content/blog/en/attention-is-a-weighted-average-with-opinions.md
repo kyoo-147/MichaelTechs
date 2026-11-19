@@ -36,7 +36,7 @@ $$
 
 The scaling keeps the magnitude of the scores from growing with $d_k$, which matters because softmax saturates: large logits produce near one-hot weights and near-zero gradients. The softmax runs along the key axis, one row per query, so each row of $A$ is non-negative and sums to one.
 
-That last sentence is the part I want to keep in view. $A$ is row-stochastic. Not roughly, not in effect — by construction.
+That last sentence is the part I want to keep in view. $A$ is row-stochastic. Not roughly, not in effect - by construction.
 
 ## The output is a convex combination
 
@@ -46,7 +46,7 @@ $$
 \mathbf{o}_i = \sum_j a_{ij}\mathbf{v}_j, \qquad a_{ij} \ge 0, \qquad \sum_j a_{ij} = 1,
 $$
 
-which is a convex combination of the value vectors. The output at a position is a weighted average of the values at other positions, with weights set by query–key geometry. That is the mechanism. Everything else — that it focuses on the subject, that it routes information, that it decides what is relevant — is a story about what those weights tend to do in trained models.
+which is a convex combination of the value vectors. The output at a position is a weighted average of the values at other positions, with weights set by query-key geometry. That is the mechanism. Everything else - that it focuses on the subject, that it routes information, that it decides what is relevant - is a story about what those weights tend to do in trained models.
 
 The weighted-average reading also says what the mixing step cannot do. A convex combination cannot leave the convex hull of the value vectors. If a direction is absent from every $\mathbf{v}_j$, no choice of weights produces it. The head can only re-mix what $W_V$ already made available.
 
@@ -60,7 +60,7 @@ $$
 
 Each head has its own $W_Q, W_K, W_V$, hence its own subspace for computing similarity and its own value subspace to mix. The concatenation is where the parallel-subspaces picture comes from, and it holds as far as it goes.
 
-$W_O$ matters more than it usually gets credit for. The convex-combination constraint applies per head, before $W_O$. The output projection mixes across heads and can produce directions that no single head's value space contained. This is the first place in the block where genuinely new linear combinations appear — which is why "attention only averages" is true of the mixing step and false of the block.
+$W_O$ matters more than it usually gets credit for. The convex-combination constraint applies per head, before $W_O$. The output projection mixes across heads and can produce directions that no single head's value space contained. This is the first place in the block where genuinely new linear combinations appear - which is why "attention only averages" is true of the mixing step and false of the block.
 
 ## The residual stream
 
@@ -71,7 +71,7 @@ $$
 \mathbf{x}_{l+1} = \mathbf{x}' + \mathrm{MLP}(\mathrm{LN}(\mathbf{x}')).
 $$
 
-In this view, heads are independent additive writers to a shared channel. Each head has a QK circuit deciding where it reads from and an OV circuit deciding what it writes. Because the writes are additive, heads can be analysed semi-independently, and composition between heads — one head's output feeding another's query or key — becomes an object of study rather than a metaphor.
+In this view, heads are independent additive writers to a shared channel. Each head has a QK circuit deciding where it reads from and an OV circuit deciding what it writes. Because the writes are additive, heads can be analysed semi-independently, and composition between heads - one head's output feeding another's query or key - becomes an object of study rather than a metaphor.
 
 I do not think this is the only correct view of a transformer. It is the one that made the arithmetic stop feeling arbitrary to me. The stream is a sum of contributions; the block is a set of instructions for reading a slice of that sum and adding something back.
 
@@ -83,9 +83,22 @@ Here is where the standard explanation misleads.
 
 The convex-combination property sharpens the point. Because a head's output is a weighted average of its value vectors, the head cannot introduce information that was not already in the value subspace. Its contribution to expressiveness is a re-weighting. Which directions exist to be mixed is set by $W_V$; the mixing pattern is set by $W_Q$ and $W_K$; the new directions come from $W_O$, from the MLP, and from the embeddings themselves. When people say attention is where the model understands relationships, they are usually describing the joint effect of all of these and attributing it to the one component whose weights happen to look like a heat map.
 
-None of this makes attention uninteresting. A learned, input-dependent, differentiable weighted average is a lot of machinery, and the convexity is a constraint rather than a disappointment — constraints are what make a thing analysable. But the gap between "it averages values with learned weights" and "it decides what to look at" is exactly where most confusion about transformers lives, and I find it worth closing before reaching for the metaphor.
+None of this makes attention uninteresting. A learned, input-dependent, differentiable weighted average is a lot of machinery, and the convexity is a constraint rather than a disappointment - constraints are what make a thing analysable. But the gap between "it averages values with learned weights" and "it decides what to look at" is exactly where most confusion about transformers lives, and I find it worth closing before reaching for the metaphor.
+
+## Working one head by hand
+
+Here is the smallest example I could build that keeps the whole shape of the operation. Take $d_k = 4$, so the divisor is $\sqrt{d_k} = 2$, one query $q = (1,2,0,1)$ and three keys $k_1 = (2,1,3,2)$, $k_2 = (0,1,1,0)$, $k_3 = (1,-1,0,1)$. The inner products are 6, 2 and 0, so the scaled logits are 3, 1 and 0. Exponentiating gives 20.0855, 2.7183 and 1, summing to 23.8038, so the row of $A$ is $(0.8438, 0.1142, 0.0420)$. With values $v_1 = (1,0)$, $v_2 = (0,1)$, $v_3 = (-1,-1)$ the head writes $(0.8018, 0.0722)$ at that position.
+
+Now drop the divisor. The logits become 6, 2 and 0, the row becomes $(0.9796, 0.0179, 0.0024)$, and one position takes 98 percent of the mass while the other two share the remaining 2. That is what "softmax saturates" means as a number rather than a caution: the row is already near one-hot, so the gradient reaching the other two keys is small and the query has little purchase on them.
+
+The divisor is also a temperature, and it is the part of the formula easiest to read as decoration. Softmax is invariant to shifts of the logits but not to scalings, so dividing by $\sqrt{d_k}$ sets how far the row sits from uniform. The entropy of the row above is 0.524 nats against a ceiling of $\ln 3 = 1.099$, about half the available uncertainty. Without the divisor the same row falls to 0.107 nats, roughly a tenth. Half the headroom still carries information about all three keys; a tenth is close to a lookup.
+
+The divisor is also younger than attention. *Neural Machine Translation by Jointly Learning to Align and Translate* (Bahdanau, Cho and Bengio, 2014) computes the same kind of weighted average nearly three years before the transformer paper, and its scorer has no dimension-dependent divisor. The alignment model there is a small feedforward network evaluated on a pair, the decoder's previous state and one encoder annotation, with the softmax normalising over source positions. The weighted sum, the normalisation and the reading of the weights as a soft alignment are all already present. What changed in 2017 was the scorer: an inner product of two projections builds the whole score matrix in one matmul, where a network over pairs must be evaluated once per pair. The averaging survived that trade; the scorer did not.
+
+So the constant under the square root is not notation. The inner product of two vectors with unit-variance entries has standard deviation $\sqrt{d_k}$ rather than 1, so raw logits would widen as the head widens, and a logit that widens pushes the softmax toward one-hot whether or not the model wanted that. Dividing by $\sqrt{d_k}$ puts the scorer back on a unit scale. Attention worked for years without the constant, because the average was never the fragile part.
 
 ## Sources
 
 - Ashish Vaswani et al., [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (2017).
 - Anthropic, [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html) (2021).
+- Dzmitry Bahdanau et al., [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473) (2014).
