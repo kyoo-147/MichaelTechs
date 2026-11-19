@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" role="img" aria-labelledby="figTitle figDesc">
+  <title id="figTitle">Summing every path versus factoring at each node</title>
+  <desc id="figDesc">A three-node chain X to Y to Z with three parallel edges per hop. Two annotations compare enumerating all nine paths with factoring the sum at each node.</desc>
+
+  <defs>
+    <marker id="ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#1a1a1a"/>
+    </marker>
+  </defs>
+
+  <g font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, sans-serif" font-size="14" text-anchor="middle" fill="#1a1a1a">
+    <circle cx="96" cy="104" r="26" fill="#fff" stroke="#1a1a1a" stroke-width="1.8"/>
+    <text x="96" y="109" font-style="italic">X</text>
+    <circle cx="356" cy="104" r="26" fill="#fff" stroke="#1a1a1a" stroke-width="1.8"/>
+    <text x="356" y="109" font-style="italic">Y</text>
+    <circle cx="616" cy="104" r="26" fill="#fff" stroke="#1a1a1a" stroke-width="1.8"/>
+    <text x="616" y="109" font-style="italic">Z</text>
+  </g>
+
+  <g stroke="#1a1a1a" stroke-width="1.4" fill="none" marker-end="url(#ink)">
+    <path d="M124 94 C 200 78, 262 78, 328 94"/>
+    <path d="M124 104 H 328"/>
+    <path d="M124 114 C 200 130, 262 130, 328 114"/>
+    <path d="M384 94 C 460 78, 522 78, 588 94"/>
+    <path d="M384 104 H 588"/>
+    <path d="M384 114 C 460 130, 522 130, 588 114"/>
+  </g>
+
+  <g font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, sans-serif" font-size="12" fill="#666" font-style="italic" text-anchor="middle">
+    <text x="200" y="70">a</text>
+    <text x="200" y="102">b</text>
+    <text x="200" y="136">c</text>
+    <text x="470" y="70">d</text>
+    <text x="470" y="102">e</text>
+    <text x="470" y="136">f</text>
+  </g>
+
+  <g font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, sans-serif">
+    <rect x="36" y="176" width="310" height="124" rx="6" fill="#fafafa" stroke="#e2e2e2"/>
+    <text x="52" y="200" font-size="12" font-weight="600" fill="#1a1a1a">Sum over all paths</text>
+    <text x="52" y="224" font-size="12.5" fill="#444" font-style="italic">ad + ae + af + bd + be + bf + cd + ce + cf</text>
+    <text x="52" y="248" font-size="12" fill="#555">9 multiplications, 8 additions</text>
+    <text x="52" y="274" font-size="12" fill="#b03030">grows like 3^layers</text>
+
+    <rect x="374" y="176" width="310" height="124" rx="6" fill="#eef4ff" stroke="#bcd3f7"/>
+    <text x="390" y="200" font-size="12" font-weight="600" fill="#1a1a1a">Factor at each node</text>
+    <text x="390" y="224" font-size="12.5" fill="#1f3f7a" font-style="italic">(a + b + c) &#183; (d + e + f)</text>
+    <text x="390" y="248" font-size="12" fill="#35548c">2 multiplications, 4 additions</text>
+    <text x="390" y="274" font-size="12" fill="#2f6feb">linear in layers &#8212; reverse mode</text>
+  </g>
+</svg>
