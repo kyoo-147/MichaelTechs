@@ -97,8 +97,23 @@ The divisor is also younger than attention. *Neural Machine Translation by Joint
 
 So the constant under the square root is not notation. The inner product of two vectors with unit-variance entries has standard deviation $\sqrt{d_k}$ rather than 1, so raw logits would widen as the head widens, and a logit that widens pushes the softmax toward one-hot whether or not the model wanted that. Dividing by $\sqrt{d_k}$ puts the scorer back on a unit scale. Attention worked for years without the constant, because the average was never the fragile part.
 
+## What the average costs to serve
+
+The convex combination is cheap at each position. The expensive part is elsewhere, and it prices out in plain numbers. Take the published configuration of GPT-2 small: 12 layers, $d = 768$, 12 heads, $d_k = d_v = 64$, and a context of 1024 tokens.
+
+Start with the projections. Each of $W_Q$, $W_K$, $W_V$ and $W_O$ is $768 \times 768$, so each holds $768^2 = 589{,}824$ weights. Four per layer is $4 \times 589{,}824 = 2{,}359{,}296$, and across 12 layers that is $12 \times 2{,}359{,}296 = 28{,}311{,}552$. At two bytes per weight in fp16 the whole attention stack is $28{,}311{,}552 \times 2 = 56{,}623{,}104$ bytes, which is 54 MiB. That number is fixed, whether the model serves one token or a million.
+
+The state that decoding keeps is not fixed. Producing a token needs one query and every key and value already computed, so both must be cached. Per layer and per token that is one $K$ vector of 768 numbers and one $V$ vector of 768 numbers, so $2 \times 768 = 1536$ numbers. Across 12 layers, $12 \times 1536 = 18{,}432$ numbers per token. In fp16, $18{,}432 \times 2 = 36{,}864$ bytes, exactly 36 KiB per token. A full 1024-token context costs $1024 \times 36 = 36{,}864$ KiB, or 36 MiB, and a batch of eight such contexts costs $8 \times 36 = 288$ MiB, which is more than five times the 54 MiB of weights that produce it and appears in no parameter count.
+
+Two details matter more than the totals, and I find the first one the more surprising. The cache does not depend on $h$. Heads are concatenated, so $h \times d_k = 768$, and 12 heads of 64 cost exactly what one head of 768 would. Second, scoring is quadratic in context length: at $n = 1024$ one head compares $1024^2 = 1{,}048{,}576$ query-key pairs, and 12 heads compare $12 \times 1{,}048{,}576 = 12{,}582{,}912$ pairs for a single sequence, before any value is mixed.
+
+This is the gap that Noam Shazeer's *Fast Transformer Decoding: One Write-Head is All You Need* goes after. Let every head share one key head and one value head, and the cache per token per layer falls to $2 \times 64 = 128$ numbers instead of 1536; across 12 layers that is $12 \times 128 = 1536$ numbers, or 3 KiB in fp16. The saving is a factor of $36 / 3 = 12$, which is exactly $h$. The averaging is untouched: same queries, same softmax, same mixing. Only the state needed to recompute those weights shrinks, which is the paper's claim - that decoding is bandwidth-bound on loading keys and values, not on multiplying them.
+
+So the convex combination is the cheap half of the operation. The bill arrives because every new token redoes the average over everything before it, so every past key and value stays resident. The weights that set the average are learned once and frozen; the keys and values that feed it accumulate per token, per layer, per sequence. That asymmetry is why a long context costs more to serve than a short one, and it is a memory problem before it is a compute problem.
+
 ## Sources
 
 - Ashish Vaswani et al., [Attention Is All You Need](https://arxiv.org/abs/1706.03762) (2017).
 - Anthropic, [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html) (2021).
 - Dzmitry Bahdanau et al., [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/abs/1409.0473) (2014).
+- Noam Shazeer, [Fast Transformer Decoding: One Write-Head is All You Need](https://arxiv.org/abs/1911.02150) (2019).

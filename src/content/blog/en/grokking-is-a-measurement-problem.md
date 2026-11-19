@@ -81,7 +81,26 @@ Two counts show the wrap is not a corner case. Of the $113^2 = 12{,}769$ ordered
 
 None of this is a new measurement. It is the published setup evaluated by hand, rounding included, and the point of doing it is to see what "the circuit is exact" means: at the answer the five terms sum to their maximum, one step away they sum to a negative number, and nowhere in the network is there a branch that knows where the circle rejoins.
 
+## What a frequency is worth, in bits
+
+A score is not a loss. The five-frequency readout ranks 113 candidates, and a ranking becomes a progress measure only when it goes through a softmax and is counted in bits. Keeping the equal weighting, let a candidate sitting $\delta$ away from the answer score $s(\delta) = \sum_{k} \cos(2\pi k \delta / 113)$, so that the answer is at $\delta = 0$ and scores exactly 5.
+
+The arithmetic is short enough to do by hand. Since $s(0) = 5$, the correct candidate contributes $e^{5} = 148.413$ to the partition sum. The 112 wrong candidates contribute 267.315, so the total is 415.728, and
+
+$$
+p(\text{correct}) = \frac{148.413}{415.728} = 0.357, \qquad -\log_2 0.357 = 1.486 \text{ bits}.
+$$
+
+The largest wrong terms are the pair at $\delta = \pm 16$, scoring 2.5898 each and contributing $e^{2.5898} = 13.33$ apiece. A wrong answer is not far behind. It is outnumbered. For scale, a uniform guess over 113 candidates costs $\log_2 113 = 6.820$ bits.
+
+Remove frequencies, re-measure, and the price becomes visible. No frequencies costs 6.820 bits, one 5.718, two 4.616, three 3.515, four 2.483, five 1.486. The zero-frequency entry is the useful check: with no frequencies the readout is flat, so the formula has to return exactly $\log_2 113$. The first three frequencies are worth 1.10 bits each, the fourth 1.03, the fifth 1.00, and dropping any single one of the five costs between 0.96 and 1.00. Nothing here is load-bearing. The measure is the sum, and confidence is bought roughly one bit at a time.
+
+One frequency alone shows why. Take $k = 14$ and the wrong candidate at $\delta = 8$: $14 \times 8 = 112$, so the angle between them is $2\pi \cdot 112/113 = 2\pi - 2\pi/113$, and $\cos(2\pi/113) = 0.998455$. The wrong answer scores 99.85% of the right one, and the loss is 5.718 bits against 6.820 for knowing nothing. A single frequency knows the answer is somewhere on the circle. It does not know where.
+
+None of these numbers is a measurement. They are the idealised readout at unit weight, so the absolute bits are a convention and the differences are the content: the shape of the paper's excluded-loss measure applied to a formula instead of to a network. Two knobs move the number. Adding a frequency buys about a bit. Scaling every weight doubles every logit, leaves the ranking untouched and lowers the loss, which is why the circuit that matters is the one reaching a given margin at the lowest parameter norm - and that is the quantity [the circuit-efficiency account](https://arxiv.org/abs/2309.02390) treats as decisive. The generalising circuit is slower to learn but produces larger logits for the same parameter norm, while memorisation, on that account's hypothesis, gets less efficient as the training set grows. There is then a dataset size at which the two are equally efficient, a transition that can run the wrong way - their ungrokking result - and a plateau that becomes the expected shape rather than a mystery.
+
 ## Sources
 
 - Neel Nanda, Lawrence Chan, Tom Lieberum, Jess Smith, Jacob Steinhardt, [Progress measures for grokking via mechanistic interpretability](https://arxiv.org/abs/2301.05217) (2023).
 - Alethea Power, Yuri Burda, Harri Edwards, Igor Babuschkin, Vedant Misra, [Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets](https://arxiv.org/abs/2201.02177) (2022).
+- Vikrant Varma, Rohin Shah, Zachary Kenton, János Kramár, Ramana Kumar, [Explaining grokking through circuit efficiency](https://arxiv.org/abs/2309.02390) (2023).

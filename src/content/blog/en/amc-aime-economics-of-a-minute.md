@@ -77,10 +77,40 @@ The AIME inverts the design. Twelve minutes per problem instead of three, and ea
 
 None of this assumes problems are equally hard, which they are not, and the difficulty gradient decides most scores. But the scoring rule sets the price at which that gradient gets traded, and it is the part of the contest you can read off a rule sheet. One pays for a considered blank, the other pays only for an integer.
 
+## Twelve guesses and one cutoff
+
+Every rule above prices one question at a time. A paper is twenty-five questions, and the last dozen usually get decided in a block, which turns the problem from maximising a mean into clearing a line.
+
+Take a student with 13 problems solved cold and twelve untouched. The solved ones are $13 \cdot 6 = 78$ points. Left blank, the twelve are worth $12 \cdot 1.5 = 18$, so the paper finishes at the 96 from above, every time. Guessing all twelve at one option in five returns $12 \cdot 1.2 = 14.4$, a mean finish of 78 + 14.4 = 92.4, which is $12 \cdot 0.3 = 3.6$ points worse. On the mean, blanking wins.
+
+Let $X$ be the number of correct guesses, independent at 0.2 each. Then
+
+$$
+\Pr(X = k) = \binom{12}{k} (0.2)^k (0.8)^{12-k}
+$$
+
+and the score is $78 + 6X$.
+
+| $k$ | 0 | 1 | 2 | 3 | 4 |
+| --- | --- | --- | --- | --- | --- |
+| $\Pr(X = k)$ | 0.0687 | 0.2062 | 0.2835 | 0.2362 | 0.1329 |
+| score | 78 | 84 | 90 | 96 | 102 |
+
+The tail past $k = 4$ adds 0.0726, so $\Pr(X \ge 4) = 0.2054$: the guesser beats 96 a fifth of the time, ties it 23.6 percent of the time, and loses otherwise. The median guesser lands exactly two and finishes on 90, six points below the certain 96, so most runs end worse than the deal blanking guarantees.
+
+Now put the bar at 100. Blanking scores 96 on every run, so the probability of clearing the line is exactly zero. Guessing clears it whenever four or more land, at 0.2054. The option that is 3.6 points worse in expectation is the only one that can succeed, so it is the correct play.
+
+The same arithmetic runs backwards, which is what makes it a rule and not an excuse. With 15 solved instead of 13, blanking scores $15 \cdot 6 + 10 \cdot 1.5 = 90 + 15 = 105$ and the line is already cleared. Guessing the ten remaining has mean 90 + 12 = 102 and throws the certain pass away whenever fewer than two land: $\Pr(X \le 1) = 0.1074 + 0.2684 = 0.3758$. A sure 105 traded for a 102 mean and a 37.6 percent failure rate is a bad trade, even though the mean stays respectable.
+
+What the cutoff does is change the objective. At a line the payoff is a step, zero and then one, so the quantity being maximised is a probability rather than a score. The clock inherits the distortion: under a bar, a minute is worth the chance that it turns a miss into a solve at the moment those 6 points are the ones that cross, not its share of the expected total.
+
+None of this is measured. It is algebra on a rule sheet, assuming the twelve are genuinely blind and mutually independent, which is never quite true: partial knowledge pushes $p$ above 0.2 and shrinks the range where gambling pays. The structure survives the fudge. You cannot price a guess without knowing what the score is for.
+
 ## Sources
 
 - Mathematical Association of America, AMC and AIME competitions (the MAA site blocks automated fetches, so this is cited by name rather than linked).
 - Background on the competition structure: [American Mathematics Competitions](https://en.wikipedia.org/wiki/American_Mathematics_Competitions), Wikipedia.
 - [American Invitational Mathematics Examination](https://en.wikipedia.org/wiki/American_Invitational_Mathematics_Examination), Wikipedia - the AIME format and scoring used above: one point per correct answer, nothing deducted for a wrong one, scores from 0 to 15.
 - [AP Calculus AB course description](https://apstudents.collegeboard.org/courses/ap-calculus-ab), College Board - useful as a contrast: the curriculum-style AP paper tests technique without the timing pressure.
+- [Decision Theory](https://plato.stanford.edu/entries/decision-theory/), Stanford Encyclopedia of Philosophy - expected utility is maximised against a utility function rather than a raw score, so a step payoff at a cutoff ranks options by the probability of crossing it, which is the mechanism behind the twelve-guess calculation.
 - The problem and its solution are original; the count was verified by brute force over $n = 1 \ldots 100$ (29 values).

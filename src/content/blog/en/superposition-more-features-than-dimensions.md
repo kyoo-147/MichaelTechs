@@ -91,7 +91,32 @@ The mean squared overlap for five in two is $7.5/20 = 0.375$, and Welch's bound 
 
 The floor still has to be paid, and what sparsity buys is that it is charged rarely. With five features active independently at $p = 0.05$, at least two fire together on a fraction $1 - 0.95^5 - 5(0.05)(0.95^4) = 0.0226$ of inputs, about one in 44; at $p = 0.02$ the fraction is $0.0038$, one in 260. The geometry sets the price per coincidence and sparsity sets the frequency, which is the whole trade in one line.
 
+## The gain is a free parameter, and the right one is m/n
+
+Reading a feature back along its own direction at full length is a choice. The directions fix the geometry, not the scale of the readout: scale the stored direction by $\sqrt{A}$ and the estimate becomes $A x_i$ plus $A$ times the interference. The two error terms then move in opposite directions. The self term leaves a bias $(1-A)x_i$, zero only at $A = 1$ and growing as the readout shrinks. Interference enters multiplied by $A$ and is squared in the loss, so it shrinks quadratically. One number sets the balance.
+
+A case where the arithmetic closes exactly: sixteen features, eight dimensions, eight antipodal pairs. Feature $2j-1$ sits on $+e_j$ and feature $2j$ on $-e_j$, so each axis carries two features pointing opposite ways and every feature has exactly one interferer. With antipode $i'$, the estimate is
+
+$$
+\hat{x}_i = A x_i - A x_{i'},
+$$
+
+so the error is $(1-A)x_i + A x_{i'}$. With each feature on independently at rate $p$,
+
+$$
+\mathbb{E}\left[e_i^2\right] = (1-A)^2 p + A^2 p + 2A(1-A)p^2 .
+$$
+
+At $A = 1$ the bias and cross terms vanish and each feature costs $p$, so sixteen of them cost $16p = 0.80$ at $p = 0.05$. At $A = 1/2$ the bias term is $0.25p$, the interference term is $0.25p$, the cross term is $0.5p^2$, and the total is $0.5p + 0.5p^2$ per feature, which is $0.40 + 0.02 = 0.42$ for the layer. Same eight axes, read at a different length, for 47.5 percent less loss.
+
+The optimum is not a compromise. Differentiating gives $dL/dA = 2p(2A-1)(1-p)$, which vanishes at $A = 1/2$ for every $p$ below one, and the second derivative $4p(1-p)$ is positive, so $1/2$ is a minimum and not a knee. It is also $m/n$, here $8/16$. Any tight frame lands in the same place to first order, $A = m/n$: the scale of the pseudoinverse, which is how an overcomplete system is normally read (Vetterli, Kovačević and Goyal). The per-feature cost to first order in $p$ at that gain is $(n-m)p/n$, and sixteen minus eight over sixteen is $0.5$, the first order part of the line above.
+
+That number deserves a second look, because $8p$ is what discarding eight features costs. A tight frame read with the least-squares gain does not beat dropping features at first order; it ties, for any tight frame at equal importance. What separates the two is the $p^2$ term, $0.02$ here: second order, and the only channel through which overcompleteness moves the loss at all. Sparsity does not make interference free. It makes the term that measures it small, which is a weaker and more accurate claim.
+
+The practical consequence is that a probe's overlap numbers are mostly a gain you chose. Reading the eight axes at $A = 1$ instead of $A = 1/2$ puts four times as much squared interference into the loss, and a decoder fitted without shrinkage will look like it is measuring crosstalk when it is measuring its own scale. The gain fixes the decoder for a given set of directions. It does not choose them, and the floor from the previous section applies to whichever set you pick.
+
 ## Sources
 
 - Anthropic, [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html) (2022).
 - L. R. Welch, [Lower Bounds on the Maximum Cross Correlation of Signals](https://doi.org/10.1109/TIT.1974.1055219) (1974).
+- M. Vetterli, J. Kovačević and V. K. Goyal, [Foundations of Signal Processing](https://www.fourierandwavelets.org/FSP_v1.1_2014.pdf), Cambridge University Press (2014).

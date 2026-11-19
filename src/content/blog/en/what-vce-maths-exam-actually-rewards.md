@@ -112,8 +112,49 @@ Errors compound from part to part. The half minute that lifts part (a) to $0.084
 
 This is the ordinary apparatus of an uncertainty budget: multiply each input's uncertainty by its sensitivity coefficient, square, add, take the root. The standard guides on measurement uncertainty give those derivatives a name, sensitivity coefficients, and build the combined uncertainty from them in exactly that way. A Methods paper stops one derivative short of the same machinery and never asks for it. It rewards the second decimal place because a marker can check the second decimal place. Whether the figure means anything depends on a number the paper never supplied.
 
+## What five observations would buy you
+
+Every number in the paper arrives free. The mean is 18 minutes, the standard deviation is 4, and nobody paid for either one. Ask a clinic to produce those two figures from data and the arithmetic changes shape, because the width of an answer starts to depend on how much evidence stands behind it.
+
+Take five observed waits, the sample size part (c) already uses. The standard error of their mean is
+
+$$
+\frac{\sigma}{\sqrt{n}} = \frac{4}{\sqrt{5}} = \frac{4}{2.2361} = 1.7889.
+$$
+
+If the standard deviation is known exactly, the 95 per cent interval is $18 \pm 1.96 \times 1.7889$, that is $18 \pm 3.5062$, or $(14.49,\ 21.51)$. This is the paper's world, and it is the one a Mathematical Methods paper examines.
+
+If the standard deviation is estimated from the same five waits, the multiplier is not 1.96 but the $t$ quantile on $n - 1 = 4$ degrees of freedom, $2.7764$:
+
+$$
+2.7764 \times 1.7889 = 4.9666,
+$$
+
+so the interval becomes $(13.03,\ 22.97)$. That is not a rounding difference. Each wall moves $1.46$ minutes and the interval is 41.7 per cent wider, from a convention that scores nothing either way. The five-minute half-width also prices the reported decimals: $4.97$ minutes is roughly five hundred times a resolution of $0.01$ minutes. The $t$ table and this interval are standard first-course material, and OpenStax's introductory statistics text works the single-mean case at section 8.2.
+
+Narrowing the interval is expensive, and the price is quadratic. For a half-width of one minute with $z$:
+
+$$
+n = \left(\frac{1.96 \times 4}{1}\right)^2 = 61.47,
+$$
+
+so 62 patients. With $t$ the multiplier moves with $n$, which makes the equation implicit rather than closed. Guessing 64 gives $t_{63} = 1.9983$ and $1.9983 \times 4 / 8 = 0.9992$, just inside a minute; 63 gives $1.0074$, just outside. So 64. The two conventions have met to within two patients by the time the sample is in the sixties.
+
+Four times the data is not four times the precision. From five patients to twenty, the standard error falls to $4/\sqrt{20} = 0.8944$ and the half-width to $2.0930 \times 0.8944 = 1.8721$. That is 2.65 times narrower, not four, because the quantile fell as well. Precision is bought in square roots, and one decimal place honestly earned costs about a hundred times the data that bought the one before.
+
+Apply that to the paper's own reporting. A $k$ of $23.13$ claims a resolution of $0.01$ minutes, and
+
+$$
+n = \left(\frac{1.96 \times 4}{0.01}\right)^2 = 784^2 = 614{,}656.
+$$
+
+Dropping from a one-minute half-width to a one-hundredth multiplies the count by $10^4$, and $62 \times 10^4 = 620{,}000$, within one per cent of the exact figure, so the two routes agree. The reported precision is not a judgement about waiting times. It is a claim about a sample of six hundred thousand patients who were never sampled.
+
+None of this is on the paper, and none of it can be. The paper quotes $0.0668$ and $23.13$ because it was handed a model instead of a sample, and a model carries no standard error. That substitution is made silently, on your behalf, before the first question is read.
+
 ## Sources
 
 - Victorian Curriculum and Assessment Authority, VCE study designs and past examinations - [vcaa.vic.edu.au](https://www.vcaa.vic.edu.au/).
 - The problem above is original, written in the style of the study design; numerical answers were checked independently ($\Pr(X>24) = 0.0668$, 90th percentile $= 23.13$, binomial tail $= 0.0390$).
 - National Institute of Standards and Technology, Essentials of expressing measurement uncertainty, Physical Measurement Laboratory (1998, last updated 2017) - [physics.nist.gov](https://physics.nist.gov/cuu/Uncertainty/index.html).
+- OpenStax, Introductory Statistics 2e, section 8.2, A Single Population Mean using the Student t Distribution - [openstax.org](https://openstax.org/books/introductory-statistics-2e/pages/8-2-a-single-population-mean-using-the-student-t-distribution).

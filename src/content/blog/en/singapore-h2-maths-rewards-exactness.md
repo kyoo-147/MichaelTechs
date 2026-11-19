@@ -123,8 +123,47 @@ Run it backward instead, $I_{n-1} = (e - I_n)/n$, and each step divides the inhe
 
 The closed form was never the problem. What the recurrence shows is narrower: the same exact identity is a good method or a useless one depending on which way you read it.
 
+## The price of not having the closed form
+
+The complaint above has an arithmetic answer on this very integral. Simpson's rule fits a parabola through three points and integrates that instead. Put it on this integral and the arithmetic is short.
+
+With two subintervals, $h = (e-1)/2 = 0.859141$ and the midpoint is 1.859141, where $\ln x = 0.620115$ and $(\ln x)^2 = 0.384542$. Then
+
+$$
+S_2 = \frac{0.859141}{3}\left[0 + 4(0.384542) + 1\right] = 0.286380 \times 2.538168 = 0.726881,
+$$
+
+which is 0.008599 above $e - 2 = 0.718282$, wrong in the second decimal. Four subintervals give $h = 0.429570$ and weights 1, 4, 2, 4, 1, over the values 0, 0.127716, 0.384542, 0.685566 and 1:
+
+$$
+S_4 = 0.143190\left[4(0.127716) + 2(0.384542) + 4(0.685566) + 1\right] = 0.143190 \times 5.022212 = 0.719131 .
+$$
+
+The error is now 0.000849, and two decimals are secure. Halving the step divided the error by 10.1; the next halving divides it by 13.2, not by the 16 that a fourth-order rule suggests, because the error is only the leading term of a series:
+
+$$
+S_n - I = \frac{(e-1)^5}{180\,n^4}f^{(4)}(\xi), \qquad f^{(4)}(x) = \frac{22 - 12\ln x}{x^4} .
+$$
+
+The error term is standard, and Talvila and Wiersma derive it with nothing beyond integration by parts. The ratio is climbing toward 16; the asymptotics are asymptotic, and two halvings are not enough to reach them.
+
+Here is the price. On $[1,e]$ that fourth derivative falls from 22 at $x=1$ to 0.183 at $x=e$, so the bound at $n=2$ is $\frac{14.979}{2880} \times 22 = 0.1144$, thirteen times the error that actually occurred. The bound is pessimistic by construction: $\xi$ is a point, not the worst point. Solving $(22 - 12\ln x)/x^4 = 1.65$ puts $\xi$ at $x = 1.74$, where the fourth derivative has already fallen a long way from 22. Without the closed form you cannot tell 0.008599 from 0.1144; the bound is safe and uninformative.
+
+To reach six decimals the law says the error must fall by 849, so $n$ rises by $849^{1/4} = 5.4$, to about 22 subintervals and 23 evaluations. That is nothing for $\ln x$. When the integrand is a pricing model, it is the whole budget. Each refinement buys $\log_{10} 16 = 1.2$ decimal digits: double the work, one digit and a fifth.
+
+The two methods are not rivals, and the same arithmetic shows why. Because the error carries a factor of 16, the error still in $S_4$ is one fifteenth of the gap between $S_4$ and $S_2$, so subtracting that fifteenth of the gap removes it:
+
+$$
+S_4 + \frac{S_4 - S_2}{15} = 0.719131 - 0.000517 = 0.718614,
+$$
+
+and the same step on $S_8 = 0.718346$ gives 0.718294. Nine evaluations, four correct decimals, and the grids are nested, so those nine serve all three estimates. The gain over $S_4$ is 2.5 times and not 64, because the observed ratio is 13.2 and not 16: cancelling an error term you have not yet reached leaves the remainder behind.
+
+So the paper's insistence on exact form and the engineer's quadrature are one computation read from opposite ends, with the factor of 16 as the rate of exchange between them.
+
 ## Sources
 
 - Singapore Examinations and Assessment Board, GCE A-Level syllabuses and examinations - [seab.gov.sg](https://www.seab.gov.sg/).
 - The problem is original; the integral was verified numerically as well as symbolically ($\int_1^e (\ln x)^2 dx = 0.718282\ldots = e-2$).
 - Walter Gautschi, Recursive computation of certain integrals, Journal of the ACM 8(1), January 1961, pp. 21-40 - [doi:10.1145/321052.321054](https://doi.org/10.1145/321052.321054).
+- Erik Talvila and Matthew Wiersma, Simple derivation of basic quadrature formulas, arXiv:1202.0249, February 2012 - [arxiv.org/abs/1202.0249](https://arxiv.org/abs/1202.0249).

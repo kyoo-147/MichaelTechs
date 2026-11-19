@@ -100,6 +100,42 @@ Then the arithmetic stops being obvious. Sharding halves the state term each tim
 
 Ten minutes of paperwork produces a budget. It says nothing about whether the loss will descend at that batch size, or whether the optimiser will hold past the first few thousand steps. Budget arithmetic tells you what you can afford to attempt. The rest of this piece is about knowing whether the attempt was sound.
 
+## The other sum: what the run costs in days
+
+Memory decides whether the run fits. It says nothing about whether you can stand to wait for it, and the two gates fail independently: a configuration can sit inside 80 GB and still take a quarter.
+
+The quantity to estimate is floating-point operations. For a dense transformer, Kaplan et al. put training compute at roughly 6ND, with N the non-embedding parameter count and D the number of tokens seen. The 6 is not a mystery. The forward pass costs about 2ND, one multiply and one add per parameter per token, and the backward pass costs twice the forward, so 2 + 4 = 6. That is the whole derivation, and worth being able to redo, because every estimate you meet at work is a variation on it.
+
+Take 1.5 billion parameters and 300 billion tokens.
+
+Step 1, the FLOPs. Multiply the three numbers:
+
+6 × 1,500,000,000 × 300,000,000,000
+
+Group the powers of ten: 1.5 × 10^9 times 3 × 10^11 is 4.5 × 10^20, and 6 × 4.5 = 27, so the total is
+
+2.7 × 10^21 FLOPs
+
+Step 2, effective throughput. An A100 is rated 312 TFLOP/s in bf16 at peak, and peak is a fiction. What matters is model FLOPs utilisation, the fraction of peak the kernels sustain. Pick 40 percent and write it down, because the answer is linear in it:
+
+312 × 10^12 × 0.4 = 1.248 × 10^14 FLOP/s
+
+Step 3, divide one by the other:
+
+(2.7 / 1.248) × 10^7 = 2.16 × 10^7 seconds
+
+One device would need 2.16 × 10^7 / 86,400 = 250 GPU-days. That unit is the one to carry around, because it does not change when the cluster does.
+
+Step 4, wall clock. Eight cards: 250 / 8 = 31 days. Sixty-four cards: 250 / 64 = 3.9 days.
+
+Now check it twice, because a number this easy to compute is also easy to compute wrongly.
+
+The first check is linearity. Compute is linear in tokens, so a tenth of the data is a tenth of the days: 30 billion tokens gives 25 GPU-days, not 125. When an estimate does not move that way, a per-step cost has been mistaken for a total.
+
+The second is the step count. 300 billion tokens at 2 million tokens per step is 150,000 steps, and 31 days is 2.7 × 10^6 seconds, so a step takes about 18 seconds. If you land on 144 seconds, you divided single-device seconds by the step count and forgot the other seven cards.
+
+The result is a floor, not a forecast. It counts model FLOPs only: the attention term grows past what 6ND captures once sequences get long, data loading and evaluation sit outside it, and a restart costs every step since the last checkpoint. Sharding divides compute cleanly in the arithmetic, less cleanly in practice once the all-gathers stop hiding behind the matmuls. But the same 1.5 billion parameter model at 300 billion tokens and at 30 billion differs tenfold in days and not at all in the memory budget. One of those is a decision about the model. The other is a decision about your calendar, and it is the one that usually gets made by accident.
+
 ## Sources
 
 - Gilbert Strang, [MIT 18.06 Linear Algebra](https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/).
@@ -110,3 +146,4 @@ Ten minutes of paperwork produces a budget. It says nothing about whether the lo
 - Stephen Boyd and Lieven Vandenberghe, [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/).
 - Lloyd N. Trefethen and David Bau III, [Numerical Linear Algebra](https://people.maths.ox.ac.uk/trefethen/text.html).
 - Samyam Rajbhandari, Jeff Rasley, Olatunji Ruwase, Yuxiong He, [ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054).
+- Jared Kaplan, Sam McCandlish, Tom Henighan, Tom B. Brown, Benjamin Chess, Rewon Child, Scott Gray, Alec Radford, Jeffrey Wu, Dario Amodei, [Scaling Laws for Neural Language Models](https://arxiv.org/abs/2001.08361).
