@@ -7,6 +7,7 @@ import Header from "@/components/Header.astro";
 import HeroArtwork from "@/components/HeroArtwork.astro";
 import Socials from "@/components/Socials.astro";
 import SectionHeading from "@/components/SectionHeading.astro";
+import SimpleVersionPrompt from "@/components/SimpleVersionPrompt.astro";
 import WorkListItem from "@/components/WorkListItem.astro";
 import type { Locale } from "@/i18n/config";
 import { getLocalizedPath, useTranslations } from "@/i18n/utils";
@@ -63,6 +64,8 @@ const homeStructuredData = [
   },
 ];
 const workMoreLabel = locale === "vi" ? "Xem dự án" : locale === "zh-cn" ? "查看项目" : "View work";
+const simpleCtaLabel =
+  locale === "vi" ? "Bản tối giản" : locale === "zh-cn" ? "简洁版" : "Simple version";
 const writingMoreLabel = locale === "vi" ? "Đọc bài viết" : locale === "zh-cn" ? "阅读文章" : "Read writing";
 ---
 
@@ -80,13 +83,16 @@ const writingMoreLabel = locale === "vi" ? "Đọc bài viết" : locale === "zh
         <div class="mt-6 max-w-[31rem] text-[1.02rem] leading-8 text-muted-foreground space-y-4">
           {Array.isArray(t.hero.intro) ? t.hero.intro.map((p: string) => <p set:html={p}></p>) : <p set:html={t.hero.intro}></p>}
         </div>
-        <div class="mt-8 flex flex-wrap items-center gap-6">
+        <div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
           <a href={getLocalizedPath(locale, "/work")} class="surface-button surface-button-primary">
             {t.hero.primaryCta} <span aria-hidden="true">&rarr;</span>
           </a>
           <div class="flex items-center text-[color:var(--accent)] hover:text-[#b35537] transition-colors">
             <Socials />
           </div>
+          <a href="/all-about-me" class="surface-button surface-button-simple">
+            {simpleCtaLabel} <span aria-hidden="true">&nearr;</span>
+          </a>
         </div>
       </div>
 
@@ -114,4 +120,6 @@ const writingMoreLabel = locale === "vi" ? "Đọc bài viết" : locale === "zh
   </main>
 
   <Footer locale={locale} />
+
+  {locale === "en" && <SimpleVersionPrompt />}
 </Layout>

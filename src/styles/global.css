@@ -138,6 +138,15 @@
     background: #853420;
   }
 
+  .surface-button-simple {
+    background: #1f6b45;
+    color: #f7f3e8;
+  }
+
+  .surface-button-simple:hover {
+    background: #175336;
+  }
+
   .surface-button-ghost {
     @apply border-b border-border-strong px-0 py-1;
     color: var(--foreground);
