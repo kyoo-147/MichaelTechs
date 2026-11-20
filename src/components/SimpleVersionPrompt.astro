@@ -1,6 +1,6 @@
 ---
 // First-visit prompt pointing readers to the minimal version of the site.
-// The body text is the author's own copy, reproduced verbatim.
+// The body text is the author's own copy, reproduced without omissions.
 // Shown once per browser, remembered in localStorage.
 
 interface Props {
@@ -9,20 +9,31 @@ interface Props {
 
 const { locale = "en" } = Astro.props;
 
+const link =
+  '<a class="svp-link" href="https://michaeltechs.xyz/all-about-me">https://michaeltechs.xyz/all-about-me</a>';
+
 const copy = {
   en: {
-    kicker: "Two versions",
-    body: `If you prefer a minimalist aesthetic, take a look at my stripped-back version here: <a href="https://michaeltechs.xyz/all-about-me">https://michaeltechs.xyz/all-about-me</a>. Personally, I’m a big fan of this minimalist approach—it’s clean and highly efficient. I tend to dislike websites that are overly flashy or cluttered with unnecessary effects.`,
-    body2: `While both versions are kept in sync, I primarily post my blog updates and the latest information on the minimalist site; I’d actually recommend checking that one out. I’ve considered phasing out this current version entirely in favor of the minimalist one, but some friends and colleagues have mentioned that they actually prefer this current design. So, I’ll keep both options available—feel free to choose whichever one you find more visually appealing.`,
-    body3: `Everything here is open-source; I’ve built this using Astro, which is incredibly well-optimized and impressively fast. The choice is yours—have a wonderful day!`,
+    kicker: "A small notice",
+    paragraphs: [
+      `If you prefer a minimalist aesthetic, take a look at my <strong>stripped-back version</strong> here: ${link}.`,
+      `Personally, I’m a big fan of this minimalist approach. It’s clean and highly efficient. I tend to dislike websites that are overly flashy or cluttered with unnecessary effects.`,
+      `While both versions are kept in sync, I primarily post my blog updates and the latest information on the minimalist site; I’d actually <strong>recommend</strong> checking that one out.`,
+      `I’ve considered phasing out this current version entirely in favor of the minimalist one, but some friends and colleagues have mentioned that they actually prefer this current design. So, I’ll keep both options available. Feel free to choose whichever one you find more visually appealing.`,
+      `Everything here is open-source; I’ve built this using <strong>Astro</strong>, which is incredibly well-optimized and impressively fast. The choice is yours. Have a wonderful day!`,
+    ],
     primary: "Open the simple version",
     secondary: "Stay here",
   },
   vi: {
-    kicker: "Hai phiên bản",
-    body: `Nếu bạn là người thích sự tối giản, hãy ghé qua phiên bản tối giản nhất để xem nhé: <a href="https://michaeltechs.xyz/all-about-me">https://michaeltechs.xyz/all-about-me</a>. Cá nhân tôi rất thích phiên bản tối giản, vì nó dễ nhìn và tối ưu với tôi, tôi thường dị ứng với những website quá màu mè và có quá nhiều các hiệu ứng không cần thiết.`,
-    body2: `Mặc dù tại trang này và phiên bản đơn giản, cả hai đều đồng bộ, nhưng tôi thường active và sẽ up blog và các thông tin mới nhất trên trang đơn giản trước, vì thế tôi vẫn high recommend bạn hãy ghé trang đơn giản. Tôi có dự định sẽ bỏ hoàn toàn trang này trong tương lai để chuyển về trang đơn giản luôn, nhưng có một số cá nhân và đồng nghiệp góp ý với tôi, rằng họ cũng thích bản hiện tại hơn, thế nên tôi sẽ để 2 options nhé, cứ chọn cái bạn thấy dễ nhìn.`,
-    body3: `Mọi thứ đều là opensource, tôi khá ủng hộ việc sử dụng astro, nó tối ưu thật tốt và tốc độ thật đáng kinh ngạc, mọi thứ đều do bạn quyết định nhé, chúc bạn có một ngày tốt lành nhé!`,
+    kicker: "một chút thông báo nhỏ",
+    paragraphs: [
+      `Nếu bạn là người thích sự tối giản, hãy ghé qua <strong>phiên bản tối giản nhất</strong> để xem nhé: ${link}.`,
+      `Cá nhân tôi rất thích phiên bản tối giản, vì nó dễ nhìn và tối ưu với tôi, tôi thường dị ứng với những website quá màu mè và có quá nhiều các hiệu ứng không cần thiết.`,
+      `Mặc dù tại trang này và phiên bản đơn giản, cả hai đều đồng bộ, nhưng tôi thường active và sẽ up blog và các thông tin mới nhất trên trang đơn giản trước, vì thế tôi vẫn <strong>high recommend</strong> bạn hãy ghé trang đơn giản.`,
+      `Tôi có dự định sẽ bỏ hoàn toàn trang này trong tương lai để chuyển về trang đơn giản luôn, nhưng có một số cá nhân và đồng nghiệp góp ý với tôi, rằng họ cũng thích bản hiện tại hơn, thế nên tôi sẽ để 2 options nhé, cứ chọn cái bạn thấy dễ nhìn.`,
+      `Mọi thứ đều là opensource, tôi khá ủng hộ việc sử dụng <strong>astro</strong>, nó tối ưu thật tốt và tốc độ thật đáng kinh ngạc, mọi thứ đều do bạn quyết định nhé, chúc bạn có một ngày tốt lành nhé!`,
+    ],
     primary: "Mở bản tối giản",
     secondary: "Ở lại trang này",
   },
@@ -34,9 +45,7 @@ const text = locale === "vi" ? copy.vi : copy.en;
 <div id="simple-prompt" class="svp" hidden>
   <div class="svp-card" role="dialog" aria-modal="true" aria-labelledby="svp-kicker">
     <p class="svp-kicker" id="svp-kicker">{text.kicker}</p>
-    <p set:html={text.body}></p>
-    <p set:html={text.body2}></p>
-    <p set:html={text.body3}></p>
+    {text.paragraphs.map(paragraph => <p set:html={paragraph} />)}
     <div class="svp-actions">
       <a class="svp-primary" href="/all-about-me">
         {text.primary} <span aria-hidden="true">&rarr;</span>
@@ -64,8 +73,8 @@ const text = locale === "vi" ? copy.vi : copy.en;
   }
 
   .svp-card {
-    width: min(520px, 100%);
-    max-height: min(86vh, 760px);
+    width: min(540px, 100%);
+    max-height: min(86vh, 780px);
     overflow-y: auto;
     padding: 26px 28px 24px;
     background: #f7f2e4;
@@ -82,25 +91,33 @@ const text = locale === "vi" ? copy.vi : copy.en;
   }
 
   .svp-kicker {
-    margin: 0 0 14px;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--subtle-foreground, #8f8777);
+    margin: 0 0 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--foreground, #23201c);
   }
 
   .svp-card p {
-    margin: 0 0 12px;
+    margin: 0 0 13px;
     font-size: 0.92rem;
     line-height: 1.62;
     color: var(--muted-foreground, #6e6a5f);
   }
 
-  .svp-card p a {
-    color: var(--accent, #c06040);
+  :global(.svp-link) {
+    color: #2d5285;
     text-decoration: underline;
     text-underline-offset: 2px;
     word-break: break-all;
+  }
+
+  :global(.svp-link:hover) {
+    color: #24426b;
+  }
+
+  :global(#simple-prompt strong) {
+    font-weight: 600;
+    color: var(--foreground, #23201c);
   }
 
   .svp-actions {
