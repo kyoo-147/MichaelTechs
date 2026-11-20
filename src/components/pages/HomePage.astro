@@ -84,15 +84,15 @@ const writingMoreLabel = locale === "vi" ? "Đọc bài viết" : locale === "zh
           {Array.isArray(t.hero.intro) ? t.hero.intro.map((p: string) => <p set:html={p}></p>) : <p set:html={t.hero.intro}></p>}
         </div>
         <div class="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+          <a href="/all-about-me" class="surface-button surface-button-simple">
+            {simpleCtaLabel} <span aria-hidden="true">&nearr;</span>
+          </a>
           <a href={getLocalizedPath(locale, "/work")} class="surface-button surface-button-primary">
             {t.hero.primaryCta} <span aria-hidden="true">&rarr;</span>
           </a>
           <div class="flex items-center text-[color:var(--accent)] hover:text-[#b35537] transition-colors">
             <Socials />
           </div>
-          <a href="/all-about-me" class="surface-button surface-button-simple">
-            {simpleCtaLabel} <span aria-hidden="true">&nearr;</span>
-          </a>
         </div>
       </div>
 
@@ -121,5 +121,5 @@ const writingMoreLabel = locale === "vi" ? "Đọc bài viết" : locale === "zh
 
   <Footer locale={locale} />
 
-  {locale === "en" && <SimpleVersionPrompt />}
+  {(locale === "en" || locale === "vi") && <SimpleVersionPrompt locale={locale} />}
 </Layout>
