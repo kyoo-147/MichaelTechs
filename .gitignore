@@ -41,3 +41,6 @@ src/content/temp/
 
 # jetbrains setting folder
 .idea/
+
+# Pagefind output is regenerated on every build (scripts/sync-pagefind-assets.mjs)
+public/pagefind/
