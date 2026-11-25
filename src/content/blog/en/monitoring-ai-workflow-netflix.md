@@ -168,6 +168,6 @@ Monitoring for AI workflows doesn't need to start complex. But it must start rig
 First, logs with context. 
 Then, metrics for each step. 
 Then, traces to understand the flow. 
-Finally, evaluation and business metrics to know if the AI is truly useful.
+Finally, evaluation and business metrics to know if the AI is useful.
 
 An unobservable AI workflow is just a pretty black box. It runs today, but nobody knows where it fails tomorrow.

@@ -24,7 +24,7 @@ But if you are an AI Engineer, or building real AI products, the question isn't 
 
 > How does it change the way we design products, evaluate systems, optimize costs, or deploy AI in real workflows?
 
-This post is my view on new LLM trends after reading research summaries like **LLM Research Papers: The 2026 List** by Sebastian Raschka and some related articles on architecture, reasoning, and evaluation. I won't try to summarize all papers. I'm just filtering out the directions worth an AI Engineer's attention.
+This post is my view on new LLM trends after reading research summaries like LLM Research Papers: The 2026 List by Sebastian Raschka and some related articles on architecture, reasoning, and evaluation. I won't try to cover all papers. I'm just filtering out the directions worth an AI Engineer's attention.
 
 ## 1. LLMs are no longer just about bigger models
 
@@ -39,7 +39,7 @@ But new trends show the story is broader:
 - smaller but easier-to-deploy models,
 - open-weight models to self-control the system.
 
-This is important because most small teams or startups cannot train large models themselves. What we can truly do is **choose the right model, design a good pipeline, evaluate thoroughly, and use compute reasonably at inference time**.
+This is important because most small teams or startups cannot train large models themselves. What we can do is **choose the right model, design a good pipeline, evaluate thoroughly, and use compute reasonably at inference time**.
 
 ## 2. Trend 1: Architectures optimized for long context and cheaper inference
 
@@ -73,7 +73,7 @@ Common methods:
 - using tools or retrieval to supplement info,
 - increasing reasoning budget for hard tasks.
 
-The important point is: better reasoning isn't free. It trades **more compute and latency** for **higher reliability**.
+The important point is: better reasoning isn't free. It trades more compute and latency for higher reliability.
 
 In real products, I won't turn on heavy reasoning for every request. A simple question like "summarize this lead" doesn't need many rounds of inference. But a task like "evaluate if this lead should be prioritized based on interaction history and deal value" is worth a more rigorous pipeline.
 
@@ -81,7 +81,7 @@ In real products, I won't turn on heavy reasoning for every request. A simple qu
 
 A chatbot that sounds good isn't necessarily correct. An agent completing a task once doesn't mean it'll be fine the next time.
 
-That's why evaluation is becoming a very important part of LLM applications. Articles like **Understanding the 4 Main Approaches to LLM Evaluation** divide evaluation into several directions: multiple-choice benchmark, verifier, leaderboard, LLM judge.
+That's why evaluation is becoming a very important part of LLM applications. Articles like Understanding the 4 Main Approaches to LLM Evaluation divide evaluation into several directions: multiple-choice benchmark, verifier, leaderboard, LLM judge.
 
 But when building products, I think evaluation should be pulled closer to the real workflow.
 
@@ -149,7 +149,7 @@ This method makes reading papers less overwhelming. We don't read just to learn 
 
 ## 8. Example applying to real projects
 
-For **OneClick CRM**, LLM trends can be applied as follows:
+For OneClick CRM, LLM trends can be applied as follows:
 
 - use RAG to retrieve related lead/deal/quote info,
 - use LLM evaluation to check follow-up messages,
@@ -157,7 +157,7 @@ For **OneClick CRM**, LLM trends can be applied as follows:
 - use agent workflows with clear permissions,
 - use open-weight models for some internal tasks if data control is needed.
 
-For **Snow AI Companion**, the more important trends are:
+For Snow AI Companion, the more important trends are:
 
 - controlled memory,
 - safety evaluation,

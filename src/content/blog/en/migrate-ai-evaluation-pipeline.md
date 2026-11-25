@@ -79,11 +79,11 @@ Decide: Pass / Warn / Block
 
 Where:
 
-- **Test cases**: a set of representative questions or scenarios.
-- **Workflow version**: the prompt/model/retrieval logic being tested.
-- **Evaluator**: evaluation rules using code, human review, or LLM-as-judge.
-- **Baseline**: the current stable running version.
-- **Decision gate**: rules on whether to deploy.
+- Test cases: a set of representative questions or scenarios.
+- Workflow version: the prompt/model/retrieval logic being tested.
+- Evaluator: evaluation rules using code, human review, or LLM-as-judge.
+- Baseline: the current stable running version.
+- Decision gate: rules on whether to deploy.
 
 ## 3. Don't start with complex evaluators
 

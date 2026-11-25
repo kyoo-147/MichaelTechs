@@ -102,7 +102,7 @@ AI should be placed where there is **context, unstructured data, or decisions ne
 
 An AI feature that sounds great on a landing page doesn't necessarily create value.
 
-Real value usually comes from very specific things:
+Value usually comes from very specific things:
 
 - reducing lead response time,
 - reducing the number of data entry steps,

@@ -98,7 +98,7 @@ new labeled data → train model → evaluate → register version
 
 ### Inference Service
 
-This is the part that receives requests and returns predictions.
+This service receives requests and returns predictions.
 
 For example:
 
@@ -226,7 +226,7 @@ One repo, one backend, but clear modules:
 - notifications
 ```
 
-When a part truly needs to scale separately, that's when you split the service.
+When a part needs to scale separately, that's when you split the service.
 
 ## 7. Conclusion
 

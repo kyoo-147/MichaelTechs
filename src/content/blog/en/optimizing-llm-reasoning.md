@@ -24,7 +24,7 @@ There is a very common thought when a model gives a wrong answer:
 
 Sometimes that's true. But not always.
 
-Many recent studies show we can improve LLM reasoning by increasing compute at inference time: letting the model generate multiple solutions, self-check, using a verifier, breaking down the problem, or calling tools/RAG at the right time.
+We can improve LLM reasoning by increasing compute at inference time: letting the model generate multiple solutions, self-check, using a verifier, breaking down the problem, or calling tools/RAG at the right time.
 
 Put simply: instead of always training larger models, sometimes we can **design a better way for the model to think when running in production**.
 
@@ -57,7 +57,7 @@ How many orders need to be tracked in total?
 
 If the model answers once, it might be right or wrong. But if it generates multiple solutions, we can take the answer reached by many independent reasoning paths.
 
-This idea was proposed in the paper **Self-Consistency Improves Chain of Thought Reasoning in Language Models**, and results showed self-consistency improved many reasoning benchmarks like GSM8K, SVAMP, AQuA, StrategyQA, and ARC-challenge.
+This idea was proposed in the paper Self-Consistency Improves Chain of Thought Reasoning in Language Models, and results showed self-consistency improved many reasoning benchmarks like GSM8K, SVAMP, AQuA, StrategyQA, and ARC-challenge.
 
 But the trade-off is higher cost, because we call the model more times.
 

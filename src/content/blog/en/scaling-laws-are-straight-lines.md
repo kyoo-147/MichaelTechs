@@ -51,7 +51,7 @@ So "the scaling law for this model family" honestly means "a fit to this loss, o
 
 There are two ways people talk about scale, and they answer different questions.
 
-The first is to move one axis and hold the rest: bigger models on the same tokens, or the same model on more tokens. Curves from that kind of sweep are what the early scaling papers plotted, and they are genuinely straight.
+The first is to move one axis and hold the rest: bigger models on the same tokens, or the same model on more tokens. Curves from that kind of sweep are what the early scaling papers plotted, and they are straight.
 
 The second is the budget question. With compute $C$ roughly proportional to parameters times tokens,
 
@@ -87,7 +87,7 @@ There is a discipline problem. An exponent fitted to three points spanning half 
 
 ## The contrarian case: the law is not about capability
 
-**The standard framing is wrong in a specific way: scaling laws are routinely cited as evidence about capability, and they are fits to a scalar loss on a fixed distribution whose fitted exponent usually has an interval wider than the difference people are arguing about.**
+The standard framing is wrong in a specific way: scaling laws are routinely cited as evidence about capability, and they are fits to a scalar loss on a fixed distribution whose fitted exponent usually has an interval wider than the difference people are arguing about.
 
 Look at what such a paper reports: runs, a functional form, a table of constants, a line through points. The line summarises measured loss. The extrapolation claims loss at unmeasured scales, conditional on the form being right. Nowhere in that chain is a claim about what the model can do. The step from "loss follows a power law" to "capabilities arrive on schedule" is an extra premise imported from outside the fit, and it is the premise that fails most often.
 
@@ -97,7 +97,7 @@ That changes how the result should be used. If someone claims an architectural c
 
 There is a subtler failure too. Loss is smooth and monotone in scale; capability evaluations are noisy and threshold-like. People compare a smooth curve to a step function and argue about where the step lands. The curve has no step in it. It cannot. Using it to argue about when a capability appears applies a model of the wrong functional form to the question, and the straightness of the line makes the error feel rigorous.
 
-None of this makes scaling laws useless. They are among the few genuinely predictive tools for planning expensive runs, and the Chinchilla correction is the framework doing real work: it changed how budgets were allocated, on the strength of a joint fit rather than a hunch. But that authority comes from being narrow and well specified. Widen it into a general theory of progress and the specificity is gone, leaving a straight line carrying an argument it was never fitted for.
+None of this makes scaling laws useless. They are among the few predictive tools for planning expensive runs, and the Chinchilla correction is the framework doing real work: it changed how budgets were allocated, on the strength of a joint fit rather than a hunch. But that authority comes from being narrow and well specified. Widen it into a general theory of progress and the specificity is gone, leaving a straight line carrying an argument it was never fitted for.
 
 ## Sources
 

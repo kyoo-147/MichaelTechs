@@ -26,7 +26,7 @@ Many people start learning computer vision with a very familiar demo: feed an im
 
 That demo is nice, but if brought into a real product, it's still missing quite a lot.
 
-A vision system in production usually needs to know not only **what object is there**, but also **exactly where the object is**, **what its boundaries are**, **how it affects the next decision**, and **what margin of error is acceptable**.
+A vision system in production usually needs to know not only what object is there, but also exactly where the object is, what its boundaries are, how it affects the next decision, and what margin of error is acceptable.
 
 This post briefly notes the difference between object detection and segmentation, based on Mask R-CNN and related articles/research.
 

@@ -23,7 +23,7 @@ Uniform affine quantisation is two numbers and a round:
 
 $$ x_q = \operatorname{clamp}\!\left(\operatorname{round}\!\left(\frac{x}{s}\right) + z,\; q_{\min},\; q_{\max}\right), \qquad \hat{x} = s\,(x_q - z). $$
 
-The scale $s$ is the width of one step. The zero-point $z$ shifts the grid so that a particular real value, usually zero, lands exactly on an integer code. For symmetric weights, $z = 0$ and the grid is $s \cdot \{-127, \dots, 127\}$; for activations after a ReLU, where zero is meaningful and must stay meaningful, an asymmetric grid with a nonzero $z$ costs one extra term in every dot product and buys exact representation of the padding and the dead units.
+The scale $s$ is the width of one step. The zero-point $z$ shifts the grid so that a particular value, usually zero, lands exactly on an integer code. For symmetric weights, $z = 0$ and the grid is $s \cdot \{-127, \dots, 127\}$; for activations after a ReLU, where zero is meaningful and must stay meaningful, an asymmetric grid with a nonzero $z$ costs one extra term in every dot product and buys exact representation of the padding and the dead units.
 
 Two choices are hidden in those two numbers. The first is the range: you can let the scale be set by the largest magnitude in the tensor, or by a high percentile of it, and clip the rest. The second is the granularity: whether $s$ and $z$ are shared by the whole tensor, by each output channel, or by each small block along the contraction dimension. Everything else in the field is downstream of those.
 
@@ -37,7 +37,7 @@ and often much less, with a mean square error of about $s^2/12$ for values sprea
 
 $$ \frac{|\hat{x} - x|}{|x|} \le \frac{s}{2|x|}. $$
 
-At $|x| = 2s$ that bound is 25 percent. At $|x| = 100s$ it is half a percent. A float keeps roughly constant relative precision across many decades; an int8 keeps constant absolute precision across one interval and progressively destroys everything below it. Values smaller than the step are not merely noisy, they are gone, and a weight of $0.003$ that rounds to zero stops contributing to the sum at all.
+At $|x| = 2s$ that bound is 25 percent. At $|x| = 100s$ it is half a percent. A float keeps roughly constant relative precision across many decades; an int8 keeps constant absolute precision across one interval and progressively destroys everything below it. Values smaller than the step are gone, not merely noisy, and a weight of $0.003$ that rounds to zero stops contributing to the sum at all.
 
 This is the trade in its bluntest form. The grid is uniform, so relative precision is bought only by using the range well. What decides the range?
 

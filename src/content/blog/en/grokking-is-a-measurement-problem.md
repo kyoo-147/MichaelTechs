@@ -33,7 +33,7 @@ $$
 
 A trigonometric identity that a first-year student knows becomes a circuit: embed each input into a few frequencies, multiply the corresponding sine and cosine components, sum the products, and read the result back through the inverse transform. Nothing in the task says "use Fourier". The circuit is a consequence of what makes $a + b \bmod p$ easy for gradient descent to represent compactly.
 
-That is the part I find genuinely interesting. The model did not learn the algorithm humans usually write. It learned the algorithm that is cheapest in the architecture at hand.
+What I find interesting here is the algorithm itself. The model did not learn the algorithm humans usually write. It learned the algorithm that is cheapest in the architecture at hand.
 
 ## Progress measures instead of loss curves
 
@@ -75,7 +75,7 @@ $$
 
 which is $\cos(9\omega)$ to the last digit shown. The two input angles added to $6.783616$ radians, and that is $2\pi + 9\omega$ exactly: one full turn, then the answer. The extra turn is invisible to a periodic function, so the modulo never gets computed. It is absorbed by the representation. A lookup table needs a case for the wrap; a circuit built from sines and cosines has no boundary to handle.
 
-The read-out works the same way. The model ends up using five key frequencies, $k \in \{14, 35, 41, 42, 52\}$, and the unembedding adds $\cos(\omega_k(122 - c))$ over those five for each candidate answer $c$. Give each frequency equal weight and the arithmetic is short: at $c = 9$ every term is $\cos(2\pi k) = 1$ and the score is 5, the ceiling for five frequencies. At $c = 8$ it is $-1.97$. Even the best wrong candidate, $c = 25$, reaches only 2.59. Wrong answers are not merely behind; they are pushed down, which is how five frequencies can separate 113 candidates.
+The read-out works the same way. The model ends up using five key frequencies, $k \in \{14, 35, 41, 42, 52\}$, and the unembedding adds $\cos(\omega_k(122 - c))$ over those five for each candidate answer $c$. Give each frequency equal weight and the arithmetic is short: at $c = 9$ every term is $\cos(2\pi k) = 1$ and the score is 5, the ceiling for five frequencies. At $c = 8$ it is $-1.97$. Even the best wrong candidate, $c = 25$, reaches only 2.59. Wrong answers are pushed down rather than left behind, which is how five frequencies can separate 113 candidates.
 
 Two counts show the wrap is not a corner case. Of the $113^2 = 12{,}769$ ordered pairs, exactly $6{,}328$ have $a + b \ge 113$: for each $a$ there are $a$ values of $b$ that wrap, so the total is $\sum_{a=1}^{112} a = 112 \cdot 113/2$, or 49.6% of the table. A model that mishandles the boundary loses on half its inputs. And the mainline run trains on 30% of the pairs, roughly 3,831 examples with 8,938 held out. That fraction is not a detail: the [original grokking paper](https://arxiv.org/abs/2201.02177) found the optimisation needed to generalise rises sharply as the training fraction falls, so where a run sits on that curve decides how much of it is spent getting nowhere.
 

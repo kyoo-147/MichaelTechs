@@ -25,7 +25,7 @@ When working with AI coding agents like Claude Code, ChatGPT CLI, or terminal-ba
 
 I looked at browser-based terminal control patterns and found the idea practical: turning the browser into a terminal interface to monitor and control running agents. Tools in this space often combine a browser terminal, Xterm.js-style rendering, and a process bridge so the user can inspect a running session without setting up a full SSH workflow.
 
-This post is not a tutorial for cloning an existing tool. I want to note down a smaller design: a **remote terminal/WebSocket dashboard for AI agents**, applicable for a personal project or a small team.
+This post is not a tutorial for cloning an existing tool. I want to note down a smaller design: a remote terminal/WebSocket dashboard for AI agents, applicable for a personal project or a small team.
 
 ## 1. The Problem
 
@@ -37,7 +37,7 @@ When running multiple AI agents in parallel, we often encounter these problems:
 - There is no centralized state to see the entire working session.
 - If the agent edits code or runs dangerous commands, we need a mechanism to observe and control it.
 
-For a product or engineering person, this is an **observability for developer workflow** problem.
+For a product or engineering person, this is an observability for developer workflow problem.
 
 We don't just need a terminal. We need a dashboard that quickly answers:
 
@@ -66,10 +66,10 @@ Storage / Log History
 
 Where:
 
-- **Browser Dashboard**: interface to view the list of agent sessions, terminal output, status, and current task.
-- **WebSocket Gateway**: maintains a real-time connection between the browser and the backend.
-- **Session Manager**: manages agent processes, terminal sessions, and command input/output.
-- **Log Storage**: saves important events and output for future debugging.
+- Browser Dashboard: interface to view the list of agent sessions, terminal output, status, and current task.
+- WebSocket Gateway: maintains a real-time connection between the browser and the backend.
+- Session Manager: manages agent processes, terminal sessions, and command input/output.
+- Log Storage: saves important events and output for future debugging.
 
 WebSocket is suitable because the browser and server need continuous two-way communication: the server pushes new output to the browser, and the browser sends command/pause/stop requests to the server.
 
@@ -83,7 +83,7 @@ Is there a new log?
 Is there a new log?
 ```
 
-This method is simple but wastes requests and is not truly real-time.
+This method is simple but wastes requests and is not real-time.
 
 WebSocket opens a two-way connection between the browser and the server. Once the connection is opened, the server can push output to the browser as soon as the terminal generates a new log. The browser can also send commands back to the server without creating a new request.
 
@@ -196,7 +196,7 @@ Some minimum rules:
 - Have a button to kill the session.
 - Have a timeout for sessions inactive for too long.
 
-For the first version, I would build the dashboard as **read-only** first: only view sessions, status, and output. Add command input when the system is stable.
+For the first version, I would build the dashboard as read-only first: only view sessions, status, and output. Add command input when the system is stable.
 
 ## 8. Example workflow
 

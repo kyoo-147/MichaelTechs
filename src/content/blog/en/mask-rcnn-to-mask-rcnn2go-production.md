@@ -32,7 +32,7 @@ Meta's Mask R-CNN2Go is a case worth learning because it doesn't just talk about
 
 Mask R-CNN is a powerful framework for instance segmentation. It detects objects and simultaneously generates a mask for each object instance.
 
-In terms of research, it is very important because it groups several problems together:
+For research, it is very important because it groups several problems together:
 
 - object detection;
 - instance segmentation;
@@ -57,7 +57,7 @@ The point to learn here is: the problem is no longer "highest accuracy on a benc
 
 When doing production, the questions often change to:
 
-- Can the model run in real-time?
+- Can the model run in real time?
 - Do we need to send images to the server, or run locally?
 - Does the device have enough RAM/CPU/GPU?
 - If the model is wrong, how does the user/system react?

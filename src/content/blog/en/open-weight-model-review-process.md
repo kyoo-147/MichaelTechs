@@ -138,7 +138,7 @@ Benchmark scores are less important than whether the model handles these situati
 
 ## 6. Check real running capability
 
-A model is only truly useful when it can run under your conditions.
+A model is only useful when it can run under your conditions.
 
 Inference checklist:
 
@@ -214,8 +214,8 @@ A model that looks good on paper is just a starting point. A model that fits the
 
 ## References
 
-- Sebastian Raschka, **My Workflow for Understanding LLM Architectures**: https://magazine.sebastianraschka.com/p/workflow-for-understanding-llms
-- GitHub, **Supplementary material for workflow-understanding-LLM-architectures**: https://github.com/rasbt/workflow-understanding-LLM-architectures
-- Hugging Face, **Model Cards documentation**: https://huggingface.co/docs/hub/en/model-cards
-- Hugging Face, **Create and share Model Cards**: https://huggingface.co/docs/huggingface_hub/en/guides/model-cards
-- Hugging Face, **Open LLM Leaderboard**: https://huggingface.co/open-llm-leaderboard
+- Sebastian Raschka, My Workflow for Understanding LLM Architectures: https://magazine.sebastianraschka.com/p/workflow-for-understanding-llms
+- GitHub, Supplementary material for workflow-understanding-LLM-architectures: https://github.com/rasbt/workflow-understanding-LLM-architectures
+- Hugging Face, Model Cards documentation: https://huggingface.co/docs/hub/en/model-cards
+- Hugging Face, Create and share Model Cards: https://huggingface.co/docs/huggingface_hub/en/guides/model-cards
+- Hugging Face, Open LLM Leaderboard: https://huggingface.co/open-llm-leaderboard

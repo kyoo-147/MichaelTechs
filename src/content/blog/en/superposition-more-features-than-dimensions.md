@@ -49,7 +49,7 @@ Importance shifts the picture. When some features matter more, the model protect
 
 A neuron is a coordinate axis. If several feature directions have non-zero components along that axis, the neuron responds to several features. In the toy model this falls straight out of the packing: the feature directions are not axis-aligned, so the axes are shared.
 
-That is the part I would hand to anyone puzzled by a neuron that fires for both French text and Python code. The neuron is one coordinate in a basis that several concepts happen to use, not a strange composite concept.
+I would hand this explanation to anyone puzzled by a neuron that fires for both French text and Python code. The neuron is one coordinate in a basis that several concepts happen to use, not a strange composite concept.
 
 ## The framing breaks here: a toy model is a map, not the territory
 
