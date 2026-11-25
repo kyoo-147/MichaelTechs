@@ -35,7 +35,7 @@ So a covariance matrix built from real centred data is positive semi-definite by
 
 It is positive *definite* when the points span $\mathbb{R}^d$. If they lie in a proper subspace, some direction $v$ satisfies $v^\top(x_i - \mu) = 0$ for every $i$, so $\Sigma v = 0$: the matrix is singular, the ellipsoid is flat along that direction, and the inverse does not exist. That is the ordinary case, not the exception - duplicated columns, a one-hot block that sums to a constant, more features than rows.
 
-Indefinite matrices appear when the estimate stops being a genuine second moment. The classic route is pairwise deletion: each $\Sigma_{jk}$ comes from the rows where both $j$ and $k$ are observed, so different entries come from different subsets of the data, and the result need not be positive semi-definite. Adding $\epsilon I$ makes the factorisation run, but it does not make the estimate correct; it quietly changes the model by inflating every variance. I would rather find out why the matrix is indefinite.
+Indefinite matrices appear when the estimate is no longer a second moment of the data. The classic route is pairwise deletion: each $\Sigma_{jk}$ comes from the rows where both $j$ and $k$ are observed, so different entries come from different subsets of the data, and the result need not be positive semi-definite. Adding $\epsilon I$ makes the factorisation run, but it does not make the estimate correct; it quietly changes the model by inflating every variance. I would rather find out why the matrix is indefinite.
 
 ## The Cholesky factor is a square root with structure
 
@@ -100,7 +100,7 @@ Second, and this is the argument I care about more: the eigenbasis can be numeri
 
 Third, "PCA then whiten" is not "whiten". PCA whitening sends $x - \mu$ to $\Lambda^{-1/2}Q^\top(x-\mu)$; Cholesky whitening sends it to $L^{-1}(x-\mu)$. Both outputs have identity covariance, and they differ by an orthogonal factor, so any downstream step that is rotation-equivariant cannot tell them apart. Almost nothing downstream is. A coordinate-wise nonlinearity, a diagonal regulariser, per-coordinate learning rates, L1 sparsity, quantisation, a tree split on a single feature - each of these cares which rotation you picked. Calling both operations "whitening" and expecting identical numbers is a category error. Whitening fixes the second moment and leaves the rotation free; you have to choose it for a reason.
 
-Where the eigenbasis genuinely wins: you want to truncate, dropping small eigenvalues as denoising or compression; you want to read the spectrum; you want ZCA; or $\Sigma$ is only semi-definite and Cholesky needs a jitter you would rather not add. Those are real cases. They are not the case "I need to decorrelate".
+Where the eigenbasis wins: you want to truncate, dropping small eigenvalues as denoising or compression; you want to read the spectrum; you want ZCA; or $\Sigma$ is only semi-definite and Cholesky needs a jitter you would rather not add. Those are real cases. They are not the case "I need to decorrelate".
 
 A caveat on my own argument: since $\kappa(L) = \kappa(\Sigma)^{1/2}$ and $\kappa(\Lambda^{1/2}) = \kappa(\Sigma)^{1/2}$ too, the two factors are comparably conditioned. The advantage of Cholesky is not a better-conditioned square root. It is that the factor is unique, cheap, and stable in its entries, and that its basis does not collapse when eigenvalues crowd together. I would rather state that precisely than repeat "Cholesky is better conditioned" and be wrong about why.
 

@@ -15,21 +15,21 @@ categories:
 
 Singapore's H2 Mathematics paper has a distinctive temperament. It is short, precise, and almost allergic to numerical approximation. Answers are expected in exact form - $\pi$, $e$, $\ln 2$ - and a decimal is usually only acceptable when the question explicitly says so. Where a Victorian paper trains calculator fluency, an H2 paper trains algebraic control.
 
-The problem below is **my own**, written in that style; it is not a past question.
+The problem below is my own, written in that style; it is not a past question.
 
 ## The problem
 
-**(a)** Show that
+(a) Show that
 
 $$
 \int_{1}^{e} \left(\ln x\right)^2 \, dx = e - 2 .
 $$
 
-**(b)** Hence find the exact volume of the solid generated when the region bounded by $y = \ln x$, the $x$-axis, $x = 1$ and $x = e$ is rotated completely about the $x$-axis.
+(b) Hence find the exact volume of the solid generated when the region bounded by $y = \ln x$, the $x$-axis, $x = 1$ and $x = e$ is rotated completely about the $x$-axis.
 
 ## The solution
 
-**(a)** Integrate by parts with $u = (\ln x)^2$ and $dv = dx$. Then
+(a) Integrate by parts with $u = (\ln x)^2$ and $dv = dx$. Then
 
 $$
 du = \frac{2\ln x}{x}\,dx, \qquad v = x,
@@ -59,7 +59,7 @@ $$
 \int_1^e (\ln x)^2\,dx = e - 2 \approx 0.7183 .
 $$
 
-**(b)** The volume of revolution about the $x$-axis is
+(b) The volume of revolution about the $x$-axis is
 
 $$
 V = \pi\int_1^e \left(\ln x\right)^2 dx = \pi(e - 2).
@@ -91,7 +91,7 @@ Two places to lose marks here. First, the sign on the second term: $-\int x/2\,d
 
 ## What this paper is testing
 
-The phrase to notice is "**hence, or otherwise**". It is an instruction about method, not decoration. "Hence" means *use the result you just proved*; "otherwise" gives you permission to find another route (numerical integration, a different substitution) but never relieves you of justifying it.
+The phrase to notice is "hence, or otherwise". It is an instruction about method, not decoration. "Hence" means *use the result you just proved*; "otherwise" gives you permission to find another route (numerical integration, a different substitution) but never relieves you of justifying it.
 
 Three skills are being measured:
 
@@ -105,7 +105,7 @@ Exactness is a beautiful discipline and a poor description of practice. Almost e
 
 An H2 script will never ask any of that. It asks for a closed form, and closed forms exist for a tiny, carefully chosen family of functions. The result is a graduate who is very good at the twenty integrals that have closed forms and has never been asked what happens to the other ten thousand.
 
-The "hence" structure has the same double edge. On one hand, it teaches a genuinely useful habit: notice that a hard problem contains an easier problem you have already solved. On the other hand, it *tells* you that the connection exists. In real work nobody labels the subproblem for you, and finding that $(\ln x)^3$ can be reduced to $(\ln x)^2$ is the actual skill - the paper gives it away and then marks the execution.
+The "hence" structure has the same double edge. On one hand, it teaches a useful habit: notice that a hard problem contains an easier problem you have already solved. On the other hand, it *tells* you that the connection exists. In real work nobody labels the subproblem for you, and finding that $(\ln x)^3$ can be reduced to $(\ln x)^2$ is the actual skill - the paper gives it away and then marks the execution.
 
 ## If you are preparing
 

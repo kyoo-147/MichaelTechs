@@ -15,21 +15,21 @@ categories:
 
 Victoria's VCE mathematics papers are unusually explicit about what they want. Mathematical Methods and Specialist Mathematics both publish a study design that names every dot point, and the exam is built to hit those dot points in order. That makes the papers a good instrument for one thing: measuring whether you can execute a known procedure under time pressure, with a calculator, without dropping a sign.
 
-The problem below is **written by me in that style** - it is not a past VCE question, and I am not reproducing one. I chose the shape because normal distributions and binomial counts are exactly what the probability area of study rewards.
+The problem below is written by me in that style - it is not a past VCE question, and I am not reproducing one. I chose the shape because normal distributions and binomial counts are exactly what the probability area of study rewards.
 
 ## The problem
 
 Hospital waiting times $X$ at a clinic are modelled as normally distributed with mean $18$ minutes and standard deviation $4$ minutes.
 
-**(a)** Find $\Pr(X > 24)$, correct to four decimal places.
+(a) Find $\Pr(X > 24)$, correct to four decimal places.
 
-**(b)** Find the value of $k$ such that $\Pr(X < k) = 0.90$, correct to two decimal places.
+(b) Find the value of $k$ such that $\Pr(X < k) = 0.90$, correct to two decimal places.
 
-**(c)** Five patients are selected at random. Find the probability that at least two of them wait more than $24$ minutes, correct to four decimal places.
+(c) Five patients are selected at random. Find the probability that at least two of them wait more than $24$ minutes, correct to four decimal places.
 
 ## The solution, and where the marks sit
 
-**(a)** Standardise:
+(a) Standardise:
 
 $$
 z = \frac{24 - 18}{4} = 1.5,
@@ -43,7 +43,7 @@ $$
 
 Marks here are usually split between *stating the standardisation* and *the correct tail*. The common error is quoting $\Phi(1.5) = 0.9332$ and stopping, which answers the complementary question. A mark scheme will not tell you that you answered a different question; it just removes a mark.
 
-**(b)** Invert the same relation:
+(b) Invert the same relation:
 
 $$
 k = \mu + z_{0.90}\sigma = 18 + 1.2816 \times 4 \approx 23.13.
@@ -51,7 +51,7 @@ $$
 
 The trap is using $z$ for the upper tail. $\Pr(X < k) = 0.90$ means $k$ is *above* the mean, so $z$ is positive. A negative $z$ here produces a plausible-looking number below 18 and loses the method mark.
 
-**(c)** Let $p = 0.0668$ and $n = 5$. Then
+(c) Let $p = 0.0668$ and $n = 5$. Then
 
 $$
 \Pr(\text{at least } 2) = 1 - \Pr(0) - \Pr(1),
@@ -65,7 +65,7 @@ $$
 \Pr(\text{at least } 2) \approx 1 - 0.7077 - 0.2533 = 0.0390.
 $$
 
-The complement is the whole point of part (c). Computing "at least two" directly means five separate terms and five chances to make an arithmetic slip.
+Part (c) is built on the complement. Computing "at least two" directly means five separate terms and five chances to make an arithmetic slip.
 
 ## What the paper is really testing
 
@@ -79,7 +79,7 @@ Three things, and none of them is the modelling:
 
 The exam assumes the model. It hands you "waiting times are normally distributed with mean 18 and standard deviation 4" and asks nothing about whether that is true. In practice, the expensive mistakes in this kind of work happen before the arithmetic: waiting times are right-skewed (a queue cannot produce negative times but can produce very long ones), and "five patients selected at random" quietly assumes independence, which fails whenever a delay cascades through a clinic.
 
-So the paper measures execution, and execution is genuinely worth measuring. But it never asks you to *justify the distribution*, and that is precisely the step where an engineer earns their salary. A student who can compute 0.0668 in thirty seconds and cannot say why the normal model is wrong for a queue has learned the procedure and missed the subject.
+So the paper measures execution, and execution is worth measuring. But it never asks you to *justify the distribution*, and that is precisely the step where an engineer earns their salary. A student who can compute 0.0668 in thirty seconds and cannot say why the normal model is wrong for a queue has learned the procedure and missed the subject.
 
 There is a second, quieter bias: every part is solvable in isolation. Real analysis is not - choosing which question to ask is most of the work, and a paper that pre-asks it cannot test the choosing.
 

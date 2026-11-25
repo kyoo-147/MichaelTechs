@@ -49,8 +49,8 @@ When $m = 1$ - a loss, typically - the Jacobian is $1 \times n$. That single row
 
 This is where the famous layout confusion starts. Two conventions are in circulation:
 
-- **Numerator layout:** $\nabla f$ is a row, $\partial f/\partial \mathbf{x} \in \mathbb{R}^{1 \times n}$.
-- **Denominator layout:** $\nabla f$ is a column, $\partial f/\partial \mathbf{x} \in \mathbb{R}^{n}$.
+- Numerator layout: $\nabla f$ is a row, $\partial f/\partial \mathbf{x} \in \mathbb{R}^{1 \times n}$.
+- Denominator layout: $\nabla f$ is a column, $\partial f/\partial \mathbf{x} \in \mathbb{R}^{n}$.
 
 They differ by a transpose, and almost every "shape mismatch in the backward pass" bug is one of these two conventions meeting the other in a dark alley. Pick one and write it down at the top of the file. PyTorch's rule is simple and worth memorising: **the gradient of a tensor has the same shape as the tensor.** That is denominator layout, applied everywhere, including for matrices.
 
@@ -78,8 +78,8 @@ depending on which side you push from. One backward pass answers "how does the l
 
 Two practical consequences follow, and I have hit both:
 
-1. **Broadcasting silently changes the derivative's shape.** If a tensor of shape `(1, 128)` is broadcast against `(32, 128)`, the correct backward pass sums the gradient over the broadcast axis. Frameworks do this automatically; a hand-written backward pass that forgets it produces shapes that happen to broadcast again, and the bug hides until the loss plateaus.
-2. **Shape-checking the backward pass is a real test.** If your manual gradient has the wrong shape and you reshape it into place with `.view()` or a transpose "to make it work", you have almost certainly transposed a Jacobian convention rather than fixed a bug.
+1. Broadcasting silently changes the derivative's shape. If a tensor of shape `(1, 128)` is broadcast against `(32, 128)`, the correct backward pass sums the gradient over the broadcast axis. Frameworks do this automatically; a hand-written backward pass that forgets it produces shapes that happen to broadcast again, and the bug hides until the loss plateaus.
+2. Shape-checking the backward pass is a real test. If your manual gradient has the wrong shape and you reshape it into place with `.view()` or a transpose "to make it work", you have almost certainly transposed a Jacobian convention rather than fixed a bug.
 
 ## A rule I use
 
@@ -105,7 +105,7 @@ $$
 
 At $(r, \theta) = (2, \pi/4)$ the columns are $(\sqrt2/2, \sqrt2/2)$ and $(-\sqrt2, \sqrt2)$, and the determinant is exactly $2$: a small patch of the $r\theta$-plane with area $\varepsilon^2$ lands in the plane with area about $2\varepsilon^2$. The $r$ in $r\,dr\,d\theta$ is this determinant, not a notational habit. The same factor is why a normalising flow tracks a Jacobian determinant: its log-density needs $\log|\det J|$, and the common designs keep $J$ triangular so that the determinant is a product of diagonal entries.
 
-The determinant belongs to the point, not to the map, and that is the part that gets lost. For
+The determinant belongs to the point, not to the map, and that distinction gets lost. For
 
 $$
 g(x,y) = (x^2 y,\; x y^2),

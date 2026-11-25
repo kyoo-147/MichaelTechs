@@ -60,7 +60,7 @@ $$
 
 Each head has its own $W_Q, W_K, W_V$, hence its own subspace for computing similarity and its own value subspace to mix. The concatenation is where the parallel-subspaces picture comes from, and it holds as far as it goes.
 
-$W_O$ matters more than it usually gets credit for. The convex-combination constraint applies per head, before $W_O$. The output projection mixes across heads and can produce directions that no single head's value space contained. This is the first place in the block where genuinely new linear combinations appear - which is why "attention only averages" is true of the mixing step and false of the block.
+$W_O$ matters more than it usually gets credit for. The convex-combination constraint applies per head, before $W_O$. The output projection mixes across heads and can produce directions that no single head's value space contained. This is the first place in the block where new linear combinations appear - which is why "attention only averages" is true of the mixing step and false of the block.
 
 ## The residual stream
 

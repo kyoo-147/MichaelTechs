@@ -86,11 +86,11 @@ A leaderboard answers how often this model is right. That answer expires and its
 
 Five things belong in a release note beside any accuracy figure.
 
-**Aggregate accuracy, as a gate.** Keep the number. It catches gross regressions and it is what users experience. Stop sorting on it.
+Aggregate accuracy, as a gate. Keep the number. It catches gross regressions and it is what users experience. Stop sorting on it.
 
 **Effective item count.** Report $N_{\text{eff}}$ next to $N$. Seeing 118 beside 2,000 conveys the resolution without the formula.
 
-**Run-to-run disagreement.** Run the same pipeline twice with different seeds and report the spread. That spread is the floor on any difference you intend to claim, and at saturation it usually exceeds the difference.
+Run-to-run disagreement. Run the same pipeline twice with different seeds and report the spread. That spread is the floor on any difference you intend to claim, and at saturation it usually exceeds the difference.
 
 **A failure taxonomy with counts.** Not "the model made arithmetic errors", but which arithmetic, on what kind of item, with two verbatim traces. Read the first hundred failures before counting them. That ordering is opinion, not method.
 

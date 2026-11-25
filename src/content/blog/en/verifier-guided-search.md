@@ -24,7 +24,7 @@ Sampling gives you a set. A verifier gives you an order. Search needs an order, 
 
 $$ \hat{y} \;=\; \arg\max_{y \in \mathcal{C}} \; v_\phi(y), \qquad \mathcal{C} = \{y_1, \dots, y_n\}, \quad y_i \sim p_\theta(\cdot \mid x) $$
 
-With $n$ fixed, best-of-$n$ extracts everything in the candidate set, and the argmax is exact. The only failure mode is $v_\phi$, so the returned answer is bounded by the verifier's ordering on that set. This is search with depth one. No pruning, no reuse, no compounding.
+With $n$ fixed, best-of-$n$ extracts everything in the candidate set, and the argmax is exact. The only failure mode is $v_\phi$, so the returned answer is bounded by the verifier's ordering on that set. This is search with depth one: it skips pruning, reuse and compounding.
 
 Depth is what a verifier actually buys. To prune you need a score for partial work, and with that score you can restrict the frontier at every step. That is where verifier error becomes structural: the error feeds back into the candidate distribution at the next step.
 

@@ -34,25 +34,25 @@ Every row points at a subject, and no row starts with "prove that a vector space
 
 ## The five subjects, in the order I would take them
 
-**1. Linear algebra, as geometry plus spectrum.** Vectors as directions, matrices as linear maps, and then - immediately - singular values. Not because the SVD is elegant, but because it is the decomposition that answers "how much does this layer amplify, and along which directions". Strang's 18.06 is the standard course and it is good; the only thing I would add is the singular-value habit early rather than late.
+1. Linear algebra, as geometry plus spectrum. Vectors as directions, matrices as linear maps, and then - immediately - singular values. Not because the SVD is elegant, but because it is the decomposition that answers "how much does this layer amplify, and along which directions". Strang's 18.06 is the standard course and it is good; the only thing I would add is the singular-value habit early rather than late.
 
-**2. Calculus with shapes: Jacobians and the chain rule.** The derivative as the best linear approximation, the Jacobian as its matrix, and the chain rule as Jacobian composition. Parr and Howard's [matrix calculus paper](https://explained.ai/matrix-calculus/) is the most efficient route I know, because it derives the rules instead of listing them. Olah's [calculus on computational graphs](https://colah.github.io/posts/2015-08-Backprop/) supplies the algorithmic picture that makes the rules computable.
+2. Calculus with shapes: Jacobians and the chain rule. The derivative as the best linear approximation, the Jacobian as its matrix, and the chain rule as Jacobian composition. Parr and Howard's [matrix calculus paper](https://explained.ai/matrix-calculus/) is the most efficient route I know, because it derives the rules instead of listing them. Olah's [calculus on computational graphs](https://colah.github.io/posts/2015-08-Backprop/) supplies the algorithmic picture that makes the rules computable.
 
-**3. Probability, as a language for uncertainty.** Distributions, expectation, conditional probability, and maximum likelihood. The specific payoff is realising that squared error is a Gaussian assumption and cross-entropy is a Bernoulli one, and that the loss is therefore a statement about your noise model. Goodfellow's chapter 3 covers the ground; Murphy's book is there when you need the Bayesian version.
+3. Probability, as a language for uncertainty. Distributions, expectation, conditional probability, and maximum likelihood. The specific payoff is realising that squared error is a Gaussian assumption and cross-entropy is a Bernoulli one, and that the loss is therefore a statement about your noise model. Goodfellow's chapter 3 covers the ground; Murphy's book is there when you need the Bayesian version.
 
-**4. Optimisation, as curvature plus a certificate.** Gradient descent, step size versus curvature, convexity as a certificate rather than a vibe. Boyd's book is the reference for the convex case; the honest framing is that deep learning is non-convex and what transfers is the local intuition, not the guarantee.
+4. Optimisation, as curvature plus a certificate. Gradient descent, step size versus curvature, convexity as a certificate rather than a vibe. Boyd's book is the reference for the convex case; the honest framing is that deep learning is non-convex and what transfers is the local intuition, not the guarantee.
 
-**5. Numerical linear algebra, as the difference between the formula and the result.** Floating point, accumulation order, conditioning, and why a mathematically correct computation can produce garbage. Trefethen and Bau is the book that made this concrete for me.
+5. Numerical linear algebra, as the difference between the formula and the result. Floating point, accumulation order, conditioning, and why a mathematically correct computation can produce garbage. Trefethen and Bau is the book that made this concrete for me.
 
 Notice what is not in the top five: measure theory, real analysis, topology, information geometry. They are not useless. They are simply not where the first year of mistakes is.
 
 ## What each subject actually buys you at work
 
-- **Linear algebra**: you stop being surprised by shape errors, you can reason about what a layer can and cannot represent, and you know why a low-rank assumption is or is not justified.
-- **Jacobians and chain rule**: you can debug a gradient by hand, write a custom backward pass, and understand why reverse mode costs what it costs.
-- **Probability**: you can say what your model's number means, and you can tell the difference between a well-ranked model and a calibrated one.
-- **Optimisation**: you can diagnose a training run - curvature, step size, conditioning - instead of trying hyperparameters at random.
-- **Numerical linear algebra**: you can explain why the same code gives different losses on two machines, and why fp16 broke one layer and not the others.
+- Linear algebra: you stop being surprised by shape errors, you can reason about what a layer can and cannot represent, and you know why a low-rank assumption is or is not justified.
+- Jacobians and chain rule: you can debug a gradient by hand, write a custom backward pass, and understand why reverse mode costs what it costs.
+- Probability: you can say what your model's number means, and you can tell the difference between a well-ranked model and a calibrated one.
+- Optimisation: you can diagnose a training run - curvature, step size, conditioning - instead of trying hyperparameters at random.
+- Numerical linear algebra: you can explain why the same code gives different losses on two machines, and why fp16 broke one layer and not the others.
 
 ## What can be deferred without much cost
 
@@ -64,7 +64,7 @@ The exception is if you intend to do research on optimisation or generalisation 
 
 The standard curriculum is ordered by mathematical dependency because that is how mathematics is *organised*, not because that is how it is *used*. A dependency order guarantees that every theorem you meet has its prerequisites; it guarantees nothing about whether you will ever encounter the situation the theorem describes.
 
-Engineering leverage runs the other way. The subjects that explain your failures are worth taking first, even when they arrive early with prerequisites you have not finished. You can learn the spectrum of a matrix before you can prove that every vector space has a basis, and you will get more out of the spectrum.
+Engineering priorities run the other way. The subjects that explain your failures are worth taking first, even when they arrive early with prerequisites you have not finished. You can learn the spectrum of a matrix before you can prove that every vector space has a basis, and you will get more out of the spectrum.
 
 There is a real risk in that advice: skipping foundations produces people who can run a diagnostic and cannot extend it. So the rule I would state is directional rather than absolute - take the applied subject first, then go back for the foundation once you know why you need it. The motivation that comes from having been burned is worth more than the tidiness of a syllabus.
 

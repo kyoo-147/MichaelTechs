@@ -29,7 +29,7 @@ $$
 
 The tangent plane at any point lies below the whole function. If $\nabla f(\mathbf{x}) = 0$, the right side is $f(\mathbf{x})$ for every $\mathbf{y}$, so nothing is better. Local optimality becomes global with no search and no restarts.
 
-The same inequality shows where the guarantee thins out. It is a statement about the true function, not about an estimate of its gradient. With a noisy gradient the bound is noisy, and a stochastic method near the optimum oscillates in a neighbourhood whose size follows the noise. Convexity tells me the shape of the landscape; it does not tell me that a sampler reaches the bottom to arbitrary precision.
+The same inequality shows where the guarantee thins out. It is a statement about the true function, not about an estimate of its gradient. With a noisy gradient the bound is noisy, and a stochastic method near the optimum oscillates in a neighbourhood whose size follows the noise. Convexity tells me the shape of the space; it does not tell me that a sampler reaches the bottom to arbitrary precision.
 
 ## Duality is the certificate
 

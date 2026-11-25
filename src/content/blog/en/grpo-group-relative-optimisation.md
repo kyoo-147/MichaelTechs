@@ -34,7 +34,7 @@ $$r_i - \mu_G = \frac{G-1}{G}\left(r_i - \mu_{-i}\right),$$
 
 where $\mu_{-i}$ is the leave-one-out mean. The group-mean advantage is the leave-one-out advantage scaled by $(G-1)/G$, which is $0.875$ at $G = 8$. Group size is therefore not a neutral setting. It sets the size of the step, before the division by $\sigma_G$ sets it again.
 
-That division is the part I would flag to anyone adopting this. Standardising makes the update invariant to the scale of the reward, which is genuinely useful when the reward is a score in arbitrary units. It also lifts a group whose rewards barely differ up to the same magnitude as a group where the difference is large. The estimator cannot tell a real preference from a rounding artefact.
+That division is the part I would flag to anyone adopting this. Standardising makes the update invariant to the scale of the reward, which is useful when the reward is a score in arbitrary units. It also lifts a group whose rewards barely differ up to the same magnitude as a group where the difference is large. The estimator cannot tell a real preference from a rounding artefact.
 
 ## The variance of a small group
 

@@ -18,7 +18,7 @@ Every explanation of backpropagation eventually says "and then we apply the chai
 
 ## The rule, stated once
 
-Chris Olah's essay on [calculus on computational graphs](https://colah.github.io/posts/2015-08-Backprop/) gives the cleanest statement: on a graph, the derivative of one node with respect to another is the **sum over all paths** between them of the product of the edge derivatives along each path. "This general 'sum over paths' rule is just a different way of thinking about the multivariate chain rule."
+Chris Olah's essay on [calculus on computational graphs](https://colah.github.io/posts/2015-08-Backprop/) gives the cleanest statement: on a graph, the derivative of one node with respect to another is the sum over all paths between them of the product of the edge derivatives along each path. "This general 'sum over paths' rule is just a different way of thinking about the multivariate chain rule."
 
 That is the whole theorem. For the graph below - three nodes, three edges per hop - it produces nine terms.
 
@@ -63,7 +63,7 @@ $$
 a = 2x, \qquad b = 5x, \qquad y = 3a + 7b .
 $$
 
-**Sum over paths.** There are two paths from $x$ to $y$:
+Sum over paths. There are two paths from $x$ to $y$:
 
 $$
 \frac{\partial y}{\partial x}
@@ -72,11 +72,11 @@ $$
 = 3 \cdot 2 + 7 \cdot 5 = 6 + 35 = 41 .
 $$
 
-**Substitute and differentiate.** Eliminating the intermediates first gives $y = 3(2x) + 7(5x) = 41x$, and the derivative is $41$. Same number. That equality is not a coincidence; it is the statement that the chain rule agrees with algebra.
+Substitute and differentiate. Eliminating the intermediates first gives $y = 3(2x) + 7(5x) = 41x$, and the derivative is $41$. Same number. That equality is not a coincidence; it is the statement that the chain rule agrees with algebra.
 
-**Reverse mode.** Start at $y$ with an incoming gradient of $1$. Pushing through the addition sends $3$ into $a$ and $7$ into $b$. Pushing through the branches multiplies: $3 \cdot 2 = 6$ into $x$ from the left, $7 \cdot 5 = 35$ from the right. Where the two paths meet at $x$, the contributions **add**: $6 + 35 = 41$.
+Reverse mode. Start at $y$ with an incoming gradient of $1$. Pushing through the addition sends $3$ into $a$ and $7$ into $b$. Pushing through the branches multiplies: $3 \cdot 2 = 6$ into $x$ from the left, $7 \cdot 5 = 35$ from the right. Where the two paths meet at $x$, the contributions add: $6 + 35 = 41$.
 
-That last step is the whole point of the example. It is also the bug I described above: if the implementation assigns instead of accumulating at $x$, it produces $35$ and the loss quietly drifts. The arithmetic is one line; remembering to add is the engineering.
+That last step is what the example demonstrates. It is also the bug I described above: if the implementation assigns instead of accumulating at $x$, it produces $35$ and the loss quietly drifts. The arithmetic is one line; remembering to add is the engineering.
 
 ## What I take from this
 

@@ -68,7 +68,7 @@ The on-the-fly alternative is not free either. An amax over an activation tensor
 
 ## Where the master weights live
 
-This is the part that decides whether a run converges, and it is arithmetic rather than tuning.
+Where the master copy lives decides whether a run converges, and it is arithmetic rather than tuning.
 
 A weight $w$ at magnitude near 1 with a per-step relative update of $10^{-4}$ has to absorb a change of $10^{-4}$. In E4M3 the gap to the next representable value near 1 is $2^{-3}$, and the worst rounding error is half of that, so the update is several hundred times smaller than the smallest change the format can record. Apply it and the weight does not move. The result is a model stuck in a quantisation well, which is a different failure from being slightly less accurate.
 
@@ -78,7 +78,7 @@ FP8-LM reports that decomposition directly: 8-bit gradients, 8-bit optimizer sta
 
 The pattern across all three is the same. Moments and gradients tolerate FP8 far better than weights do. A moment is a small number with a heavy tail and no absolute meaning attached. A weight has an absolute meaning and a tiny update.
 
-One claim worth correcting. "FP8 halves memory" is usually false end to end. Weights are a fraction of the footprint. Optimizer state is two fp32 tensors per parameter, and activations scale with batch and sequence length. Making the GEMM faster moves a compute term. It does not move the memory term unless you also compress the state, which is the whole point of COAT.
+One claim worth correcting. "FP8 halves memory" is usually false end to end. Weights are a fraction of the footprint. Optimizer state is two fp32 tensors per parameter, and activations scale with batch and sequence length. Making the GEMM faster moves a compute term. It does not move the memory term unless you also compress the state, which is what COAT does.
 
 ## Which operations tolerate eight bits
 

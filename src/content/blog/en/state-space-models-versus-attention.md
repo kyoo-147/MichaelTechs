@@ -85,7 +85,7 @@ First, the quadratic term is a prefill and training cost. At decode the per-toke
 
 Second, the memory argument is really an argument for fewer attention layers. If your stack keeps one attention layer in eight, the case for removing the last one is an eighth of the case for removing the first seven. The decision is a number, not a doctrine.
 
-Third, and this is the part I would push back on hardest: the claim that SSMs model state better is the weakest part of the usual story. The expressivity result puts them in the same class as transformers. The recurrent form does not give you a stack or a tape. It gives you a decaying summary, which is better at gist and local texture and worse at exact recall. Calling that superior state modelling confuses compression with memory.
+Third, the claim that SSMs model state better is the weakest part of the usual story. The expressivity result puts them in the same class as transformers. The recurrent form does not give you a stack or a tape. It gives you a decaying summary, which is better at gist and local texture and worse at exact recall. Calling that superior state modelling confuses compression with memory.
 
 There is a fourth problem, less theoretical. Much of the demand for long context is a demand for retrieval, which is a database question. If the workload is "find the clause in this contract", the fix is an index and a retriever. Buying a million-token window for a search problem is the expensive way to answer it.
 

@@ -80,13 +80,13 @@ Replace repetition with prediction. A mechanistic claim earns its status by cons
 | Certified region | Inputs inside a certified radius | Fragility to perturbation |
 | New seed or scale | Training run, parameter count | Nothing about the mechanism; it sets scope |
 
-The first tier is cheap and often missing. The fourth has recently become implementable. Hadad, Katz and Bassan formalize circuit discovery with guarantees over continuous input domains, covering input domain robustness, robust patching and minimality ([arXiv:2602.16823](https://arxiv.org/abs/2602.16823), 2026). The important part is the change in the form of the claim, not the verifier. The claim shifts from a statement about a set of inputs to a statement about a region:
+The first tier is cheap and often missing. The fourth has recently become implementable. Hadad, Katz and Bassan formalize circuit discovery with guarantees over continuous input domains, covering input domain robustness, patching under perturbation and minimality ([arXiv:2602.16823](https://arxiv.org/abs/2602.16823), 2026). The important part is the change in the form of the claim, not the verifier. The claim shifts from a statement about a set of inputs to a statement about a region:
 
 $$ \forall x \in B_\epsilon(x_0): \; \arg\max f(x) \neq \arg\max f_{\setminus C}(x) $$
 
 A claim with that form can fail. A claim about an average over an evaluation set mostly cannot, because one counterexample gets averaged away.
 
-Ladner and Althoff show why the region form is not pedantry. Semantically minor input perturbations flip the dominant interpretable features across five open-weight model families, and they propose reachability analysis to certify a bound on the faithfulness gap ([arXiv:2609.15533](https://arxiv.org/abs/2609.15533), 2026). That is the sample-of-size-one problem on the input axis rather than the model axis, and the input axis is the one you can do something about.
+Ladner and Althoff show why the region form is not pedantry. Semantically minor input perturbations flip the dominant interpretable directions across five open-weight model families, and they propose reachability analysis to certify a bound on the faithfulness gap ([arXiv:2609.15533](https://arxiv.org/abs/2609.15533), 2026). That is the sample-of-size-one problem on the input axis rather than the model axis, and the input axis is the one you can do something about.
 
 ## The null you need, and the arithmetic you get
 

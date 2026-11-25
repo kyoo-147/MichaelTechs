@@ -65,7 +65,7 @@ $$w = \operatorname{sign}(z) \, \max(|z| - \lambda, \, 0).$$
 
 The first divides, the second subtracts. Proportional shrinkage applies the same relative force to a large weight and to a small one, so a small weight stays small and stays nonzero. Thresholding works on an absolute scale: anything with magnitude below $\lambda$ becomes exactly zero, and everything above it is shifted inward by exactly $\lambda$. That constant is not a detail. It is why the sparsity pattern depends on the units the features happen to be measured in, and it is the hinge of the argument I make further down.
 
-In more than one dimension these closed forms are exact only for an orthonormal design; with correlated features the coordinates interact and the solution no longer separates. The qualitative difference survives, though. An $\ell_2$ penalty keeps every coordinate alive. An $\ell_1$ penalty is willing to switch coordinates off.
+In more than one dimension these closed forms are exact only for an orthonormal design; when features are correlated, the coordinates interact and the solution no longer separates. The qualitative difference survives, though. An $\ell_2$ penalty keeps every coordinate alive. An $\ell_1$ penalty is willing to switch coordinates off.
 
 ## Two priors, one penalty
 

@@ -26,7 +26,7 @@ I want to make the case for treating inference compute as a budget line with a m
 
 People say "more test-time compute" and mean at least three different mechanisms, with different costs and different failure modes.
 
-Sampling more draws $N$ independent attempts and aggregates them, usually by majority vote or by scoring. It buys coverage. If a single attempt succeeded with probability $p$ and the attempts were genuinely independent, coverage would be $1-(1-p)^N$. The independence assumption is the weak part: samples from one model at one temperature fail in correlated ways, so measured coverage sits below that prediction. Sampling remains the cheapest search primitive, because it needs no verifier and no tree.
+Sampling more draws $N$ independent attempts and aggregates them, usually by majority vote or by scoring. It buys coverage. If a single attempt succeeded with probability $p$ and the attempts were independent, coverage would be $1-(1-p)^N$. The independence assumption is the weak part: samples from one model at one temperature fail in correlated ways, so measured coverage sits below that prediction. Sampling remains the cheapest search primitive, because it needs no verifier and no tree.
 
 Thinking longer runs one trajectory for more tokens, with self-checking inside the trace. This is the behaviour of the o1 family and QwQ-32B-Preview. It buys depth on problems whose difficulty is sequential, where each step constrains the next. It buys nothing when the first step is a wrong framing, because the trace elaborates that framing instead of questioning it. That limitation is real, and it is why long traces sometimes fail more confidently rather than merely more slowly.
 
@@ -48,7 +48,7 @@ The axis only exists where the task admits search. I mean three properties at on
 
 Competition mathematics satisfies all three. A step can be checked, and a bad branch can be dropped. Verified code generation satisfies all three, which is why unit tests are such an effective compute multiplier. Retrieval over a fixed corpus satisfies the first weakly and the third sometimes, depending on whether the retriever is any good. A single-hop fact question satisfies none of them, so extra compute just resamples the same ignorance.
 
-EMMA is the useful negative result. The authors built a multimodal benchmark that requires genuinely cross-modal, multi-step work, and report that chain-of-thought prompting and test-time compute scaling both underperformed on it. I read that as a boundary marker rather than a refutation. Extra compute did not create a search space the task did not have.
+EMMA is the useful negative result. The authors built a multimodal benchmark that requires cross-modal, multi-step work, and report that chain-of-thought prompting and test-time compute scaling both underperformed on it. I read that as a boundary marker rather than a refutation. Extra compute did not create a search space the task did not have.
 
 So the classification step comes before the budget step. Ask whether a wrong first step can be detected and discarded for less than the cost of generating it. If it can, extra compute has somewhere to go. If it cannot, you are buying more of the same failure with better latency numbers on the invoice.
 
@@ -105,7 +105,7 @@ Cost per solved item, not cost per query. The denominator matters. If escalation
 
 Gate quality. Precision and recall of the disagreement signal against the ground truth question of whether escalation would have helped. Without that, you cannot tell whether the router is routing or just adding variance.
 
-The dial is real. There is genuine headroom in spending more compute at inference time and the recent results make that hard to argue against. The headroom is not the same as a return, and a return is not the same as a return on your distribution. Treating inference compute as a budget is the only framing I have found that survives contact with a production curve.
+The dial is real. There is headroom in spending more compute at inference time and the recent results make that hard to argue against. The headroom is not the same as a return, and a return is not the same as a return on your distribution. Treating inference compute as a budget is the only framing I have found that survives contact with a production curve.
 
 ## Sources
 

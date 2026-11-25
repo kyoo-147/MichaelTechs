@@ -89,9 +89,9 @@ Twenty lines, and every one of them is doing one of three jobs: propagate the in
 
 Three details are worth naming, because each one is a bug I have written:
 
-- **`dlogits = probs.copy()`.** Without the copy, the subtraction mutates `probs` in place, which later code may still need. Cheap copies prevent expensive confusion.
-- **`(z1 > 0.0)` is a choice, not a derivative.** ReLU is not differentiable at zero. We pick the subgradient $0$ there, which matches the convention in every framework. It is fine; it is just not mathematics.
-- **`dz1 = da1 * mask`, not `da1 @ something`.** The ReLU is elementwise, so its "Jacobian" is diagonal and the product collapses to a mask. Writing it as a matrix product would be correct and absurdly slow.
+- `dlogits = probs.copy()`. Without the copy, the subtraction mutates `probs` in place, which later code may still need. Cheap copies prevent expensive confusion.
+- `(z1 > 0.0)` is a choice, not a derivative. ReLU is not differentiable at zero. We pick the subgradient $0$ there, which matches the convention in every framework. It is fine; it is just not mathematics.
+- `dz1 = da1 * mask`, not `da1 @ something`. The ReLU is elementwise, so its "Jacobian" is diagonal and the product collapses to a mask. Writing it as a matrix product would be correct and absurdly slow.
 
 ## The check that makes it trustworthy
 
@@ -158,13 +158,13 @@ $$
 
 There are four things in those numbers that the code does not show.
 
-**The gradient sums to zero.** $0.754915 - 0.754915 = 0$, and this is forced rather than lucky: adding a constant to every logit leaves softmax, and hence the loss, unchanged, so the loss has no slope along the all-ones direction. The bias gradient is pure contrast, with no common mode. One practical consequence: if $db_2$ ever fails to sum to zero, the bug is in the loss, not the ReLU. Nielsen states the same collapse for a softmax layer with log-likelihood cost, and leaves the derivation as an exercise.
+The gradient sums to zero. $0.754915 - 0.754915 = 0$, and this is forced rather than lucky: adding a constant to every logit leaves softmax, and hence the loss, unchanged, so the loss has no slope along the all-ones direction. The bias gradient is pure contrast, with no common mode. One practical consequence: if $db_2$ ever fails to sum to zero, the bug is in the loss, not the ReLU. Nielsen states the same collapse for a softmax layer with log-likelihood cost, and leaves the derivation as an exercise.
 
-**The zeros are structural.** Because $a_1[1] = 0$, the loss does not depend on the second row of $W_2$ at all, so a central difference there returns $0/2\varepsilon$ exactly, not something small. The mask then drives $dz_1[1] = 0$, which zeroes the second column of $W_1$. For this sample the unit is not slow, it is disconnected; tuning its learning rate would be tuning nothing.
+The zeros are structural. Because $a_1[1] = 0$, the loss does not depend on the second row of $W_2$ at all, so a central difference there returns $0/2\varepsilon$ exactly, not something small. The mask then drives $dz_1[1] = 0$, which zeroes the second column of $W_1$. For this sample the unit is not slow, it is disconnected; tuning its learning rate would be tuning nothing.
 
-**The weight gradient is rank one.** Each row of $dW_1$ is $x_i$ times $dz_1$, so the rows are proportional to the inputs and their ratio is $x_1/x_0 = -0.5$. One sample can push $W_1$ in a single direction; a batch of $N$ samples assembles it from at most $N$ such outer products. It also means an input feature that is zero in every sample leaves its whole row at zero, and that weight never moves, whatever the learning rate.
+The weight gradient is rank one. Each row of $dW_1$ is $x_i$ times $dz_1$, so the rows are proportional to the inputs and their ratio is $x_1/x_0 = -0.5$. One sample can push $W_1$ in a single direction; a batch of $N$ samples assembles it from at most $N$ such outer products. It also means an input feature that is zero in every sample leaves its whole row at zero, and that weight never moves, whatever the learning rate.
 
-**The $1/N$ is a convention, not a law.** The loss is a mean, so every gradient here carries a factor of $1/N$: doubling the batch roughly halves the step at a fixed rate, which is why batch size and learning rate get tuned together.
+The $1/N$ is a convention, not a law. The loss is a mean, so every gradient here carries a factor of $1/N$: doubling the batch roughly halves the step at a fixed rate, which is why batch size and learning rate get tuned together.
 
 It is arithmetic, not a run: substitute another input and every line recomputes. The finite-difference check agrees with these values by construction, because it estimates the same derivative, up to its own roundoff. What it cannot do is tell you that the loss you differentiated is the loss you meant. It compares backward against forward, so a forward pass that computes the wrong loss makes both sides agree, and the check passes with complete confidence.
 

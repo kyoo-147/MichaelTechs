@@ -48,7 +48,7 @@ The negative log-likelihood of that expression is the loss:
 
 $$\mathcal{L}_{\mathrm{DPO}}(\theta) = -\,\mathbb{E}_{(x,y_w,y_l)}\left[\log\sigma\left(\beta\log\frac{\pi_\theta(y_w\mid x)}{\pi_{\mathrm{ref}}(y_w\mid x)} - \beta\log\frac{\pi_\theta(y_l\mid x)}{\pi_{\mathrm{ref}}(y_l\mid x)}\right)\right]$$
 
-Every term is computable from two forward passes plus two frozen forward passes. No sampling, no reward model, no value function.
+Every term is computable from two forward passes plus two frozen forward passes. Training skips the sampler, the separate reward model, and the value function.
 
 ## The Implicit Reward Is Only Defined Up to a Function of the Prompt
 
@@ -108,7 +108,7 @@ The pairs are the entire supervision signal, so their structure matters as much 
 
 Sequence-level labels are coarse. Zeng et al. make this argument in "Token-level Direct Preference Optimization": preference is judged on whole answers, but generation happens token by token, so a sequence-level Bradley-Terry reward compresses a token-level process into one number. They apply a forward KL constraint per token and keep the Bradley-Terry form at token granularity without explicit reward modelling, reporting a better balance between alignment and generation diversity than DPO on controlled sentiment generation and single-turn dialogue. Whether their fix generalises is open. The diagnosis is sound: the unit of supervision is a design choice, not a given.
 
-Scalar rewards compress a population. Wang et al. argue in "Arithmetic Control of LLMs for Diverse User Preferences" that reliance on a scalar reward limits the ability to capture diverse preferences, and build a framework with multi-objective reward modelling and preferences represented as directions in reward space, comparing against DPO as a strong baseline. My reading is that this is the deeper data problem. If your annotators are genuinely trading helpfulness against verbosity, one scalar per response is lossy compression applied before training starts, and extra pairs do not repair it.
+Scalar rewards compress a population. Wang et al. argue in "Arithmetic Control of LLMs for Diverse User Preferences" that reliance on a scalar reward limits the ability to capture diverse preferences, and build a framework with multi-objective reward modelling and preferences represented as directions in reward space, comparing against DPO as a strong baseline. My reading is that this is the deeper data problem. If your annotators are trading helpfulness against verbosity, one scalar per response is lossy compression applied before training starts, and extra pairs do not repair it.
 
 The checklist I would apply before blaming the optimiser: are prompts drawn from the distribution you will be evaluated on, are pairs length-matched or is length confounded with preference, do annotators agree with themselves on a held-out relabel, and is the reference checkpoint the same model the pairs were sampled from. The last one is routinely violated.
 

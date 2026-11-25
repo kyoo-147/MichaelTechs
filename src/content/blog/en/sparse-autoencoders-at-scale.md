@@ -30,7 +30,7 @@ Three claims are bundled here. Features are directions, so a concept is a vector
 
 Identifiability follows. When two concepts co-occur, one direction explaining both costs less $\ell_1$ than two explaining one each, so the penalty merges them. When a narrow concept always appears inside a broad one, the broad feature absorbs it and the narrow goes dark. Merging and absorption are consequences of the objective, not optimisation failures.
 
-So a trained SAE is a sparse overcomplete basis for a layer's activations, selected by a penalty, at a width you chose. That is a coordinate system. Calling its coordinates features adds the claim that the model uses that coordinate system too.
+So a trained SAE is a sparse overcomplete basis for a layer's activations, selected by a penalty, at a width you chose. That is a coordinate system. To call its coordinates features is to claim that the model uses that coordinate system too.
 
 ## Reconstruction is a spanning test
 
@@ -68,11 +68,11 @@ Read the mapping carefully. A linear map from a feature to a discretised pitch v
 
 He and coauthors ([arXiv:2606.26620](https://arxiv.org/abs/2606.26620), 2026) keep two axes apart for the same reason. Their Qwen3-Instruct SAE suite covers Qwen3-1.7B, 4B and 8B, with layer-wise SAEs at residual streams, MLP outputs and attention outputs for the smaller two, and residual-stream layers for the 8B. They evaluate with activation-level reconstruction metrics and model-level recovery metrics, and report distinct sparsity-fidelity trade-offs across layers and components. If reconstruction implied use, the second axis would be redundant.
 
-Their refusal-steering case study then supplies causal evidence, with a qualifier worth keeping: selected features steer refusal. Selected, not all of them.
+Their refusal-steering case study then supplies causal evidence, with a qualifier worth keeping: the features selected steer refusal. Selected, not all of them.
 
 ## Against the reconstruction-interpretability trade-off
 
-The standard framing is a frontier. Raise sparsity and reconstruction degrades. Lower it and features blur into polysemantic directions. The frontier is presented as a property of the method.
+The standard framing is a frontier. Raise sparsity and reconstruction degrades. Lower it and the features blur into polysemantic directions. The frontier is presented as a property of the method.
 
 I think it is a property of the architecture, and the architecture was chosen.
 

@@ -53,7 +53,7 @@ That third habit is the one I would keep. Competition problems are designed so t
 
 Multiple choice is an answer-getting format, and answer-getting is not proving. On the AMC you can substitute the five options into the expression and take whichever one satisfies the condition - a strategy that is entirely legitimate, requires no number theory, and would score full marks. The paper cannot distinguish a student who saw the modular structure from one who tested options fast.
 
-The AIME fixes that to a degree: an integer answer cannot be guessed from a list. But it introduces a different distortion. Because the answer is always a non-negative integer below 1000, contestants learn to work backwards - assume the answer has a clean form, then force the computation to produce it. That is a genuinely useful heuristic in a timed contest and a genuinely bad habit in research, where the answer is usually not an integer you can anticipate.
+The AIME fixes that to a degree: an integer answer cannot be guessed from a list. But it introduces a different distortion. Because the answer is always a non-negative integer below 1000, contestants learn to work backwards - assume the answer has a clean form, then force the computation to produce it. That is a useful heuristic in a timed contest and a bad habit in research, where the answer is usually not an integer you can anticipate.
 
 So both papers measure something real - fluency, pattern recognition, composure under a clock - and neither measures the thing that matters most later: whether you can state precisely what you are assuming, and prove that the assumption holds.
 
@@ -67,7 +67,7 @@ So both papers measure something real - fluency, pattern recognition, composure 
 
 The multiple-choice half of this system is a scoring rule before it is a maths test, and the rule doing the most work is the price of not answering. On the current AMC 10/12 an answer scores 6, a blank 1.5, a wrong answer 0, out of 150. Until 2007 a blank was worth 2.5. One number moved and the arithmetic of the whole paper moved with it.
 
-Take 100 points, the cutoff the old AMC 12 line was usually quoted at. With blanks at 2.5 the cheapest route to it was 11 correct and 14 blank: 66 + 35 = 101, while 10 correct with 15 blank gives 60 + 37.5 = 97.5. A wrong answer scores less than a blank, so for any fixed number of correct answers the best total comes from leaving the rest empty, which makes those figures genuine minimums. With blanks at 1.5 the same 11 correct are worth 66 + 21 = 87, and it now takes 14 correct with 11 blank to reach 84 + 16.5 = 100.5; 13 correct with 12 blank stops at 96. The ticket went from eleven solved problems to fourteen.
+Take 100 points, the cutoff the old AMC 12 line was usually quoted at. With blanks at 2.5 the cheapest route to it was 11 correct and 14 blank: 66 + 35 = 101, while 10 correct with 15 blank gives 60 + 37.5 = 97.5. A wrong answer scores less than a blank, so for any fixed number of correct answers the best total comes from leaving the rest empty, which makes those figures minimums. With blanks at 1.5 the same 11 correct are worth 66 + 21 = 87, and it now takes 14 correct with 11 blank to reach 84 + 16.5 = 100.5; 13 correct with 12 blank stops at 96. The ticket went from eleven solved problems to fourteen.
 
 The guess threshold moves with the same number. A guess over *k* options is worth 6/*k* in expectation, so with five options it returns 1.2, three tenths worse than a blank; eliminate one option and it returns 1.5, exactly level with a blank; eliminate two and it returns 2.0, half a point clear. Guessing beats blanking once your chance exceeds 1.5/6 = 0.25. Under the old 2.5 blank the bar was 2.5/6 = about 0.417, which means three options eliminated before the guess pays.
 
@@ -104,7 +104,7 @@ The same arithmetic runs backwards, which is what makes it a rule and not an exc
 
 What the cutoff does is change the objective. At a line the payoff is a step, zero and then one, so the quantity being maximised is a probability rather than a score. The clock inherits the distortion: under a bar, a minute is worth the chance that it turns a miss into a solve at the moment those 6 points are the ones that cross, not its share of the expected total.
 
-None of this is measured. It is algebra on a rule sheet, assuming the twelve are genuinely blind and mutually independent, which is never quite true: partial knowledge pushes $p$ above 0.2 and shrinks the range where gambling pays. The structure survives the fudge. You cannot price a guess without knowing what the score is for.
+None of this is measured. It is algebra on a rule sheet, assuming the twelve are blind and mutually independent, which is never quite true: partial knowledge pushes $p$ above 0.2 and shrinks the range where gambling pays. The structure survives the fudge. You cannot price a guess without knowing what the score is for.
 
 ## Sources
 

@@ -39,7 +39,7 @@ $$
 
 That is the whole recipe. What people rarely notice is that the familiar losses fall out of it, and the assumptions come along for free.
 
-**Regression with squared error.** Assume $y = f_\theta(\mathbf{x}) + \varepsilon$ with $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ and $\sigma$ fixed. Then
+Regression with squared error. Assume $y = f_\theta(\mathbf{x}) + \varepsilon$ with $\varepsilon \sim \mathcal{N}(0, \sigma^2)$ and $\sigma$ fixed. Then
 
 $$
 -\log p_\theta(y \mid \mathbf{x}) = \frac{(y - f_\theta(\mathbf{x}))^2}{2\sigma^2} + \text{const},
@@ -47,7 +47,7 @@ $$
 
 so maximising likelihood is minimising squared error. The $\sigma^2$ in the denominator is the part everybody drops, and it is the part that says *every sample has the same noise scale*.
 
-**Classification with cross-entropy.** Assume $y \sim \mathrm{Bernoulli}(p_\theta(\mathbf{x}))$. Then
+Classification with cross-entropy. Assume $y \sim \mathrm{Bernoulli}(p_\theta(\mathbf{x}))$. Then
 
 $$
 -\log p_\theta(y \mid \mathbf{x}) = -\left[y\log p_\theta + (1-y)\log(1 - p_\theta)\right],
@@ -108,7 +108,7 @@ Read the table rather than the scalar. The model is under-confident in the lowes
 - Prefer a loss derived from the assumption over a loss chosen because it is in a tutorial.
 - Remember that $\mathbb{E}[X]$ is a summary, not the distribution; when the decision depends on the tail, look at the tail.
 
-Probability is genuinely useful here, but not as decoration. It is the only language in which "how wrong, and in what way" can be written down precisely enough to be checked.
+Probability is useful here, but not as decoration. It is the only language in which "how wrong, and in what way" can be written down precisely enough to be checked.
 
 ## Sources
 

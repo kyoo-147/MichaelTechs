@@ -36,7 +36,7 @@ What hurts is not how many pairs you dropped. It is how much normalised weight t
 
 A sliding window assumes locality. A strided pattern assumes periodicity. Both derive the mask from position arithmetic, which costs nothing and needs no data. Grammar is local, so the assumption survives a good deal of text. Coreference is not local, and that is where it breaks.
 
-Qiu and coauthors make the fixed mask linguistic rather than positional in [arXiv:2601.02819](https://arxiv.org/abs/2601.02819) (2026), treating punctuation as semantic boundary anchors and fusing a global summary with boundary features over two branches. For a 0.6B model on 32k inputs they report 10.8 percent less information loss at 97.3 percent sparsity.
+Qiu and coauthors make the fixed mask linguistic rather than positional in [arXiv:2601.02819](https://arxiv.org/abs/2601.02819) (2026), treating punctuation as semantic boundary anchors and fusing a global summary with boundary features on two branches. For a 0.6B model on 32k inputs they report 10.8 percent less information loss at 97.3 percent sparsity.
 
 Luo and coauthors make the budget empirical instead in [arXiv:2603.18636](https://arxiv.org/abs/2603.18636) (2026). They argue that attention sparsity is largely intrinsic to a layer, varying only slightly across inputs, so per-layer sensitivity can be profiled offline and applied at inference. Across seven video generation models they report up to 1.93x speedup at up to 29 dB PSNR on Wan2.1.
 

@@ -40,7 +40,7 @@ Define the gap between joint information and the sum of marginals:
 
 $$\Delta = I(Y; X_v, X_t) - I(Y; X_v) - I(Y; X_t) = I(X_v; X_t \mid Y) - I(X_v; X_t).$$
 
-Positive $\Delta$ is synergy: the pair says more than the parts. Negative $\Delta$ is redundancy.
+Positive $\Delta$ is interaction: the pair says more than the parts. Negative $\Delta$ is redundancy.
 
 Let $Y = X_v \oplus X_t$ with independent uniform bits. Each marginal carries no information about the label, so a unimodal head is at chance, and any average or product of chance-level heads is still at chance. Only a function of the pair separates the classes. Now let $X_v = X_t = Y$. Then $\Delta = -H(Y)$, the second modality adds no bits, and a late-fusion average loses nothing.
 

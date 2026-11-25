@@ -71,7 +71,7 @@ $$
 \mathbf{y} = W\mathbf{x} + \mathbf{b}.
 $$
 
-With $\mathbf{b} \neq \mathbf{0}$ this is **affine**, not linear. It does not fix the origin. Stacking affine maps still gives an affine map, which is exactly why a "deep linear network" collapses to a single matrix times input plus a constant - adding depth without a nonlinearity buys you nothing, and the usual explanation ("linear functions compose to linear functions") is slightly wrong in a way that hides the real reason.
+With $\mathbf{b} \neq \mathbf{0}$ this is affine, not linear. It does not fix the origin. Stacking affine maps still gives an affine map, which is exactly why a "deep linear network" collapses to a single matrix times input plus a constant - adding depth without a nonlinearity buys you nothing, and the usual explanation ("linear functions compose to linear functions") is slightly wrong in a way that hides the real reason.
 
 The bias is a translation of the image. Geometrically it shifts the whole subspace away from the origin; practically it lets the layer produce a nonzero output for a zero input, which matters for things like logits of a never-seen class. Keeping the distinction costs one word and prevents a whole family of confused conversations.
 

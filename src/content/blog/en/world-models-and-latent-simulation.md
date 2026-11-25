@@ -28,7 +28,7 @@ If a pixel-space world model has to render a frame and then re-encode it to cont
 
 ## Where the saving actually comes from
 
-Pixel-space memory is expensive because of the round trip, not because of the number of floats. You render to RGB, store points, then encode back into the diffusion latent before the model can consume them. Two operations per read, plus the loss you take when rich features get quantized into pixels. Wang et al. describe the round trip as both costly and lossy, and their fix is to keep the scene cache inside the latent space and warp it there directly.
+Pixel-space memory is expensive because of the round trip, not because of the number of floats. You render to RGB, store points, then encode back into the diffusion latent before the model can consume them. Two operations per read, plus the loss you take when rich detail gets quantized into pixels. Wang et al. describe the round trip as both costly and lossy, and their fix is to keep the scene cache inside the latent space and warp it there directly.
 
 The second saving is subtler. A planner that searches in the space the model already computes in avoids a projection at every node of the search tree. There is no adapter to train and no separate reward model wedged between the search and the dynamics. One function, evaluated many times, on tensors that are already the right shape.
 

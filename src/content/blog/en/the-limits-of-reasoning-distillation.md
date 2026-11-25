@@ -32,7 +32,7 @@ Hu and colleagues test what they call the superficial mimicry hypothesis across 
 
 The direction matters more than the magnitude. The students did not fail to produce reasoning-shaped text. They failed to produce text whose cost responds to the problem. Several of them scored below their own pre-distillation baselines, which the authors call negative transfer.
 
-The paper's framing is a cargo cult: the ritual form is reproduced, the causal structure behind it is not. If you have watched a distilled model write a page of "let me carefully consider" for a two-line arithmetic problem, then write the same page for a genuinely hard one, you have seen this directly. Verbosity is easy to copy because it is a marginal property of nearly every trace in the corpus. Difficulty-conditioned budget is hard to copy because it is the one property that varies between traces, and fine-tuning sums loss over tokens rather than over problems.
+The paper's framing is a cargo cult: the ritual form is reproduced, the causal structure behind it is not. If you have watched a distilled model write a page of "let me carefully consider" for a two-line arithmetic problem, then write the same page for a hard one, you have seen this directly. Verbosity is easy to copy because it is a marginal property of nearly every trace in the corpus. Difficulty-conditioned budget is hard to copy because it is the one property that varies between traces, and fine-tuning sums loss over tokens rather than over problems.
 
 ## The Contrarian Case: The Problem Is the Unbounded Surface
 
@@ -93,7 +93,7 @@ That reframes the decision. Trace distillation is a premium option with a specif
 
 Distil when you can name the skill you are buying and the test that shows it arrived. Otherwise you are paying for a voice.
 
-Pick the intermediate representation with the smallest surface you can defend. Tags over prose when the domain allows it, prose only when the reasoning genuinely needs unconstrained articulation. Select data by teacher-student divergence rather than by heuristic length or difficulty, since divergence points at the examples the student cannot yet explain. Report reskin accuracy next to in-distribution accuracy, in the same table, every time. Report token length as a function of problem difficulty rather than as a mean, because the mean hides the collapse completely: a model that spends the same length on everything has the right average and no policy.
+Pick the intermediate representation with the smallest surface you can defend. Tags over prose when the domain allows it, prose only when the reasoning needs unconstrained articulation. Select data by teacher-student divergence rather than by heuristic length or difficulty, since divergence points at the examples the student cannot yet explain. Report reskin accuracy next to in-distribution accuracy, in the same table, every time. Report token length as a function of problem difficulty rather than as a mean, because the mean hides the collapse completely: a model that spends the same length on everything has the right average and no policy.
 
 And treat negative transfer as a live outcome rather than an edge case. It showed up across 14 models, and the mechanism that produces it, imitating a trace whose cost structure you cannot see, is not exotic. It is the default.
 

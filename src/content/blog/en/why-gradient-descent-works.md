@@ -30,17 +30,17 @@ Two practical facts fall out immediately, and they explain most beginner pain:
 - **Too small a step** and you crawl: the decrease per step is linear in $\eta$.
 - **Too large a step** and the bracket goes negative: the "descent" step increases the loss. Divergence is not a mysterious numerical bug; it is the inequality being violated because your step size exceeded the local curvature.
 
-$L$ is the largest curvature in the region you are walking through. This is why learning-rate warmup exists: early in training the effective curvature is large, so you take small steps until the landscape flattens.
+$L$ is the largest curvature in the region you are walking through. This is why learning-rate warmup exists: early in training the effective curvature is large, so you take small steps until the surface flattens.
 
 ## What convexity buys
 
 If $f$ is convex, every local minimum is global, and the guarantee upgrades from "the loss goes down" to "you converge to the optimum" with a rate: $O(1/k)$ for gradient descent on smooth convex functions, $O(1/k^2)$ with momentum, and linear convergence if the function is also strongly convex.
 
-Boyd and Vandenberghe's [*Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/) is the canonical reference for why that class is special: duality, certificate of optimality, polynomial-time interior-point methods. It is a genuinely beautiful theory, and it is the theory I reach for when the problem actually is convex - a linear program, a small logistic regression, a calibration fit.
+Boyd and Vandenberghe's [*Convex Optimization*](https://web.stanford.edu/~boyd/cvxbook/) is the canonical reference for why that class is special: duality, certificate of optimality, polynomial-time interior-point methods. It is a beautiful theory, and it is the theory I reach for when the problem actually is convex - a linear program, a small logistic regression, a calibration fit.
 
 ## What deep learning actually optimizes
 
-Deep networks are not convex. Goodfellow, Bengio and Courville are unusually blunt about the consequence in [chapter 8](https://www.deeplearningbook.org/contents/optimization.html): the classical guarantees do not apply, and the interesting structure is not local minima but saddle points, plateaus, and cliffs. A random point in a high-dimensional non-convex landscape is far more likely to be near a saddle than a minimum, because a saddle needs only *some* directions to curve upward, while a minimum needs all of them.
+Deep networks are not convex. Goodfellow, Bengio and Courville are unusually blunt about the consequence in [chapter 8](https://www.deeplearningbook.org/contents/optimization.html): the classical guarantees do not apply, and the interesting structure is not local minima but saddle points, plateaus, and cliffs. A random point in a high-dimensional non-convex space is far more likely to be near a saddle than a minimum, because a saddle needs only *some* directions to curve upward, while a minimum needs all of them.
 
 This is the first place the standard narrative misleads. Students are taught that the danger is "getting stuck in a local minimum", and then spend time on a problem that is rarely the binding constraint. The binding constraints are conditioning (a ravine that is steep in one direction and flat in another), noise in the gradient estimate, and step-size schedules.
 
@@ -79,7 +79,7 @@ $$
 
 so the entire argument collapses into two multiplications.
 
-The steep direction forces $\eta < 2/L = 0.02$. At exactly $\eta = 0.02$ the factor is $-1$: $x$ flips sign every step at constant magnitude, the bracket $1 - \eta L/2$ is exactly zero, and the loss does not decrease at all. The inequality is not merely cautious there, it is tight, and a quadratic proves it. At $\eta = 0.021$ the factor is $-1.1$, so $x$ grows 10% per step and $50x^2$ grows 21% per step.
+The steep direction forces $\eta < 2/L = 0.02$. At exactly $\eta = 0.02$ the factor is $-1$: $x$ flips sign every step at constant magnitude, the bracket $1 - \eta L/2$ is exactly zero, and the loss does not decrease at all. The inequality is tight there, not a cautious bound, and a quadratic proves it. At $\eta = 0.021$ the factor is $-1.1$, so $x$ grows 10% per step and $50x^2$ grows 21% per step.
 
 The useful step is not "just under the ceiling" but $\eta^\star = 2/(L+\mu) = 2/101 \approx 0.019802$, which puts both factors at $\pm 99/101 \approx \pm 0.9802$. That is the step that equalizes them in magnitude, the best a single fixed number can do. The steep coordinate alternates sign while the flat one grinds monotonically, and both shed 1.98% per step. Shrinking an error in the flat direction by a factor of 1000 therefore takes $\ln(10^{-3})/\ln(99/101) \approx 345$ steps, matching the $\tfrac{\kappa}{2}\ln(1/\varepsilon)$ count: $50 \times 6.9078 = 345.4$.
 

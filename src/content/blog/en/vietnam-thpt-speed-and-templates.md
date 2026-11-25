@@ -15,21 +15,21 @@ categories:
 
 The Vietnamese THPT graduation exam is a speed instrument. Ninety minutes, dozens of small questions, almost all of them drawn from a fixed list of templates: survey a function, find extrema, find an asymptote, compute an integral, solve a complex equation, handle a plane in $\mathbb{R}^3$. A student who has drilled the templates does not *solve* the paper so much as recognise it.
 
-The problem below is **mine**, written in that style. It is not a past question, and I am not reproducing one.
+The problem below is mine, written in that style. It is not a past question, and I am not reproducing one.
 
 ## The problem
 
 Let $f(x) = x^3 - 3x + 2$ and let $d$ be the line $y = 9x$.
 
-**(a)** Find every point on the graph of $f$ at which the tangent is parallel to $d$.
+(a) Find every point on the graph of $f$ at which the tangent is parallel to $d$.
 
-**(b)** Hence compute the distance between those points.
+(b) Hence compute the distance between those points.
 
-**(c)** Write the equation of the tangent to the graph at the point with $x = 2$.
+(c) Write the equation of the tangent to the graph at the point with $x = 2$.
 
 ## The solution
 
-**(a)** Tangents are parallel when the slopes agree:
+(a) Tangents are parallel when the slopes agree:
 
 $$
 f'(x) = 3x^2 - 3 = 9 \;\Longrightarrow\; x^2 = 4 \;\Longrightarrow\; x = \pm 2 .
@@ -43,13 +43,13 @@ $$
 
 The points are $(-2, 0)$ and $(2, 4)$.
 
-**(b)**
+(b)
 
 $$
 \text{distance} = \sqrt{(2 - (-2))^2 + (4 - 0)^2} = \sqrt{16 + 16} = 4\sqrt{2} \approx 5.657 .
 $$
 
-**(c)** At $x = 2$ the point is $(2, 4)$ and the slope is $9$, so
+(c) At $x = 2$ the point is $(2, 4)$ and the slope is $9$, so
 
 $$
 y - 4 = 9(x - 2) \;\Longrightarrow\; y = 9x - 14 .
@@ -105,7 +105,7 @@ That third error is instructive. The formula $y = f'(x_0)(x - x_0) + f(x_0)$ is 
 
 ## The contrarian reading
 
-This format trains a real skill and hides a real gap. The skill is fast retrieval: seeing "tangent" and producing the derivative condition in under five seconds is genuinely useful, and the same reflex serves you well when debugging a numerical loss surface.
+This format trains a real skill and hides a real gap. The skill is fast retrieval: seeing "tangent" and producing the derivative condition in under five seconds is useful, and the same reflex serves you well when debugging a numerical loss surface.
 
 The gap is that every question has a known template, and the paper never asks a student to *choose* a representation. In practice the hard part of applied mathematics is exactly that choice: whether to model a system as a recurrence or a differential equation, whether to linearise or solve exactly, whether the quantity you want is a value or a distribution. A template exam cannot test that, because a template exam has a syllabus and the syllabus pre-commits the choice for you.
 

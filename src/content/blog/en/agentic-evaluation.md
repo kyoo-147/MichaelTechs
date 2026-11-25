@@ -40,7 +40,7 @@ Most silent successes fall into three shapes, plus a fourth that is a capability
 
 **Unsafe side effects.** The task completes and the environment is worse: a scratch file left in the output directory, a probe row committed, a notification sent twice, a cache invalidated for a tenant that was not the target. Task success and system integrity are different questions that happen to share an answer.
 
-**Recovery.** An error arrives and the next action responds to it - different arguments, different tool, narrower query. A run that recovers demonstrates a skill that a run which never errs cannot show. A run that "recovers" by retrying blindly until something works is indistinguishable in the answer column and is a different agent.
+Recovery. An error arrives and the next action responds to it - different arguments, different tool, narrower query. A run that recovers demonstrates a skill that a run which never errs cannot show. A run that "recovers" by retrying blindly until something works is indistinguishable in the answer column and is a different agent.
 
 AgentRewardBench made the three-shape problem concrete by asking annotators to label trajectories along several axes instead of one. Expert reviewers covered 1,302 trajectories drawn from 5 benchmarks and 4 models, scoring success, side effects and repetitiveness separately ([arXiv:2504.08942](https://arxiv.org/abs/2504.08942), Lù et al., 2025). The axes exist because a single success bit does not describe a run.
 
@@ -103,7 +103,7 @@ The training consequence is the part I care about most, and it is inference from
 
 Three costs are real. Trajectory scoring is slower and noisier than answer matching. Verifiers rot as the environment changes, so they need the same maintenance as the agent. And some state you want is simply not observable from inside the process, which means part of every score is an estimate, and the honest report says which part.
 
-Keep final-answer accuracy. It is cheap, it catches gross regressions, and it is the number users experience. Just stop making it the dependent variable. The refund agent that closed the right ticket for the wrong reason was never healthy. The metric that said it was had only read the last line.
+Keep final-answer accuracy. It is cheap, it catches gross regressions, and it is the number users experience. Just stop making it the dependent variable. The refund agent that closed the right ticket for the wrong reason was never healthy. The metric that reported it healthy had only read the last line.
 
 ## Sources
 

@@ -28,7 +28,7 @@ $$\frac{U(B)\,N_e\,\beta_w}{B}$$
 
 where $\beta_w$ is bytes per parameter. Two consequences follow, and they pull in opposite directions. Peak residency is governed by $E$, because over enough tokens $U(B)$ reaches every expert. The per-token weight bill does fall with $B$, but only as fast as $U$ grows relative to $B$, and when routing is diverse $U$ saturates near $E$ quickly.
 
-FLOPs per token stay fixed at $k N_e + N_s$. That is the quantity sparsity genuinely reduces. It dominates cost only once the weights are amortised, which is a statement about your batch, not about the architecture.
+FLOPs per token stay fixed at $k N_e + N_s$. That is the quantity sparsity reduces. It dominates cost only once the weights are amortised, which is a statement about your batch, not about the architecture.
 
 | Regime | Binding constraint | What sparsity buys |
 | --- | --- | --- |

@@ -64,7 +64,7 @@ $$n_{kv} = \frac{n_h}{g}$$
 
 Llama-2 70B has 64 query heads and 8 KV heads, so $g = 8$. Full multi-head attention at that shape would cost 2.5 MiB per token. It costs 320 KiB. The shape of the curve is unchanged: grouped-query attention divides the constant, it does not touch the linear growth in $T$.
 
-For 8 KV heads, $d=128$ and fp16, one layer is 4 KiB per token. Multiply by depth. That is small enough to hold in your head.
+For 8 KV heads, $d=128$ and fp16, one layer is 4 KiB per token. Multiply by depth. That is small enough to keep in mind.
 
 The constant is decided in training. At serving time you can change the dtype, keep fewer entries, or re-derive what you dropped. You cannot make the model narrower than it was built.
 

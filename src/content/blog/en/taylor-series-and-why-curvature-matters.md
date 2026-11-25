@@ -123,7 +123,7 @@ The bill for that choice appears elsewhere. If the problem is well conditioned, 
 
 This is why I find the common claim that first-order methods are cheaper and therefore win at scale misleading. The accurate statement is that exact curvature is too expensive at scale, so we use approximations, and the quality of the approximation determines how much tuning we need. That is a different research question from whether curvature matters. It matters. The practical issue is that we cannot afford the exact answer.
 
-There are genuine reasons to prefer first-order methods beyond the Hessian cost: stochastic gradients, nonsmooth objectives, and memory limits are all real. But those are separate arguments. They should not be confused with the claim that curvature is a minor correction. If curvature were unimportant, step-size tuning would not be the persistent practical problem that it is.
+There are reasons to prefer first-order methods beyond the Hessian cost: stochastic gradients, nonsmooth objectives, and memory limits are all real. But those are separate arguments. They should not be confused with the claim that curvature is a minor correction. If curvature were unimportant, step-size tuning would not be the persistent practical problem that it is.
 
 ## Sources
 

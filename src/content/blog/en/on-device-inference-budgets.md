@@ -63,7 +63,7 @@ If bytes per token are the constraint, bits per weight are the price. Song and c
 
 The third finding changes plans. Quantisation buys bandwidth until arithmetic and launch overhead dominate, and then more bits saved stop helping. The 3.5 threshold is empirical and hardware-specific, so treat it as a hypothesis to test on the target device.
 
-Below four bits the trade gets less clean. Weights still cross the bus at the lower width, so the saving is real, but the kernel has to unpack them into a format its datapath accepts. If the NPU is integer-only at 8 bits, 4-bit weights arrive cheap and are expanded on chip, spending registers and ALU to save traffic. That is usually right on a bandwidth-bound step and wrong on a compute-bound one.
+Below four bits the trade gets less clean. Weights still cross the bus at the lower width, so the saving is real, but the kernel has to expand them into a format its datapath accepts. If the NPU is integer-only at 8 bits, 4-bit weights arrive cheap and are expanded on chip, spending registers and ALU to save traffic. That is usually right on a bandwidth-bound step and wrong on a compute-bound one.
 
 Accuracy is where the choice gets expensive. Boroujeni and coauthors measure how large it is for the key-value cache. Instead of one fixed precision they assign bit width per token from 2, 4, 8 and 16 bits, and on one SmolLM-360M setting they report 17.75 percent lower decoding latency than static cache quantisation with 7.60 points higher accuracy, within 0.30 points of fp16. One benchmark, one model family. The structural point travels: cached tokens do not carry uniform value per byte, so a uniform bit width spends budget where it was not needed.
 

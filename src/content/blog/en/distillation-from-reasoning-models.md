@@ -106,7 +106,7 @@ If $\Delta_{\mathrm{trace}}$ sits near zero, the trace is decoration. The model 
 
 **Split by template, not by row.** Random row splits leak template identity, so the student can learn template to answer-shape and score well. Split by generator or template family and the leak closes.
 
-**Compare entropy on shared prefixes.** Run teacher and student on the same prefix and look at the student's per-token entropy where the teacher was uncertain. A student far more confident than its teacher, on prefixes both have seen, did not receive the distribution. You got the style with extra confidence, which is the worst combination to deploy.
+Compare entropy on shared prefixes. Run teacher and student on the same prefix and look at the student's per-token entropy where the teacher was uncertain. A student far more confident than its teacher, on prefixes both have seen, did not receive the distribution. You got the style with extra confidence, which is the worst combination to deploy.
 
 One more check costs an extra run: train the same student on short answers, no traces. If long traces do not beat that baseline on re-skinned inputs, the traces added length and style, and the accuracy came from somewhere else.
 

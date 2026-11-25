@@ -84,7 +84,7 @@ The standard response is to build a better simulator: more contact fidelity, bet
 
 First, the properties that decide whether a policy transfers are the action interface, the observation the policy conditions on, and the way $\phi$ responds to actions across the range of behaviour you will deploy. Those are interface properties, cheap to get right compared with fidelity work. A contact model accurate to the millimetre buys nothing for a policy that cannot see the variable its predicate depends on.
 
-Second, and this is the part I would push hardest: the binding constraint on real environments is maintenance, not realism. A physical rig breaks. A service-backed environment drifts when the service changes. A data-derived one goes stale when the data does. Each is a recurring cost, and if keeping an environment alive costs more than the training run, it quietly stops being run. The evaluation becomes a memory of an evaluation, and the claim about the world goes untested for a year.
+Second, the binding constraint on real environments is maintenance, not realism. A physical rig breaks. A service-backed environment drifts when the service changes. A data-derived one goes stale when the data does. Each is a recurring cost, and if keeping an environment alive costs more than the training run, it quietly stops being run. The evaluation becomes a memory of an evaluation, and the claim about the world goes untested for a year.
 
 That is why I read the repair and onboarding measurements as load-bearing rather than as appendices. An environment you can fix in an afternoon is one you keep running; one only a specialist can repair gets retired the first time it breaks.
 
